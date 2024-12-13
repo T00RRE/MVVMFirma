@@ -48,6 +48,12 @@ namespace MVVMFirma.ViewModels
                 new CommandViewModel(
                     "Faktura",
                     new BaseCommand(() => this.CreateView(new nowafakturaViewModel()))),
+                 new CommandViewModel(
+                "Pracownicy",
+                new BaseCommand(() => this.ShowAllPracownicy())),
+           // new CommandViewModel(
+            //    "Pracownik",
+           // new BaseCommand(() => this.CreateView(new NowyPracownikViewModel())))
             };
         }
         #endregion
@@ -124,6 +130,18 @@ namespace MVVMFirma.ViewModels
             ICollectionView collectionView = CollectionViewSource.GetDefaultView(this.Workspaces);
             if (collectionView != null)
                 collectionView.MoveCurrentTo(workspace);
+        }
+        private void ShowAllPracownicy()
+        {
+            WszyscyPracownicyViewModel workspace =
+                this.Workspaces.FirstOrDefault(vm => vm is WszyscyPracownicyViewModel)
+                as WszyscyPracownicyViewModel;
+            if (workspace == null)
+            {
+                workspace = new WszyscyPracownicyViewModel();
+                this.Workspaces.Add(workspace);
+            }
+            this.SetActiveWorkspace(workspace);
         }
         #endregion
     }

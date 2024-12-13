@@ -8,35 +8,13 @@ using System.Windows.Input;
 
 namespace MVVMFirma.ViewModels
 {
-    public class NowyTowarViewModel : WorkspaceViewModel
+    public class NowyTowarViewModel : jedenViewModel<Towar>
     {
-        #region DB
-        private FakturyEntities FakturyEntities;
-        #endregion
-        #region Item
-        private Towar towar;
-        #endregion
-        #region Command 
-        //to jest komenda, która zostanie podpieta pod przycisk zapisz i zamknij i ona wywola funkcje SaveAndClose
-        private BaseCommand _SaveCommand;
-        public ICommand SaveCommand
-        {
-            get {
-                if (_SaveCommand == null)
-                    _SaveCommand = new BaseCommand(() => SaveAndClose());
-                return _SaveCommand;
-
-                }
-               
-                
-        }
-        #endregion
+       
         #region Konstruktor
-        public NowyTowarViewModel()
-        {
-            base.DisplayName = "Towar";
-            FakturyEntities = new FakturyEntities();
-            towar = new Towar();
+        public NowyTowarViewModel():base("Towar")
+        { 
+            item = new Towar();
         }
         #endregion
         #region Properties
@@ -44,11 +22,11 @@ namespace MVVMFirma.ViewModels
         public String Kod
         { get
             {
-                return towar.Kod;
+                return item.Kod;
             }
             set
             {
-                towar.Kod = value;
+                item.Kod = value;
                 OnPropertyChanged(() => Kod);
             }
         }
@@ -56,11 +34,11 @@ namespace MVVMFirma.ViewModels
         {
             get
             {
-                return towar.Nazwa;
+                return item.Nazwa;
             }
             set
             {
-                towar.Nazwa = value;
+                item.Nazwa = value;
                 OnPropertyChanged(() => Nazwa);
             }
         }
@@ -68,11 +46,11 @@ namespace MVVMFirma.ViewModels
         {
             get
             {
-                return towar.StawkaVatZakupu;
+                return item.StawkaVatZakupu;
             }
             set
             {
-                towar.StawkaVatZakupu = value;
+                item.StawkaVatZakupu = value;
                 OnPropertyChanged(() => StawkaVatZakupu);
             }
         }
@@ -80,11 +58,11 @@ namespace MVVMFirma.ViewModels
         {
             get
             {
-                return towar.StawkaVatSprzedaży;
+                return item.StawkaVatSprzedaży;
             }
             set
             {
-                towar.StawkaVatSprzedaży = value;
+                item.StawkaVatSprzedaży = value;
                 OnPropertyChanged(() => StawkaVatSprzedaży);
             }
         }
@@ -92,11 +70,11 @@ namespace MVVMFirma.ViewModels
         {
             get
             {
-                return towar.Cena;
+                return item.Cena;
             }
             set
             {
-                towar.Cena = value;
+                item.Cena = value;
                 OnPropertyChanged(() => Cena);
             }
         }
@@ -104,28 +82,24 @@ namespace MVVMFirma.ViewModels
         {
             get
             {
-                return towar.Marża;
+                return item.Marża;
             }
             set
             {
-                towar.Marża = value;
+                item.Marża = value;
                 OnPropertyChanged(() => Marza);
             }
         }
 
         #endregion
         #region Helpers
-        public void Save()
+        public  override void Save()
         {
-            FakturyEntities.Towar.Add(towar); // dodaje towar do lokalnej kolekcji 
+            FakturyEntities.Towar.Add(item); // dodaje towar do lokalnej kolekcji 
             FakturyEntities.SaveChanges(); // zapisuje zmiany do bazy danych
 
         }
-        public void SaveAndClose()
-        {
-        Save();
-            base.OnRequestClose(); //zamkniecie zakladki
-        }
+       
         #endregion
     }
 }

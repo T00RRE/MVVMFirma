@@ -72,13 +72,20 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helper\BaseCommand.cs" />
+    <Compile Include="Models\EntitiesForView\FakturaForAllView.cs" />
     <Compile Include="Models\Entities\Adres.cs">
+      <DependentUpon>ModelFaktury.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Dostawa.cs">
       <DependentUpon>ModelFaktury.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Faktura.cs">
       <DependentUpon>ModelFaktury.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Kontrahent.cs">
+      <DependentUpon>ModelFaktury.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Magazyn.cs">
       <DependentUpon>ModelFaktury.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\ModelFaktury.Context.cs">
@@ -99,10 +106,22 @@
     <Compile Include="Models\Entities\PozycjaFaktury.cs">
       <DependentUpon>ModelFaktury.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\Pracownik.cs">
+      <DependentUpon>ModelFaktury.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Promocja.cs">
+      <DependentUpon>ModelFaktury.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Reklamacja.cs">
+      <DependentUpon>ModelFaktury.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Entities\Rodzaj.cs">
       <DependentUpon>ModelFaktury.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\SposóbPłatności.cs">
+      <DependentUpon>ModelFaktury.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\StanMagazynowy.cs">
       <DependentUpon>ModelFaktury.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\Status.cs">
@@ -114,12 +133,18 @@
     <Compile Include="Models\Entities\Towar.cs">
       <DependentUpon>ModelFaktury.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\ZamowienieHurtowe.cs">
+      <DependentUpon>ModelFaktury.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CommandViewModel.cs" />
+    <Compile Include="ViewModels\jedenViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\nowafakturaViewModel.cs" />
+    <Compile Include="ViewModels\NowyPracownikViewModel.cs" />
     <Compile Include="ViewModels\NowyTowarViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
+    <Compile Include="ViewModels\WszyscyPracownicyViewModel.cs" />
     <Compile Include="ViewModels\WszystkieFakturyViewModel.cs" />
     <Compile Include="ViewModels\WszystkieTowaryViewModel.cs" />
     <Compile Include="ViewModels\WszystkieViewModel.cs" />
@@ -130,8 +155,14 @@
     <Compile Include="Views\nowafakturaViev.xaml.cs">
       <DependentUpon>nowafakturaViev.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NowyPracownikView.xaml.cs">
+      <DependentUpon>NowyPracownikView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NowyTowarView.xaml.cs">
       <DependentUpon>NowyTowarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszyscyPracownicyView.xaml.cs">
+      <DependentUpon>WszyscyPracownicyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WszystkieFakturyView.xaml.cs">
       <DependentUpon>WszystkieFakturyView.xaml</DependentUpon>
@@ -191,7 +222,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\NowyPracownikView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\NowyTowarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszyscyPracownicyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -204,12 +243,11 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Models\Entities\ModelFaktury.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelFaktury.Context.cs</LastGenOutput>
       <DependentUpon>ModelFaktury.edmx</DependentUpon>
+      <LastGenOutput>ModelFaktury.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Entities\ModelFaktury.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

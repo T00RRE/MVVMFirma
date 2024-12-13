@@ -1,21 +1,26 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:MVVMFirma.ViewModels"
-                    xmlns:vw="clr-namespace:MVVMFirma.Views"
+                    xmlns:v="clr-namespace:MVVMFirma.Views"
                     >
     <DataTemplate DataType="{x:Type vm:WszystkieTowaryViewModel}">
-        <vw:WszystkieTowaryView/>
+        <v:WszystkieTowaryView/>
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:NowyTowarViewModel}">
-        <vw:NowyTowarView/>
+        <v:NowyTowarView/>
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:nowafakturaViewModel}">
-        <vw:nowafakturaViev/>
+        <v:nowafakturaViev/>
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:WszystkieFakturyViewModel}">
-        <vw:WszystkieFakturyView/>
+        <v:WszystkieFakturyView/>
     </DataTemplate>
-
+    <DataTemplate DataType="{x:Type vm:WszyscyPracownicyViewModel}">
+        <v:WszyscyPracownicyView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyPracownikViewModel}">
+        <v:NowyPracownikView/>
+    </DataTemplate>
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">
             <Setter.Value>

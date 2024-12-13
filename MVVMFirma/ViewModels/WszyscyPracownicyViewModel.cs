@@ -8,31 +8,29 @@ using MVVMFirma.Helper;
 using System.Windows.Input;
 using Microsoft.Win32;
 
-
 namespace MVVMFirma.ViewModels
 {
-    public class WszystkieFakturyViewModel : WszystkieViewModel<Faktura> // bo wszystkie zakładki dziedziczą po WVM
+    public class WszyscyPracownicyViewModel : WszystkieViewModel<Pracownik>
     {
         #region Fields
         private readonly Faktury2024Entities fakturyEntities;
         #endregion
+
         #region Properties
-
         #endregion
-        #region Constructor
 
-       
-        public WszystkieFakturyViewModel()
-            :base("Faktury")
+        #region Constructor
+        public WszyscyPracownicyViewModel()
+            : base("Pracownicy")
         {
             fakturyEntities = new Faktury2024Entities();
         }
         #endregion
+
         #region Helpers
         public override void Load()
         {
-
-            List = new ObservableCollection<Faktura>(fakturyEntities.Faktura.ToList()); // z bazy danych którą reprezentuje " fakturyEntities pobieram Towar i wszystkie rekordy zamieniam na liste
+            List = new ObservableCollection<Pracownik>(fakturyEntities.Pracownik.ToList());
         }
         #endregion
     }

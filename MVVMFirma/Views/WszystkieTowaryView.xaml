@@ -15,7 +15,7 @@
                 <DataGridTextColumn Header="Kod" Binding="{Binding Kod}"/>
                 <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
                 <DataGridTextColumn Header="Stawka VAT zakupu" Binding="{Binding StawkaVatZakupu}"/>
-                <DataGridTextColumn Header="Stawka VAT sprzedazy" Binding="{Binding StawkaVatSprzedazy}"/>
+                <DataGridTextColumn Header="Stawka VAT sprzedazy" Binding="{Binding StawkaVatSprzedaży}"/>
                 <DataGridTextColumn Header="Cena" Binding="{Binding Cena}"/>
                 <DataGridTextColumn Header="Marza" Binding="{Binding Marża}"/>
             </DataGrid.Columns>

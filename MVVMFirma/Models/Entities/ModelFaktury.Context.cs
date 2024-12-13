@@ -13,10 +13,10 @@ namespace MVVMFirma.Models.Entities
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FakturyEntities : DbContext
+    public partial class Faktury2024Entities : DbContext
     {
-        public FakturyEntities()
-            : base("name=FakturyEntities")
+        public Faktury2024Entities()
+            : base("name=Faktury2024Entities")
         {
         }
     
@@ -26,13 +26,20 @@ namespace MVVMFirma.Models.Entities
         }
     
         public virtual DbSet<Adres> Adres { get; set; }
+        public virtual DbSet<Dostawa> Dostawa { get; set; }
         public virtual DbSet<Faktura> Faktura { get; set; }
         public virtual DbSet<Kontrahent> Kontrahent { get; set; }
+        public virtual DbSet<Magazyn> Magazyn { get; set; }
         public virtual DbSet<PozycjaFaktury> PozycjaFaktury { get; set; }
+        public virtual DbSet<Pracownik> Pracownik { get; set; }
+        public virtual DbSet<Promocja> Promocja { get; set; }
+        public virtual DbSet<Reklamacja> Reklamacja { get; set; }
         public virtual DbSet<Rodzaj> Rodzaj { get; set; }
         public virtual DbSet<SposóbPłatności> SposóbPłatności { get; set; }
+        public virtual DbSet<StanMagazynowy> StanMagazynowy { get; set; }
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Towar> Towar { get; set; }
+        public virtual DbSet<ZamowienieHurtowe> ZamowienieHurtowe { get; set; }
     }
 }

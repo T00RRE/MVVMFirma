@@ -12,28 +12,25 @@ namespace MVVMFirma.Models.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Faktura
+    public partial class Pracownik
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Faktura()
+        public Pracownik()
         {
             this.Reklamacja = new HashSet<Reklamacja>();
-            this.PozycjaFaktury = new HashSet<PozycjaFaktury>();
         }
     
-        public int IdFaktury { get; set; }
-        public Nullable<bool> CzyZatwierdzona { get; set; }
-        public string Numer { get; set; }
-        public Nullable<System.DateTime> DataWystawienia { get; set; }
-        public Nullable<int> IdKontrahenta { get; set; }
-        public Nullable<System.DateTime> TerminPłatności { get; set; }
-        public Nullable<int> IdSposobuPłatności { get; set; }
+        public int IdPracownika { get; set; }
+        public string Imie { get; set; }
+        public string Nazwisko { get; set; }
+        public string PESEL { get; set; }
+        public System.DateTime DataZatrudnienia { get; set; }
+        public string Stanowisko { get; set; }
+        public Nullable<decimal> Pensja { get; set; }
+        public string NumerTelefonu { get; set; }
+        public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reklamacja> Reklamacja { get; set; }
-        public virtual Kontrahent Kontrahent { get; set; }
-        public virtual Status Status { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PozycjaFaktury> PozycjaFaktury { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace MVVMFirma.ViewModels
     public abstract class WszystkieViewModel<T>:WorkspaceViewModel
     {
         #region DB
-        protected readonly FakturyEntities fakturyEntities; //to jest pole które reprezentuje bazy danych
+        protected readonly Faktury2024Entities fakturyEntities; //to jest pole które reprezentuje bazy danych
         #endregion
         #region LoadCommand
         private BaseCommand _LoadCommand; //to jest komenda, która będzie wywoływałą funkcje Load pobierającą z bazy danych towary
@@ -52,7 +52,7 @@ namespace MVVMFirma.ViewModels
         public WszystkieViewModel(String displayname)
         {
             
-            fakturyEntities = new FakturyEntities();
+            fakturyEntities = new Faktury2024Entities();
             base.DisplayName = displayname;
 
 

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FakturyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Faktury2024Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Adres">
           <Key>
             <PropertyRef Name="IdAdresu" />
@@ -15,6 +15,17 @@
           <Property Name="NrDomu" Type="nvarchar" MaxLength="50" />
           <Property Name="NrLokalu" Type="nvarchar" MaxLength="50" />
           <Property Name="KodPocztowy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Dostawa">
+          <Key>
+            <PropertyRef Name="IdDostawy" />
+          </Key>
+          <Property Name="IdDostawy" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataDostawy" Type="datetime" Nullable="false" />
+          <Property Name="IdDostawcy" Type="int" />
+          <Property Name="NumerListuPrzewozowego" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="UwagiBastian" Type="text" />
         </EntityType>
         <EntityType Name="Faktura">
           <Key>
@@ -40,6 +51,16 @@
           <Property Name="IdStatusu" Type="int" />
           <Property Name="IdAdresu" Type="int" />
         </EntityType>
+        <EntityType Name="Magazyn">
+          <Key>
+            <PropertyRef Name="IdMagazynu" />
+          </Key>
+          <Property Name="IdMagazynu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Lokalizacja" Type="varchar" MaxLength="200" />
+          <Property Name="Pojemnosc" Type="int" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="PozycjaFaktury">
           <Key>
             <PropertyRef Name="IdPozycjiFaktury" />
@@ -50,6 +71,44 @@
           <Property Name="Cena" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Ilość" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Rabat" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Pracownik">
+          <Key>
+            <PropertyRef Name="IdPracownika" />
+          </Key>
+          <Property Name="IdPracownika" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PESEL" Type="varchar" MaxLength="11" />
+          <Property Name="DataZatrudnienia" Type="date" Nullable="false" />
+          <Property Name="Stanowisko" Type="varchar" MaxLength="50" />
+          <Property Name="Pensja" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="NumerTelefonu" Type="varchar" MaxLength="15" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Promocja">
+          <Key>
+            <PropertyRef Name="IdPromocji" />
+          </Key>
+          <Property Name="IdPromocji" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazwaPromocji" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DataRozpoczecia" Type="date" Nullable="false" />
+          <Property Name="DataZakonczenia" Type="date" Nullable="false" />
+          <Property Name="WysokoscRabatu" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="OpisPromocji" Type="text" />
+          <Property Name="CzyAktywna" Type="bit" />
+        </EntityType>
+        <EntityType Name="Reklamacja">
+          <Key>
+            <PropertyRef Name="IdReklamacji" />
+          </Key>
+          <Property Name="IdReklamacji" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdFaktury" Type="int" />
+          <Property Name="DataReklamacji" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="OpisReklamacji" Type="text" />
+          <Property Name="IdPracownika" Type="int" />
+          <Property Name="Decyzja" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Rodzaj">
           <Key>
@@ -66,6 +125,17 @@
           <Property Name="IdSposobuPłatności" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nazwa" Type="nvarchar" MaxLength="50" />
           <Property Name="Opis" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="StanMagazynowy">
+          <Key>
+            <PropertyRef Name="IdStanu" />
+          </Key>
+          <Property Name="IdStanu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTowaru" Type="int" />
+          <Property Name="IdMagazynu" Type="int" />
+          <Property Name="Ilosc" Type="int" Nullable="false" />
+          <Property Name="MinimalnyPoziom" Type="int" />
+          <Property Name="MaxymalnyPoziom" Type="int" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -97,6 +167,89 @@
           <Property Name="Cena" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Marża" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
+        <EntityType Name="ZamowienieHurtowe">
+          <Key>
+            <PropertyRef Name="IdZamowienia" />
+          </Key>
+          <Property Name="IdZamowienia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdKontrahenta" Type="int" />
+          <Property Name="DataZamowienia" Type="datetime" Nullable="false" />
+          <Property Name="TerminRealizacji" Type="date" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="WartoscZamowienia" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <Association Name="FK__Dostawa__IdDosta__6477ECF3">
+          <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="0..1" />
+          <End Role="Dostawa" Type="Self.Dostawa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="Dostawa">
+              <PropertyRef Name="IdDostawcy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reklamacj__IdFak__6D0D32F4">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="0..1" />
+          <End Role="Reklamacja" Type="Self.Reklamacja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="IdFaktury" />
+            </Principal>
+            <Dependent Role="Reklamacja">
+              <PropertyRef Name="IdFaktury" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reklamacj__IdPra__6E01572D">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="0..1" />
+          <End Role="Reklamacja" Type="Self.Reklamacja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="IdPracownika" />
+            </Principal>
+            <Dependent Role="Reklamacja">
+              <PropertyRef Name="IdPracownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StanMagaz__IdMag__619B8048">
+          <End Role="Magazyn" Type="Self.Magazyn" Multiplicity="0..1" />
+          <End Role="StanMagazynowy" Type="Self.StanMagazynowy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magazyn">
+              <PropertyRef Name="IdMagazynu" />
+            </Principal>
+            <Dependent Role="StanMagazynowy">
+              <PropertyRef Name="IdMagazynu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StanMagaz__IdTow__60A75C0F">
+          <End Role="Towar" Type="Self.Towar" Multiplicity="0..1" />
+          <End Role="StanMagazynowy" Type="Self.StanMagazynowy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="IdTowaru" />
+            </Principal>
+            <Dependent Role="StanMagazynowy">
+              <PropertyRef Name="IdTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Zamowieni__IdKon__6A30C649">
+          <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="0..1" />
+          <End Role="ZamowienieHurtowe" Type="Self.ZamowienieHurtowe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="ZamowienieHurtowe">
+              <PropertyRef Name="IdKontrahenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Faktura_Kontrahent">
           <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="0..1" />
           <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
@@ -181,16 +334,47 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FakturyModelStoreContainer">
+        <EntityContainer Name="Faktury2024ModelStoreContainer">
           <EntitySet Name="Adres" EntityType="Self.Adres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dostawa" EntityType="Self.Dostawa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Faktura" EntityType="Self.Faktura" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Kontrahent" EntityType="Self.Kontrahent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Magazyn" EntityType="Self.Magazyn" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PozycjaFaktury" EntityType="Self.PozycjaFaktury" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pracownik" EntityType="Self.Pracownik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Promocja" EntityType="Self.Promocja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reklamacja" EntityType="Self.Reklamacja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rodzaj" EntityType="Self.Rodzaj" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SposóbPłatności" EntityType="Self.SposóbPłatności" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StanMagazynowy" EntityType="Self.StanMagazynowy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Towar" EntityType="Self.Towar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZamowienieHurtowe" EntityType="Self.ZamowienieHurtowe" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Dostawa__IdDosta__6477ECF3" Association="Self.FK__Dostawa__IdDosta__6477ECF3">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="Dostawa" EntitySet="Dostawa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reklamacj__IdFak__6D0D32F4" Association="Self.FK__Reklamacj__IdFak__6D0D32F4">
+            <End Role="Faktura" EntitySet="Faktura" />
+            <End Role="Reklamacja" EntitySet="Reklamacja" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reklamacj__IdPra__6E01572D" Association="Self.FK__Reklamacj__IdPra__6E01572D">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Reklamacja" EntitySet="Reklamacja" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StanMagaz__IdMag__619B8048" Association="Self.FK__StanMagaz__IdMag__619B8048">
+            <End Role="Magazyn" EntitySet="Magazyn" />
+            <End Role="StanMagazynowy" EntitySet="StanMagazynowy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StanMagaz__IdTow__60A75C0F" Association="Self.FK__StanMagaz__IdTow__60A75C0F">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="StanMagazynowy" EntitySet="StanMagazynowy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Zamowieni__IdKon__6A30C649" Association="Self.FK__Zamowieni__IdKon__6A30C649">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="ZamowienieHurtowe" EntitySet="ZamowienieHurtowe" />
+          </AssociationSet>
           <AssociationSet Name="FK_Faktura_Kontrahent" Association="Self.FK_Faktura_Kontrahent">
             <End Role="Kontrahent" EntitySet="Kontrahent" />
             <End Role="Faktura" EntitySet="Faktura" />
@@ -224,7 +408,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="FakturyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Faktury2024Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Adres">
           <Key>
             <PropertyRef Name="IdAdresu" />
@@ -237,6 +421,18 @@
           <Property Name="KodPocztowy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Kontrahent" Relationship="Self.FK_Kontrahent_Adres" FromRole="Adres" ToRole="Kontrahent" />
         </EntityType>
+        <EntityType Name="Dostawa">
+          <Key>
+            <PropertyRef Name="IdDostawy" />
+          </Key>
+          <Property Name="IdDostawy" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataDostawy" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdDostawcy" Type="Int32" />
+          <Property Name="NumerListuPrzewozowego" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UwagiBastian" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Kontrahent" Relationship="Self.FK__Dostawa__IdDosta__6477ECF3" FromRole="Dostawa" ToRole="Kontrahent" />
+        </EntityType>
         <EntityType Name="Faktura">
           <Key>
             <PropertyRef Name="IdFaktury" />
@@ -248,6 +444,7 @@
           <Property Name="IdKontrahenta" Type="Int32" />
           <Property Name="TerminPłatności" Type="DateTime" Precision="3" />
           <Property Name="IdSposobuPłatności" Type="Int32" />
+          <NavigationProperty Name="Reklamacja" Relationship="Self.FK__Reklamacj__IdFak__6D0D32F4" FromRole="Faktura" ToRole="Reklamacja" />
           <NavigationProperty Name="Kontrahent" Relationship="Self.FK_Faktura_Kontrahent" FromRole="Faktura" ToRole="Kontrahent" />
           <NavigationProperty Name="Status" Relationship="Self.FK_Faktura_Status" FromRole="Faktura" ToRole="Status" />
           <NavigationProperty Name="PozycjaFaktury" Relationship="Self.FK_PozycjaFaktury_Faktura" FromRole="Faktura" ToRole="PozycjaFaktury" />
@@ -264,9 +461,22 @@
           <Property Name="IdStatusu" Type="Int32" />
           <Property Name="IdAdresu" Type="Int32" />
           <NavigationProperty Name="Adres" Relationship="Self.FK_Kontrahent_Adres" FromRole="Kontrahent" ToRole="Adres" />
+          <NavigationProperty Name="Dostawa" Relationship="Self.FK__Dostawa__IdDosta__6477ECF3" FromRole="Kontrahent" ToRole="Dostawa" />
           <NavigationProperty Name="Faktura" Relationship="Self.FK_Faktura_Kontrahent" FromRole="Kontrahent" ToRole="Faktura" />
+          <NavigationProperty Name="ZamowienieHurtowe" Relationship="Self.FK__Zamowieni__IdKon__6A30C649" FromRole="Kontrahent" ToRole="ZamowienieHurtowe" />
           <NavigationProperty Name="Rodzaj" Relationship="Self.FK_Kontrahent_Rodzaj" FromRole="Kontrahent" ToRole="Rodzaj" />
           <NavigationProperty Name="Status" Relationship="Self.FK_Kontrahent_Status" FromRole="Kontrahent" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Magazyn">
+          <Key>
+            <PropertyRef Name="IdMagazynu" />
+          </Key>
+          <Property Name="IdMagazynu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Lokalizacja" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Pojemnosc" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="StanMagazynowy" Relationship="Self.FK__StanMagaz__IdMag__619B8048" FromRole="Magazyn" ToRole="StanMagazynowy" />
         </EntityType>
         <EntityType Name="PozycjaFaktury">
           <Key>
@@ -280,6 +490,47 @@
           <Property Name="Rabat" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="Faktura" Relationship="Self.FK_PozycjaFaktury_Faktura" FromRole="PozycjaFaktury" ToRole="Faktura" />
           <NavigationProperty Name="Towar" Relationship="Self.FK_PozycjaFaktury_Towar" FromRole="PozycjaFaktury" ToRole="Towar" />
+        </EntityType>
+        <EntityType Name="Pracownik">
+          <Key>
+            <PropertyRef Name="IdPracownika" />
+          </Key>
+          <Property Name="IdPracownika" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PESEL" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="DataZatrudnienia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Stanowisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pensja" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="NumerTelefonu" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Reklamacja" Relationship="Self.FK__Reklamacj__IdPra__6E01572D" FromRole="Pracownik" ToRole="Reklamacja" />
+        </EntityType>
+        <EntityType Name="Promocja">
+          <Key>
+            <PropertyRef Name="IdPromocji" />
+          </Key>
+          <Property Name="IdPromocji" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazwaPromocji" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataRozpoczecia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DataZakonczenia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="WysokoscRabatu" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="OpisPromocji" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CzyAktywna" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Reklamacja">
+          <Key>
+            <PropertyRef Name="IdReklamacji" />
+          </Key>
+          <Property Name="IdReklamacji" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdFaktury" Type="Int32" />
+          <Property Name="DataReklamacji" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OpisReklamacji" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IdPracownika" Type="Int32" />
+          <Property Name="Decyzja" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Faktura" Relationship="Self.FK__Reklamacj__IdFak__6D0D32F4" FromRole="Reklamacja" ToRole="Faktura" />
+          <NavigationProperty Name="Pracownik" Relationship="Self.FK__Reklamacj__IdPra__6E01572D" FromRole="Reklamacja" ToRole="Pracownik" />
         </EntityType>
         <EntityType Name="Rodzaj">
           <Key>
@@ -297,6 +548,19 @@
           <Property Name="IdSposobuPłatności" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Opis" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StanMagazynowy">
+          <Key>
+            <PropertyRef Name="IdStanu" />
+          </Key>
+          <Property Name="IdStanu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTowaru" Type="Int32" />
+          <Property Name="IdMagazynu" Type="Int32" />
+          <Property Name="Ilosc" Type="Int32" Nullable="false" />
+          <Property Name="MinimalnyPoziom" Type="Int32" />
+          <Property Name="MaxymalnyPoziom" Type="Int32" />
+          <NavigationProperty Name="Magazyn" Relationship="Self.FK__StanMagaz__IdMag__619B8048" FromRole="StanMagazynowy" ToRole="Magazyn" />
+          <NavigationProperty Name="Towar" Relationship="Self.FK__StanMagaz__IdTow__60A75C0F" FromRole="StanMagazynowy" ToRole="Towar" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -330,6 +594,19 @@
           <Property Name="Cena" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Marża" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="PozycjaFaktury" Relationship="Self.FK_PozycjaFaktury_Towar" FromRole="Towar" ToRole="PozycjaFaktury" />
+          <NavigationProperty Name="StanMagazynowy" Relationship="Self.FK__StanMagaz__IdTow__60A75C0F" FromRole="Towar" ToRole="StanMagazynowy" />
+        </EntityType>
+        <EntityType Name="ZamowienieHurtowe">
+          <Key>
+            <PropertyRef Name="IdZamowienia" />
+          </Key>
+          <Property Name="IdZamowienia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdKontrahenta" Type="Int32" />
+          <Property Name="DataZamowienia" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TerminRealizacji" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WartoscZamowienia" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Kontrahent" Relationship="Self.FK__Zamowieni__IdKon__6A30C649" FromRole="ZamowienieHurtowe" ToRole="Kontrahent" />
         </EntityType>
         <Association Name="FK_Kontrahent_Adres">
           <End Role="Adres" Type="Self.Adres" Multiplicity="0..1" />
@@ -340,6 +617,30 @@
             </Principal>
             <Dependent Role="Kontrahent">
               <PropertyRef Name="IdAdresu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Dostawa__IdDosta__6477ECF3">
+          <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="0..1" />
+          <End Role="Dostawa" Type="Self.Dostawa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="Dostawa">
+              <PropertyRef Name="IdDostawcy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reklamacj__IdFak__6D0D32F4">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="0..1" />
+          <End Role="Reklamacja" Type="Self.Reklamacja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="IdFaktury" />
+            </Principal>
+            <Dependent Role="Reklamacja">
+              <PropertyRef Name="IdFaktury" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -379,6 +680,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Zamowieni__IdKon__6A30C649">
+          <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="0..1" />
+          <End Role="ZamowienieHurtowe" Type="Self.ZamowienieHurtowe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="ZamowienieHurtowe">
+              <PropertyRef Name="IdKontrahenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Kontrahent_Rodzaj">
           <End Role="Rodzaj" Type="Self.Rodzaj" Multiplicity="0..1" />
           <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="*" />
@@ -403,6 +716,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__StanMagaz__IdMag__619B8048">
+          <End Role="Magazyn" Type="Self.Magazyn" Multiplicity="0..1" />
+          <End Role="StanMagazynowy" Type="Self.StanMagazynowy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magazyn">
+              <PropertyRef Name="IdMagazynu" />
+            </Principal>
+            <Dependent Role="StanMagazynowy">
+              <PropertyRef Name="IdMagazynu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PozycjaFaktury_Towar">
           <End Role="Towar" Type="Self.Towar" Multiplicity="0..1" />
           <End Role="PozycjaFaktury" Type="Self.PozycjaFaktury" Multiplicity="*" />
@@ -415,19 +740,58 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FakturyEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK__Reklamacj__IdPra__6E01572D">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="0..1" />
+          <End Role="Reklamacja" Type="Self.Reklamacja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="IdPracownika" />
+            </Principal>
+            <Dependent Role="Reklamacja">
+              <PropertyRef Name="IdPracownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StanMagaz__IdTow__60A75C0F">
+          <End Role="Towar" Type="Self.Towar" Multiplicity="0..1" />
+          <End Role="StanMagazynowy" Type="Self.StanMagazynowy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="IdTowaru" />
+            </Principal>
+            <Dependent Role="StanMagazynowy">
+              <PropertyRef Name="IdTowaru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Faktury2024Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Adres" EntityType="Self.Adres" />
+          <EntitySet Name="Dostawa" EntityType="Self.Dostawa" />
           <EntitySet Name="Faktura" EntityType="Self.Faktura" />
           <EntitySet Name="Kontrahent" EntityType="Self.Kontrahent" />
+          <EntitySet Name="Magazyn" EntityType="Self.Magazyn" />
           <EntitySet Name="PozycjaFaktury" EntityType="Self.PozycjaFaktury" />
+          <EntitySet Name="Pracownik" EntityType="Self.Pracownik" />
+          <EntitySet Name="Promocja" EntityType="Self.Promocja" />
+          <EntitySet Name="Reklamacja" EntityType="Self.Reklamacja" />
           <EntitySet Name="Rodzaj" EntityType="Self.Rodzaj" />
           <EntitySet Name="SposóbPłatności" EntityType="Self.SposóbPłatności" />
+          <EntitySet Name="StanMagazynowy" EntityType="Self.StanMagazynowy" />
           <EntitySet Name="Status" EntityType="Self.Status" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Towar" EntityType="Self.Towar" />
+          <EntitySet Name="ZamowienieHurtowe" EntityType="Self.ZamowienieHurtowe" />
           <AssociationSet Name="FK_Kontrahent_Adres" Association="Self.FK_Kontrahent_Adres">
             <End Role="Adres" EntitySet="Adres" />
             <End Role="Kontrahent" EntitySet="Kontrahent" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Dostawa__IdDosta__6477ECF3" Association="Self.FK__Dostawa__IdDosta__6477ECF3">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="Dostawa" EntitySet="Dostawa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reklamacj__IdFak__6D0D32F4" Association="Self.FK__Reklamacj__IdFak__6D0D32F4">
+            <End Role="Faktura" EntitySet="Faktura" />
+            <End Role="Reklamacja" EntitySet="Reklamacja" />
           </AssociationSet>
           <AssociationSet Name="FK_Faktura_Kontrahent" Association="Self.FK_Faktura_Kontrahent">
             <End Role="Kontrahent" EntitySet="Kontrahent" />
@@ -441,6 +805,10 @@
             <End Role="Faktura" EntitySet="Faktura" />
             <End Role="PozycjaFaktury" EntitySet="PozycjaFaktury" />
           </AssociationSet>
+          <AssociationSet Name="FK__Zamowieni__IdKon__6A30C649" Association="Self.FK__Zamowieni__IdKon__6A30C649">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="ZamowienieHurtowe" EntitySet="ZamowienieHurtowe" />
+          </AssociationSet>
           <AssociationSet Name="FK_Kontrahent_Rodzaj" Association="Self.FK_Kontrahent_Rodzaj">
             <End Role="Rodzaj" EntitySet="Rodzaj" />
             <End Role="Kontrahent" EntitySet="Kontrahent" />
@@ -449,9 +817,21 @@
             <End Role="Status" EntitySet="Status" />
             <End Role="Kontrahent" EntitySet="Kontrahent" />
           </AssociationSet>
+          <AssociationSet Name="FK__StanMagaz__IdMag__619B8048" Association="Self.FK__StanMagaz__IdMag__619B8048">
+            <End Role="Magazyn" EntitySet="Magazyn" />
+            <End Role="StanMagazynowy" EntitySet="StanMagazynowy" />
+          </AssociationSet>
           <AssociationSet Name="FK_PozycjaFaktury_Towar" Association="Self.FK_PozycjaFaktury_Towar">
             <End Role="Towar" EntitySet="Towar" />
             <End Role="PozycjaFaktury" EntitySet="PozycjaFaktury" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reklamacj__IdPra__6E01572D" Association="Self.FK__Reklamacj__IdPra__6E01572D">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Reklamacja" EntitySet="Reklamacja" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StanMagaz__IdTow__60A75C0F" Association="Self.FK__StanMagaz__IdTow__60A75C0F">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="StanMagazynowy" EntitySet="StanMagazynowy" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -459,9 +839,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FakturyModelStoreContainer" CdmEntityContainer="FakturyEntities">
+        <EntityContainerMapping StorageEntityContainer="Faktury2024ModelStoreContainer" CdmEntityContainer="Faktury2024Entities">
           <EntitySetMapping Name="Adres">
-            <EntityTypeMapping TypeName="FakturyModel.Adres">
+            <EntityTypeMapping TypeName="Faktury2024Model.Adres">
               <MappingFragment StoreEntitySet="Adres">
                 <ScalarProperty Name="IdAdresu" ColumnName="IdAdresu" />
                 <ScalarProperty Name="Miejscowość" ColumnName="Miejscowość" />
@@ -472,8 +852,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Dostawa">
+            <EntityTypeMapping TypeName="Faktury2024Model.Dostawa">
+              <MappingFragment StoreEntitySet="Dostawa">
+                <ScalarProperty Name="IdDostawy" ColumnName="IdDostawy" />
+                <ScalarProperty Name="DataDostawy" ColumnName="DataDostawy" />
+                <ScalarProperty Name="IdDostawcy" ColumnName="IdDostawcy" />
+                <ScalarProperty Name="NumerListuPrzewozowego" ColumnName="NumerListuPrzewozowego" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UwagiBastian" ColumnName="UwagiBastian" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Faktura">
-            <EntityTypeMapping TypeName="FakturyModel.Faktura">
+            <EntityTypeMapping TypeName="Faktury2024Model.Faktura">
               <MappingFragment StoreEntitySet="Faktura">
                 <ScalarProperty Name="IdFaktury" ColumnName="IdFaktury" />
                 <ScalarProperty Name="CzyZatwierdzona" ColumnName="CzyZatwierdzona" />
@@ -486,7 +878,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Kontrahent">
-            <EntityTypeMapping TypeName="FakturyModel.Kontrahent">
+            <EntityTypeMapping TypeName="Faktury2024Model.Kontrahent">
               <MappingFragment StoreEntitySet="Kontrahent">
                 <ScalarProperty Name="IdKontrahenta" ColumnName="IdKontrahenta" />
                 <ScalarProperty Name="Kod" ColumnName="Kod" />
@@ -498,8 +890,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Magazyn">
+            <EntityTypeMapping TypeName="Faktury2024Model.Magazyn">
+              <MappingFragment StoreEntitySet="Magazyn">
+                <ScalarProperty Name="IdMagazynu" ColumnName="IdMagazynu" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Lokalizacja" ColumnName="Lokalizacja" />
+                <ScalarProperty Name="Pojemnosc" ColumnName="Pojemnosc" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PozycjaFaktury">
-            <EntityTypeMapping TypeName="FakturyModel.PozycjaFaktury">
+            <EntityTypeMapping TypeName="Faktury2024Model.PozycjaFaktury">
               <MappingFragment StoreEntitySet="PozycjaFaktury">
                 <ScalarProperty Name="IdPozycjiFaktury" ColumnName="IdPozycjiFaktury" />
                 <ScalarProperty Name="IdFaktury" ColumnName="IdFaktury" />
@@ -510,8 +913,49 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Pracownik">
+            <EntityTypeMapping TypeName="Faktury2024Model.Pracownik">
+              <MappingFragment StoreEntitySet="Pracownik">
+                <ScalarProperty Name="IdPracownika" ColumnName="IdPracownika" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="PESEL" ColumnName="PESEL" />
+                <ScalarProperty Name="DataZatrudnienia" ColumnName="DataZatrudnienia" />
+                <ScalarProperty Name="Stanowisko" ColumnName="Stanowisko" />
+                <ScalarProperty Name="Pensja" ColumnName="Pensja" />
+                <ScalarProperty Name="NumerTelefonu" ColumnName="NumerTelefonu" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promocja">
+            <EntityTypeMapping TypeName="Faktury2024Model.Promocja">
+              <MappingFragment StoreEntitySet="Promocja">
+                <ScalarProperty Name="IdPromocji" ColumnName="IdPromocji" />
+                <ScalarProperty Name="NazwaPromocji" ColumnName="NazwaPromocji" />
+                <ScalarProperty Name="DataRozpoczecia" ColumnName="DataRozpoczecia" />
+                <ScalarProperty Name="DataZakonczenia" ColumnName="DataZakonczenia" />
+                <ScalarProperty Name="WysokoscRabatu" ColumnName="WysokoscRabatu" />
+                <ScalarProperty Name="OpisPromocji" ColumnName="OpisPromocji" />
+                <ScalarProperty Name="CzyAktywna" ColumnName="CzyAktywna" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reklamacja">
+            <EntityTypeMapping TypeName="Faktury2024Model.Reklamacja">
+              <MappingFragment StoreEntitySet="Reklamacja">
+                <ScalarProperty Name="IdReklamacji" ColumnName="IdReklamacji" />
+                <ScalarProperty Name="IdFaktury" ColumnName="IdFaktury" />
+                <ScalarProperty Name="DataReklamacji" ColumnName="DataReklamacji" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="OpisReklamacji" ColumnName="OpisReklamacji" />
+                <ScalarProperty Name="IdPracownika" ColumnName="IdPracownika" />
+                <ScalarProperty Name="Decyzja" ColumnName="Decyzja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Rodzaj">
-            <EntityTypeMapping TypeName="FakturyModel.Rodzaj">
+            <EntityTypeMapping TypeName="Faktury2024Model.Rodzaj">
               <MappingFragment StoreEntitySet="Rodzaj">
                 <ScalarProperty Name="IdRodzaju" ColumnName="IdRodzaju" />
                 <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
@@ -520,7 +964,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SposóbPłatności">
-            <EntityTypeMapping TypeName="FakturyModel.SposóbPłatności">
+            <EntityTypeMapping TypeName="Faktury2024Model.SposóbPłatności">
               <MappingFragment StoreEntitySet="SposóbPłatności">
                 <ScalarProperty Name="IdSposobuPłatności" ColumnName="IdSposobuPłatności" />
                 <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
@@ -528,8 +972,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="StanMagazynowy">
+            <EntityTypeMapping TypeName="Faktury2024Model.StanMagazynowy">
+              <MappingFragment StoreEntitySet="StanMagazynowy">
+                <ScalarProperty Name="IdStanu" ColumnName="IdStanu" />
+                <ScalarProperty Name="IdTowaru" ColumnName="IdTowaru" />
+                <ScalarProperty Name="IdMagazynu" ColumnName="IdMagazynu" />
+                <ScalarProperty Name="Ilosc" ColumnName="Ilosc" />
+                <ScalarProperty Name="MinimalnyPoziom" ColumnName="MinimalnyPoziom" />
+                <ScalarProperty Name="MaxymalnyPoziom" ColumnName="MaxymalnyPoziom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Status">
-            <EntityTypeMapping TypeName="FakturyModel.Status">
+            <EntityTypeMapping TypeName="Faktury2024Model.Status">
               <MappingFragment StoreEntitySet="Status">
                 <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
                 <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
@@ -538,7 +994,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="FakturyModel.sysdiagrams">
+            <EntityTypeMapping TypeName="Faktury2024Model.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -549,7 +1005,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Towar">
-            <EntityTypeMapping TypeName="FakturyModel.Towar">
+            <EntityTypeMapping TypeName="Faktury2024Model.Towar">
               <MappingFragment StoreEntitySet="Towar">
                 <ScalarProperty Name="IdTowaru" ColumnName="IdTowaru" />
                 <ScalarProperty Name="Kod" ColumnName="Kod" />
@@ -558,6 +1014,18 @@
                 <ScalarProperty Name="StawkaVatSprzedaży" ColumnName="StawkaVatSprzedaży" />
                 <ScalarProperty Name="Cena" ColumnName="Cena" />
                 <ScalarProperty Name="Marża" ColumnName="Marża" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZamowienieHurtowe">
+            <EntityTypeMapping TypeName="Faktury2024Model.ZamowienieHurtowe">
+              <MappingFragment StoreEntitySet="ZamowienieHurtowe">
+                <ScalarProperty Name="IdZamowienia" ColumnName="IdZamowienia" />
+                <ScalarProperty Name="IdKontrahenta" ColumnName="IdKontrahenta" />
+                <ScalarProperty Name="DataZamowienia" ColumnName="DataZamowienia" />
+                <ScalarProperty Name="TerminRealizacji" ColumnName="TerminRealizacji" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="WartoscZamowienia" ColumnName="WartoscZamowienia" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

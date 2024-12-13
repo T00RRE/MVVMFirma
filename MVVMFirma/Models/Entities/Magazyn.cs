@@ -12,25 +12,20 @@ namespace MVVMFirma.Models.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Towar
+    public partial class Magazyn
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Towar()
+        public Magazyn()
         {
-            this.PozycjaFaktury = new HashSet<PozycjaFaktury>();
             this.StanMagazynowy = new HashSet<StanMagazynowy>();
         }
     
-        public int IdTowaru { get; set; }
-        public string Kod { get; set; }
+        public int IdMagazynu { get; set; }
         public string Nazwa { get; set; }
-        public Nullable<decimal> StawkaVatZakupu { get; set; }
-        public Nullable<decimal> StawkaVatSprzedaży { get; set; }
-        public Nullable<decimal> Cena { get; set; }
-        public Nullable<decimal> Marża { get; set; }
+        public string Lokalizacja { get; set; }
+        public Nullable<int> Pojemnosc { get; set; }
+        public string Status { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PozycjaFaktury> PozycjaFaktury { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StanMagazynowy> StanMagazynowy { get; set; }
     }

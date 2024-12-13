@@ -4,23 +4,36 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d9e80a5b7fc84d89988fb3acb89fdc8e" Name="Diagram1">
-        <EntityTypeShape EntityType="FakturyModel.Adres" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FakturyModel.Faktura" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FakturyModel.Kontrahent" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FakturyModel.PozycjaFaktury" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="FakturyModel.Rodzaj" Width="1.5" PointX="3.75" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="FakturyModel.SposóbPłatności" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="FakturyModel.Status" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FakturyModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="FakturyModel.Towar" Width="1.5" PointX="6" PointY="0.875" IsExpanded="true" />
-        <AssociationConnector Association="FakturyModel.FK_Kontrahent_Adres" ManuallyRouted="false" />
-        <AssociationConnector Association="FakturyModel.FK_Faktura_Kontrahent" ManuallyRouted="false" />
-        <AssociationConnector Association="FakturyModel.FK_Faktura_Status" ManuallyRouted="false" />
-        <AssociationConnector Association="FakturyModel.FK_PozycjaFaktury_Faktura" ManuallyRouted="false" />
-        <AssociationConnector Association="FakturyModel.FK_Kontrahent_Rodzaj" ManuallyRouted="false" />
-        <AssociationConnector Association="FakturyModel.FK_Kontrahent_Status" ManuallyRouted="false" />
-        <AssociationConnector Association="FakturyModel.FK_PozycjaFaktury_Towar" ManuallyRouted="false" />
+      <Diagram DiagramId="70524857532b4491b0203644f9b11088" Name="Diagram1">
+        <EntityTypeShape EntityType="Faktury2024Model.Adres" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Faktury2024Model.Dostawa" Width="1.5" PointX="8.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Faktury2024Model.Faktura" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Faktury2024Model.Kontrahent" Width="1.5" PointX="6" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Faktury2024Model.Magazyn" Width="1.5" PointX="6" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Faktury2024Model.PozycjaFaktury" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Faktury2024Model.Pracownik" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Faktury2024Model.Promocja" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Faktury2024Model.Reklamacja" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Faktury2024Model.Rodzaj" Width="1.5" PointX="3.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Faktury2024Model.SposóbPłatności" Width="1.5" PointX="7.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Faktury2024Model.StanMagazynowy" Width="1.5" PointX="8.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Faktury2024Model.Status" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Faktury2024Model.sysdiagrams" Width="1.5" PointX="9.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Faktury2024Model.Towar" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Faktury2024Model.ZamowienieHurtowe" Width="1.5" PointX="8.25" PointY="9.625" IsExpanded="true" />
+        <AssociationConnector Association="Faktury2024Model.FK_Kontrahent_Adres" ManuallyRouted="false" />
+        <AssociationConnector Association="Faktury2024Model.FK__Dostawa__IdDosta__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="Faktury2024Model.FK__Reklamacj__IdFak__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="Faktury2024Model.FK_Faktura_Kontrahent" ManuallyRouted="false" />
+        <AssociationConnector Association="Faktury2024Model.FK_Faktura_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="Faktury2024Model.FK_PozycjaFaktury_Faktura" ManuallyRouted="false" />
+        <AssociationConnector Association="Faktury2024Model.FK__Zamowieni__IdKon__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="Faktury2024Model.FK_Kontrahent_Rodzaj" ManuallyRouted="false" />
+        <AssociationConnector Association="Faktury2024Model.FK_Kontrahent_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="Faktury2024Model.FK__StanMagaz__IdMag__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="Faktury2024Model.FK_PozycjaFaktury_Towar" ManuallyRouted="false" />
+        <AssociationConnector Association="Faktury2024Model.FK__Reklamacj__IdPra__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="Faktury2024Model.FK__StanMagaz__IdTow__60A75C0F" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
