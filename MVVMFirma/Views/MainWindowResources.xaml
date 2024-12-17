@@ -18,7 +18,22 @@
     <DataTemplate DataType="{x:Type vm:WszyscyPracownicyViewModel}">
         <v:WszyscyPracownicyView/>
     </DataTemplate>
-    
+    <DataTemplate DataType="{x:Type vm:NowyPracownikViewModel}">
+        <v:NowyPracownikView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyStatusViewModel}">
+        <v:NowyStatusView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieStatusyViewModel}">
+        <v:WszystkieStatusyView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowySposobPlatnosciViewModel}">
+        <v:NowySposobPlatnosciView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieSposobyPlatnosciViewModel}">
+        <v:WszystkieSposobyPlatnosciView/>
+    </DataTemplate>
+
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">
             <Setter.Value>

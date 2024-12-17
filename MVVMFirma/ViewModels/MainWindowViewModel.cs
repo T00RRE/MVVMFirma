@@ -53,7 +53,19 @@ namespace MVVMFirma.ViewModels
                 new BaseCommand(() => this.ShowAllPracownicy())),
             new CommandViewModel(
                 "Pracownik",
-            new BaseCommand(() => this.CreateView(new NowyPracownikViewModel())))
+            new BaseCommand(() => this.CreateView(new NowyPracownikViewModel()))),
+             new CommandViewModel(
+                    "Statusy",
+                    new BaseCommand(() => this.ShowAllStatusy())),
+             new CommandViewModel(
+                "NowyStatus",
+            new BaseCommand(() => this.CreateView(new NowyStatusViewModel()))),
+             new CommandViewModel(
+            "Sposoby Płatności",
+            new BaseCommand(() => this.ShowAllSposobyPlatnosci())),
+        new CommandViewModel(
+            "Sposób Płatności",
+            new BaseCommand(() => this.CreateView(new NowySposobPlatnosciViewModel())))
             };
         }
         #endregion
@@ -143,7 +155,30 @@ namespace MVVMFirma.ViewModels
             }
             this.SetActiveWorkspace(workspace);
         }
-
+        private void ShowAllStatusy()
+        {
+            WszystkieStatusyViewModel workspace =
+                this.Workspaces.FirstOrDefault(vm => vm is WszystkieStatusyViewModel)
+                as WszystkieStatusyViewModel;
+            if (workspace == null)
+            {
+                workspace = new WszystkieStatusyViewModel();
+                this.Workspaces.Add(workspace);
+            }
+            this.SetActiveWorkspace(workspace);
+        }
+        private void ShowAllSposobyPlatnosci()
+        {
+            WszystkieSposobyPlatnosciViewModel workspace =
+                this.Workspaces.FirstOrDefault(vm => vm is WszystkieSposobyPlatnosciViewModel)
+                as WszystkieSposobyPlatnosciViewModel;
+            if (workspace == null)
+            {
+                workspace = new WszystkieSposobyPlatnosciViewModel();
+                this.Workspaces.Add(workspace);
+            }
+            this.SetActiveWorkspace(workspace);
+        }
         #endregion
     }
 }
