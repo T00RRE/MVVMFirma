@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:MVVMFirma.Views">
 
-
+    <!-- Styl dla WszystkieViewBase -->
     <Style TargetType="{x:Type local:WszystkieViewBase}">
         <Setter Property="Template">
             <Setter.Value>
@@ -21,15 +21,16 @@
                             <ToggleButton Content="Odswiez" Margin="0,2,0,2"/>
                         </ToolBar>
                         <StackPanel Grid.Row="1" Background="Azure">
-                            <Label>Tu bedzie sortowanie i filtrowanie </Label>
+                            <Label>Tu bedzie sortowanie i filtrowanie</Label>
                         </StackPanel>
-                    <ContentPresenter Grid.Row="2" />
+                        <ContentPresenter Grid.Row="2" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
+    <!-- Styl dla JedenViewBase -->
     <Style TargetType="{x:Type local:jedenViewBase}">
         <Setter Property="Template">
             <Setter.Value>

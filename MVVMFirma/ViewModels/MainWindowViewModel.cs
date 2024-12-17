@@ -47,13 +47,13 @@ namespace MVVMFirma.ViewModels
                     new BaseCommand(() => this.ShowAllFaktury())),
                 new CommandViewModel(
                     "Faktura",
-                    new BaseCommand(() => this.CreateView(new nowafakturaViewModel()))),
+                    new BaseCommand(() => this.CreateView(new NowaFakturaViewModel()))),
                  new CommandViewModel(
                 "Pracownicy",
                 new BaseCommand(() => this.ShowAllPracownicy())),
-           // new CommandViewModel(
-            //    "Pracownik",
-           // new BaseCommand(() => this.CreateView(new NowyPracownikViewModel())))
+            new CommandViewModel(
+                "Pracownik",
+            new BaseCommand(() => this.CreateView(new NowyPracownikViewModel())))
             };
         }
         #endregion
@@ -143,6 +143,7 @@ namespace MVVMFirma.ViewModels
             }
             this.SetActiveWorkspace(workspace);
         }
+
         #endregion
     }
 }

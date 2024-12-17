@@ -14,7 +14,7 @@ namespace MVVMFirma.ViewModels
         public NowyPracownikViewModel() : base("Pracownik")
         {
             item = new Pracownik();
-            DataZatrudnienia = DateTime.Now; // ustawiamy domyślną datę zatrudnienia
+            
         }
         #endregion
 
@@ -66,7 +66,7 @@ namespace MVVMFirma.ViewModels
             }
             set
             {
-                item.DataZatrudnienia = value;
+                item.DataZatrudnienia = (DateTime)value;
                 OnPropertyChanged(() => DataZatrudnienia);
             }
         }
@@ -127,8 +127,8 @@ namespace MVVMFirma.ViewModels
         #region Helpers
         public override void Save()
         {
-            fakturyEntities.Pracownik.Add(item);
-            fakturyEntities.SaveChanges();
+            FakturyEntities.Pracownik.Add(item);
+            FakturyEntities.SaveChanges();
         }
         #endregion
     }

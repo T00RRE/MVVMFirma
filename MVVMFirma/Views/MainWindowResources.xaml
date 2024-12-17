@@ -9,8 +9,8 @@
     <DataTemplate DataType="{x:Type vm:NowyTowarViewModel}">
         <v:NowyTowarView/>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type vm:nowafakturaViewModel}">
-        <v:nowafakturaViev/>
+    <DataTemplate DataType="{x:Type vm:NowaFakturaViewModel}">
+        <v:NowaFakturaView/>
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:WszystkieFakturyViewModel}">
         <v:WszystkieFakturyView/>
@@ -18,9 +18,7 @@
     <DataTemplate DataType="{x:Type vm:WszyscyPracownicyViewModel}">
         <v:WszyscyPracownicyView/>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type vm:NowyPracownikViewModel}">
-        <v:NowyPracownikView/>
-    </DataTemplate>
+    
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">
             <Setter.Value>

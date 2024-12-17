@@ -8,12 +8,12 @@ using System.Windows.Input;
 
 namespace MVVMFirma.ViewModels
 {
-    public class nowafakturaViewModel : jedenViewModel<Faktura>
+    public class NowaFakturaViewModel : jedenViewModel<Faktura>
     {
         #region Konstruktor
 
-        
-        public nowafakturaViewModel():base("Faktura")
+
+        public NowaFakturaViewModel() : base("Faktura")
         {
             item = new Faktura();
         }
@@ -22,43 +22,49 @@ namespace MVVMFirma.ViewModels
 
         public string Numer
         {
-              get
-                {
-                return item.Numer; 
-                }
-            set 
+            get
+            {
+                return item.Numer;
+            }
+            set
             {
                 item.Numer = value;
-                OnPropertyChanged(() => Numer);    
+                OnPropertyChanged(() => Numer);
             }
         }
         public bool? CzyZatwierdzona
         {
-            get {
+            get
+            {
                 return item.CzyZatwierdzona;
-                    }
+            }
             set
             {
-            item.CzyZatwierdzona = value;
+                item.CzyZatwierdzona = value;
                 OnPropertyChanged(() => CzyZatwierdzona);
             }
         }
         public DateTime? DataWystawienia
         {
-            get 
+            get
             {
                 return item.DataWystawienia;
             }
-               set {item.DataWystawienia =  value; 
-                OnPropertyChanged(() => DataWystawienia); }
+            set
+            {
+                item.DataWystawienia = value;
+                OnPropertyChanged(() => DataWystawienia);
+            }
         }
         public int? KontrahentNIP
         {
-        get
+            get
             {
                 return item.IdKontrahenta;
             }
-            set { item.IdKontrahenta = value;
+            set
+            {
+                item.IdKontrahenta = value;
                 OnPropertyChanged(() => KontrahentNIP);
             }
         }
@@ -82,8 +88,10 @@ namespace MVVMFirma.ViewModels
                 return TerminPlatosci;
 
             }
-            set { TerminPlatosci = value;
-            OnPropertyChanged(() => TerminPlatosci);
+            set
+            {
+                TerminPlatosci = value;
+                OnPropertyChanged(() => TerminPlatosci);
             }
         }
         public string SposobuPlatnosciNazwa
@@ -94,7 +102,8 @@ namespace MVVMFirma.ViewModels
             }
             set
             {
-                { SposobuPlatnosciNazwa = value;
+                {
+                    SposobuPlatnosciNazwa = value;
                     OnPropertyChanged(() => SposobuPlatnosciNazwa);
                 }
             }
