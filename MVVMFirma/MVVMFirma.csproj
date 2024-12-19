@@ -142,15 +142,25 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NowaFakturaViewModel.cs" />
     <Compile Include="ViewModels\NowaReklamacjaViewModel.cs" />
+    <Compile Include="ViewModels\NowyAdresViewModel.cs" />
+    <Compile Include="ViewModels\NowyKontrahentViewModel.cs" />
+    <Compile Include="ViewModels\NowyMagazynViewModel.cs" />
     <Compile Include="ViewModels\NowyPracownikViewModel.cs" />
+    <Compile Include="ViewModels\NowyRodzajViewModel.cs" />
     <Compile Include="ViewModels\NowySposobPlatnosciViewModel.cs" />
+    <Compile Include="ViewModels\NowyStanMagazynowyViewModel.cs" />
     <Compile Include="ViewModels\NowyStatusViewModel.cs" />
     <Compile Include="ViewModels\NowyTowarViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
+    <Compile Include="ViewModels\WszyscyKontrahenciViewModel.cs" />
     <Compile Include="ViewModels\WszyscyPracownicyViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieAdresyViewModel.cs" />
     <Compile Include="ViewModels\WszystkieFakturyViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieMagazynyViewModel.cs" />
     <Compile Include="ViewModels\WszystkieReklamacjeViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieRodzajeViewModel.cs" />
     <Compile Include="ViewModels\WszystkieSposobyPlatnosciViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieStanyMagazynoweViewModel.cs" />
     <Compile Include="ViewModels\WszystkieStatusyViewModel.cs" />
     <Compile Include="ViewModels\WszystkieTowaryViewModel.cs" />
     <Compile Include="ViewModels\WszystkieViewModel.cs" />
@@ -164,11 +174,26 @@
     <Compile Include="Views\NowaReklamacjaView.xaml.cs">
       <DependentUpon>NowaReklamacjaView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NowyAdresView.xaml.cs">
+      <DependentUpon>NowyAdresView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowyKontrahentView.xaml.cs">
+      <DependentUpon>NowyKontrahentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowyMagazynView.xaml.cs">
+      <DependentUpon>NowyMagazynView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NowyPracownikView.xaml.cs">
       <DependentUpon>NowyPracownikView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NowyRodzajView.xaml.cs">
+      <DependentUpon>NowyRodzajView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NowySposobPlatnosciView.xaml.cs">
       <DependentUpon>NowySposobPlatnosciView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowyStanMagazynowyView.xaml.cs">
+      <DependentUpon>NowyStanMagazynowyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NowyStatusView.xaml.cs">
       <DependentUpon>NowyStatusView.xaml</DependentUpon>
@@ -176,17 +201,32 @@
     <Compile Include="Views\NowyTowarView.xaml.cs">
       <DependentUpon>NowyTowarView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\WszyscyKontrahenciView.xaml.cs">
+      <DependentUpon>WszyscyKontrahenciView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WszyscyPracownicyView.xaml.cs">
       <DependentUpon>WszyscyPracownicyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieAdresyView.xaml.cs">
+      <DependentUpon>WszystkieAdresyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WszystkieFakturyView.xaml.cs">
       <DependentUpon>WszystkieFakturyView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\WszystkieMagazynyView.xaml.cs">
+      <DependentUpon>WszystkieMagazynyView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WszystkieReklamacjeView.xaml.cs">
       <DependentUpon>WszystkieReklamacjeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\WszystkieRodzajeView.xaml.cs">
+      <DependentUpon>WszystkieRodzajeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WszystkieSposobyPlatnosciView.xaml.cs">
       <DependentUpon>WszystkieSposobyPlatnosciView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkieStanyMagazynoweView.xaml.cs">
+      <DependentUpon>WszystkieStanyMagazynoweView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WszystkieStatusyView.xaml.cs">
       <DependentUpon>WszystkieStatusyView.xaml</DependentUpon>
@@ -250,11 +290,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\NowyAdresView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowyKontrahentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowyMagazynView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\NowyPracownikView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\NowyRodzajView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\NowySposobPlatnosciView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NowyStanMagazynowyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -266,7 +326,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\WszyscyKontrahenciView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\WszyscyPracownicyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieAdresyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -274,11 +342,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\WszystkieMagazynyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\WszystkieReklamacjeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\WszystkieRodzajeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\WszystkieSposobyPlatnosciView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieStanyMagazynoweView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

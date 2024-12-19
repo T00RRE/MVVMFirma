@@ -71,7 +71,38 @@ namespace MVVMFirma.ViewModels
             new BaseCommand(() => this.ShowAllReklamacje())),
         new CommandViewModel(
             "Reklamacja",
-            new BaseCommand(() => this.CreateView(new NowaReklamacjaViewModel())))
+            new BaseCommand(() => this.CreateView(new NowaReklamacjaViewModel()))),
+        new CommandViewModel(
+            "Kontrahenci",
+            new BaseCommand(() => this.ShowAllKontrahenci())),
+        new CommandViewModel(
+            "Kontrahent",
+            new BaseCommand(() => this.CreateView(new NowyKontrahentViewModel()))),
+        new CommandViewModel(
+            "Rodzaje",
+            new BaseCommand(() => this.ShowAllRodzaje())),
+        new CommandViewModel(
+            "Rodzaj",
+            new BaseCommand(() => this.CreateView(new NowyRodzajViewModel()))),
+        new CommandViewModel(
+            "Adresy",
+            new BaseCommand(() => this.ShowAllAdresy())),
+        new CommandViewModel(
+            "Adres",
+            new BaseCommand(() => this.CreateView(new NowyAdresViewModel()))),
+         new CommandViewModel(
+            "Magazyny",
+            new BaseCommand(() => this.ShowAllMagazyny())),
+        new CommandViewModel(
+            "Magazyn",
+            new BaseCommand(() => this.CreateView(new NowyMagazynViewModel()))),
+
+        new CommandViewModel(
+            "Stany Magazynowe",
+            new BaseCommand(() => this.ShowAllStanyMagazynowe())),
+        new CommandViewModel(
+            "Stan Magazynowy",
+            new BaseCommand(() => this.CreateView(new NowyStanMagazynowyViewModel())))
             };
         }
         #endregion
@@ -193,6 +224,66 @@ namespace MVVMFirma.ViewModels
             if (workspace == null)
             {
                 workspace = new WszystkieReklamacjeViewModel();
+                this.Workspaces.Add(workspace);
+            }
+            this.SetActiveWorkspace(workspace);
+        }
+        private void ShowAllKontrahenci()
+        {
+            WszyscyKontrahenciViewModel workspace =
+                this.Workspaces.FirstOrDefault(vm => vm is WszyscyKontrahenciViewModel)
+                as WszyscyKontrahenciViewModel;
+            if (workspace == null)
+            {
+                workspace = new WszyscyKontrahenciViewModel();
+                this.Workspaces.Add(workspace);
+            }
+            this.SetActiveWorkspace(workspace);
+        }
+        private void ShowAllRodzaje()
+        {
+            WszystkieRodzajeViewModel workspace =
+                this.Workspaces.FirstOrDefault(vm => vm is WszystkieRodzajeViewModel)
+                as WszystkieRodzajeViewModel;
+            if (workspace == null)
+            {
+                workspace = new WszystkieRodzajeViewModel();
+                this.Workspaces.Add(workspace);
+            }
+            this.SetActiveWorkspace(workspace);
+        }
+        private void ShowAllAdresy()
+        {
+            WszystkieAdresyViewModel workspace =
+                this.Workspaces.FirstOrDefault(vm => vm is WszystkieAdresyViewModel)
+                as WszystkieAdresyViewModel;
+            if (workspace == null)
+            {
+                workspace = new WszystkieAdresyViewModel();
+                this.Workspaces.Add(workspace);
+            }
+            this.SetActiveWorkspace(workspace);
+        }
+        private void ShowAllMagazyny()
+        {
+            WszystkieMagazynyViewModel workspace =
+                this.Workspaces.FirstOrDefault(vm => vm is WszystkieMagazynyViewModel)
+                as WszystkieMagazynyViewModel;
+            if (workspace == null)
+            {
+                workspace = new WszystkieMagazynyViewModel();
+                this.Workspaces.Add(workspace);
+            }
+            this.SetActiveWorkspace(workspace);
+        }
+        private void ShowAllStanyMagazynowe()
+        {
+            WszystkieStanyMagazynoweViewModel workspace =
+                this.Workspaces.FirstOrDefault(vm => vm is WszystkieStanyMagazynoweViewModel)
+                as WszystkieStanyMagazynoweViewModel;
+            if (workspace == null)
+            {
+                workspace = new WszystkieStanyMagazynoweViewModel();
                 this.Workspaces.Add(workspace);
             }
             this.SetActiveWorkspace(workspace);

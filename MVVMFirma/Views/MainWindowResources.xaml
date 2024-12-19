@@ -39,6 +39,36 @@
     <DataTemplate DataType="{x:Type vm:WszystkieReklamacjeViewModel}">
         <v:WszystkieReklamacjeView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyKontrahentViewModel}">
+        <v:NowyKontrahentView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszyscyKontrahenciViewModel}">
+        <v:WszyscyKontrahenciView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyRodzajViewModel}">
+        <v:NowyRodzajView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieRodzajeViewModel}">
+        <v:WszystkieRodzajeView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyAdresViewModel}">
+        <v:NowyAdresView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieAdresyViewModel}">
+        <v:WszystkieAdresyView/>
+    </DataTemplate>
+    <!--<DataTemplate DataType="{x:Type vm:NowyMagazynViewModel}">
+        <v:NowyMagazynView/>
+    </DataTemplate>-->
+    <DataTemplate DataType="{x:Type vm:WszystkieMagazynyViewModel}">
+        <v:WszystkieMagazynyView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowyStanMagazynowyViewModel}">
+        <v:NowyStanMagazynowyView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieStanyMagazynoweViewModel}">
+        <v:WszystkieStanyMagazynoweView/>
+    </DataTemplate>
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">
