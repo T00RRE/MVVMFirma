@@ -33,6 +33,12 @@
     <DataTemplate DataType="{x:Type vm:WszystkieSposobyPlatnosciViewModel}">
         <v:WszystkieSposobyPlatnosciView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowaReklamacjaViewModel}">
+        <v:NowaReklamacjaView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieReklamacjeViewModel}">
+        <v:WszystkieReklamacjeView/>
+    </DataTemplate>
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">

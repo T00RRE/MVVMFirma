@@ -65,7 +65,13 @@ namespace MVVMFirma.ViewModels
             new BaseCommand(() => this.ShowAllSposobyPlatnosci())),
         new CommandViewModel(
             "Sposób Płatności",
-            new BaseCommand(() => this.CreateView(new NowySposobPlatnosciViewModel())))
+            new BaseCommand(() => this.CreateView(new NowySposobPlatnosciViewModel()))),
+           new CommandViewModel(
+            "Reklamacje",
+            new BaseCommand(() => this.ShowAllReklamacje())),
+        new CommandViewModel(
+            "Reklamacja",
+            new BaseCommand(() => this.CreateView(new NowaReklamacjaViewModel())))
             };
         }
         #endregion
@@ -175,6 +181,18 @@ namespace MVVMFirma.ViewModels
             if (workspace == null)
             {
                 workspace = new WszystkieSposobyPlatnosciViewModel();
+                this.Workspaces.Add(workspace);
+            }
+            this.SetActiveWorkspace(workspace);
+        }
+        private void ShowAllReklamacje()
+        {
+            WszystkieReklamacjeViewModel workspace =
+                this.Workspaces.FirstOrDefault(vm => vm is WszystkieReklamacjeViewModel)
+                as WszystkieReklamacjeViewModel;
+            if (workspace == null)
+            {
+                workspace = new WszystkieReklamacjeViewModel();
                 this.Workspaces.Add(workspace);
             }
             this.SetActiveWorkspace(workspace);
