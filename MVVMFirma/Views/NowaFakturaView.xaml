@@ -7,53 +7,41 @@
             mc:Ignorable="d" 
             d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <Grid Background="White">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="200"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-            </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
 
-            <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Imię"/>
-            <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" 
-                    Text="{Binding Path=Imie,UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Numer"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" 
+                Text="{Binding Path=Numer, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Nazwisko"/>
-            <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" 
-                    Text="{Binding Path=Nazwisko,UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Czy zatwierdzona"/>
+        <CheckBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" 
+                 IsChecked="{Binding Path=CzyZatwierdzona, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="PESEL"/>
-            <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" 
-                    Text="{Binding Path=PESEL,UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Data Wystawienia"/>
+        <DatePicker Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" 
+                  SelectedDate="{Binding Path=DataWystawienia, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Data Zatrudnienia"/>
-            <DatePicker Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" 
-                      SelectedDate="{Binding Path=DataZatrudnienia,UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="ID Kontrahenta"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" 
+                Text="{Binding Path=IdKontrahenta, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Grid.Column="0" Grid.Row="4" Margin="0,8,0,8" Content="Stanowisko"/>
-            <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" 
-                    Text="{Binding Path=Stanowisko,UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="4" Margin="0,8,0,8" Content="Termin Płatności"/>
+        <DatePicker Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" 
+                  SelectedDate="{Binding Path=TerminPłatności, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Grid.Column="0" Grid.Row="5" Margin="0,8,0,8" Content="Pensja"/>
-            <TextBox Grid.Column="1" Grid.Row="5" Margin="0,8,0,8" 
-                    Text="{Binding Path=Pensja,UpdateSourceTrigger=PropertyChanged}"/>
-
-            <Label Grid.Column="0" Grid.Row="6" Margin="0,8,0,8" Content="Numer Telefonu"/>
-            <TextBox Grid.Column="1" Grid.Row="6" Margin="0,8,0,8" 
-                    Text="{Binding Path=NumerTelefonu,UpdateSourceTrigger=PropertyChanged}"/>
-
-            <Label Grid.Column="0" Grid.Row="7" Margin="0,8,0,8" Content="Email"/>
-            <TextBox Grid.Column="1" Grid.Row="7" Margin="0,8,0,8" 
-                    Text="{Binding Path=Email,UpdateSourceTrigger=PropertyChanged}"/>
-        </Grid>
+        <Label Grid.Column="0" Grid.Row="5" Margin="0,8,0,8" Content="ID Sposobu Płatności"/>
+        <TextBox Grid.Column="1" Grid.Row="5" Margin="0,8,0,8" 
+                Text="{Binding Path=IdSposobuPłatności, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </local:jedenViewBase>

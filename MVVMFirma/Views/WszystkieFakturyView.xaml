@@ -9,15 +9,15 @@
     <Grid Background="White">
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding IdFaktury}"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding IdFaktury}"/>
                 <DataGridTextColumn Header="Numer" Binding="{Binding Numer}"/>
+                <DataGridTextColumn Header="Czy zatwierdzona" Binding="{Binding CzyZatwierdzona}"/>
                 <DataGridTextColumn Header="Data wystawienia" Binding="{Binding DataWystawienia}"/>
-                <DataGridTextColumn Header="Kontrahent" Binding="{Binding IdKontrahenta}"/>
-                <DataGridTextColumn Header="Termin platnosci" Binding="{Binding TerminPłatności}"/>
-                <DataGridTextColumn Header="Sposob platnosci" Binding="{Binding IdSposobuPłatności}"/>
+                <DataGridTextColumn Header="NIP Kontrahenta" Binding="{Binding KontrahentNIP}"/>
+                <DataGridTextColumn Header="Nazwa Kontrahenta" Binding="{Binding KontrahentNazwa}"/>
+                <DataGridTextColumn Header="Termin płatności" Binding="{Binding TerminPlatosci}"/>
+                <DataGridTextColumn Header="Sposób płatności" Binding="{Binding SposobuPlatnosciNazwa}"/>
             </DataGrid.Columns>
         </DataGrid>
-
-
     </Grid>
 </local:WszystkieViewBase>

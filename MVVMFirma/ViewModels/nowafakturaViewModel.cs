@@ -5,21 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
-
 namespace MVVMFirma.ViewModels
 {
     public class NowaFakturaViewModel : jedenViewModel<Faktura>
     {
         #region Konstruktor
-
-
         public NowaFakturaViewModel() : base("Faktura")
         {
             item = new Faktura();
         }
         #endregion
         #region Properties
-
         public string Numer
         {
             get
@@ -86,7 +82,6 @@ namespace MVVMFirma.ViewModels
             get
             {
                 return TerminPlatosci;
-
             }
             set
             {
@@ -108,17 +103,13 @@ namespace MVVMFirma.ViewModels
                 }
             }
         }
-
-
         #endregion
         #region Helpers
         public override void Save()
         {
             FakturyEntities.Faktura.Add(item); // dodaje towar do lokalnej kolekcji 
             FakturyEntities.SaveChanges(); // zapisuje zmiany do bazy danych
-
         }
-
         #endregion
     }
 }
