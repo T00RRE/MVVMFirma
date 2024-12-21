@@ -73,7 +73,10 @@
     </Compile>
     <Compile Include="Helper\BaseCommand.cs" />
     <Compile Include="Models\EntitiesForView\FakturaForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\KontrahentForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\MagazynForAllView.cs" />
     <Compile Include="Models\EntitiesForView\ReklamacjaForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\StanMagazynowyForAllView.cs" />
     <Compile Include="Models\Entities\Adres.cs">
       <DependentUpon>ModelFaktury.tt</DependentUpon>
     </Compile>

@@ -11,12 +11,16 @@
                   ItemsSource="{Binding List}"
                   CanUserAddRows="False">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding IdKontrahenta}"/>
                 <DataGridTextColumn Header="Kod" Binding="{Binding Kod}"/>
                 <DataGridTextColumn Header="NIP" Binding="{Binding NIP}"/>
                 <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
-                <DataGridTextColumn Header="ID Rodzaju" Binding="{Binding IdRodzaju}"/>
-                <DataGridTextColumn Header="ID Statusu" Binding="{Binding IdStatusu}"/>
-                <DataGridTextColumn Header="ID Adresu" Binding="{Binding IdAdresu}"/>
+                <DataGridTextColumn Header="Rodzaj" Binding="{Binding RodzajNazwa}"/>
+                <DataGridTextColumn Header="Miejscowość" Binding="{Binding AdresMiejscowosc}"/>
+                <DataGridTextColumn Header="Ulica" Binding="{Binding AdresUlica}"/>
+                <DataGridTextColumn Header="Nr domu" Binding="{Binding AdresNrDomu}"/>
+                <DataGridTextColumn Header="Nr lokalu" Binding="{Binding AdresNrLokalu}"/>
+                <DataGridTextColumn Header="Kod pocztowy" Binding="{Binding AdresKodPocztowy}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
