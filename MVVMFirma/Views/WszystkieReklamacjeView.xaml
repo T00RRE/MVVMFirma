@@ -12,10 +12,13 @@
                   CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding IdReklamacji}"/>
-                <DataGridTextColumn Header="Data Reklamacji" Binding="{Binding DataReklamacji}"/>
+                <DataGridTextColumn Header="Data reklamacji" Binding="{Binding DataReklamacji}"/>
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
-                <DataGridTextColumn Header="Opis" Binding="{Binding OpisReklamacji}"/>
-                <DataGridTextColumn Header="ID Pracownika" Binding="{Binding IdPracownika}"/>
+                <DataGridTextColumn Header="Opis reklamacji" Binding="{Binding OpisReklamacji}"/>
+                <DataGridTextColumn Header="Pracownik" 
+                                  Binding="{Binding PracownikImie, StringFormat={}{0} }"/>
+                <DataGridTextColumn Header="Nazwisko" 
+                                  Binding="{Binding PracownikNazwisko}"/>
                 <DataGridTextColumn Header="Decyzja" Binding="{Binding Decyzja}"/>
             </DataGrid.Columns>
         </DataGrid>
