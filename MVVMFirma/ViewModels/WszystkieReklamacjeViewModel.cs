@@ -37,6 +37,11 @@ namespace MVVMFirma.ViewModels
                 }
             );
         }
+        public override void ShowAddWindow()
+        {
+            var nowaReklamacja = new NowaReklamacjaViewModel();
+            EventAggregator.PublishWorkspaceViewModel(nowaReklamacja);
+        }
         #endregion
     }
 }

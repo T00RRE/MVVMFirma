@@ -49,6 +49,11 @@ namespace MVVMFirma.ViewModels
                 }
             );
         }
+        public override void ShowAddWindow()
+        {
+            var nowaFaktura = new NowaFakturaViewModel();
+            EventAggregator.PublishWorkspaceViewModel(nowaFaktura);
+        }
         #endregion
     }
 }

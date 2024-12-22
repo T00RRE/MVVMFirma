@@ -24,6 +24,11 @@ namespace MVVMFirma.ViewModels
         {
             List = new ObservableCollection<Adres>(fakturyEntities.Adres.ToList());
         }
+        public override void ShowAddWindow()
+        {
+            var nowyAdres = new NowyAdresViewModel();
+            EventAggregator.PublishWorkspaceViewModel(nowyAdres);
+        }
         #endregion
     }
 }

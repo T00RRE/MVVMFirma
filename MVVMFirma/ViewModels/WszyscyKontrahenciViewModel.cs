@@ -1,6 +1,7 @@
 ﻿using MVVMFirma.Helper;
 using MVVMFirma.Models.Entities;
 using MVVMFirma.Models.EntitiesForView;
+using MVVMFirma.Views;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -39,6 +40,11 @@ namespace MVVMFirma.ViewModels
                     AdresKodPocztowy = kontrahent.Adres.KodPocztowy
                 }
             );
+        }
+        public override void ShowAddWindow()
+        {
+            var nowyKontrahent = new NowyKontrahentViewModel();
+            EventAggregator.PublishWorkspaceViewModel(nowyKontrahent);
         }
         #endregion
     }

@@ -24,6 +24,11 @@ namespace MVVMFirma.ViewModels
         {
             List = new ObservableCollection<Rodzaj>(fakturyEntities.Rodzaj.ToList());
         }
+        public override void ShowAddWindow()
+        {
+            var nowyRodzaj = new NowyRodzajViewModel();
+            EventAggregator.PublishWorkspaceViewModel(nowyRodzaj);
+        }
         #endregion
     }
 }

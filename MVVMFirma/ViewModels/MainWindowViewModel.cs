@@ -17,6 +17,12 @@ namespace MVVMFirma.ViewModels
         private ReadOnlyCollection<CommandViewModel> _Commands;
         private ObservableCollection<WorkspaceViewModel> _Workspaces;
         #endregion
+        #region Constructor
+        public MainWindowViewModel()
+        {
+            EventAggregator.WorkspaceViewModelRequested += OnWorkspaceViewModelRequested;
+        }
+        #endregion
 
         #region Commands
         public ReadOnlyCollection<CommandViewModel> Commands
@@ -172,7 +178,7 @@ namespace MVVMFirma.ViewModels
 
             this.SetActiveWorkspace(workspace);
         }
-        private void SetActiveWorkspace(WorkspaceViewModel workspace)
+        public void SetActiveWorkspace(WorkspaceViewModel workspace)
         {
             Debug.Assert(this.Workspaces.Contains(workspace));
 
@@ -287,6 +293,12 @@ namespace MVVMFirma.ViewModels
                 this.Workspaces.Add(workspace);
             }
             this.SetActiveWorkspace(workspace);
+        }
+        
+        private void OnWorkspaceViewModelRequested(WorkspaceViewModel viewModel)
+        {
+            this.Workspaces.Add(viewModel);
+            this.SetActiveWorkspace(viewModel);
         }
         #endregion
     }

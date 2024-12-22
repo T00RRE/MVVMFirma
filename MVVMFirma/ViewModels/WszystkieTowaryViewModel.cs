@@ -27,6 +27,11 @@ namespace MVVMFirma.ViewModels
             
             List = new ObservableCollection<Towar>(fakturyEntities.Towar.ToList()); // z bazy danych którą reprezentuje " fakturyEntities pobieram Towar i wszystkie rekordy zamieniam na liste
         }
+        public override void ShowAddWindow()
+        {
+            var nowyTowar = new NowyTowarViewModel();
+            EventAggregator.PublishWorkspaceViewModel(nowyTowar);
+        }
         #endregion
     }
 }

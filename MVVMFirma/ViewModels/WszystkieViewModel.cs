@@ -29,16 +29,19 @@ namespace MVVMFirma.ViewModels
 
         #endregion
         #region DodajCommand
-        private BaseCommand _DodajCommand;
+        private ICommand _dodajCommand;
         public ICommand DodajCommand
         {
             get
             {
-                if (_DodajCommand == null)
-                    _DodajCommand = new BaseCommand(() => Dodaj());
-                return _DodajCommand;
+                if (_dodajCommand == null)
+                    _dodajCommand = new BaseCommand(() => ShowAddWindow());
+                return _dodajCommand;
             }
         }
+
+        
+        public abstract void ShowAddWindow();
         #endregion
         #region OdswiezCommand
         private BaseCommand _OdswiezCommand;
