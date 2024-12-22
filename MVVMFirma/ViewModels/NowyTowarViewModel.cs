@@ -99,7 +99,16 @@ namespace MVVMFirma.ViewModels
             FakturyEntities.SaveChanges(); // zapisuje zmiany do bazy danych
 
         }
-       
+        protected override string ValidateProperty(string propertyname)
+        {
+            switch (propertyname)
+            {
+                case nameof(Nazwa):
+                    return string.IsNullOrEmpty(Nazwa) ? "Nazwa Wymagana" : string.Empty;
+                default:
+                    return string.Empty;
+            }
+        }
         #endregion
     }
 }

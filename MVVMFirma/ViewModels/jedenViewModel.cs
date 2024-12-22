@@ -2,15 +2,17 @@
 using MVVMFirma.Models.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MVVMFirma.ViewModels
 {
-    public abstract class jedenViewModel<T>:WorkspaceViewModel
-    {
+    public abstract class jedenViewModel<T>:WorkspaceViewModel, IDataErrorInfo 
+    { 
         #region DB
         protected Faktury2024Entities FakturyEntities;
         #endregion
@@ -32,6 +34,49 @@ namespace MVVMFirma.ViewModels
 
 
         }
+        protected bool IsValid()
+        {
+            foreach(System.Reflection.PropertyInfo item in GetType().GetProperties()) {
+            if(!string.IsNullOrEmpty(ValidateProperty(item.Name))) {
+                    return false;
+                }
+            
+            }
+            return true;
+        }
+        private void ValidateAndSave()
+        {
+            try
+            {
+                if (IsValid())
+                {
+                    Save();
+                }
+                else
+                {
+                    MessageBox.Show("Nie mozna zapisac", "OK");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Wystopił Błąd", "Ok");
+            }
+
+        }
+        public string Error => string.Empty;
+        // ta metoda (property) implementuj w każej klasie gdzie bedziemy walidować
+        public string this[string columnName]{
+        get
+            {
+                return ValidateProperty(columnName);
+            }
+        }
+
+        protected virtual string ValidateProperty(string propertyname)
+        {
+            return string.Empty;    
+        }
+
         #endregion
         #region Konstruktor
         public jedenViewModel(String displayName)
@@ -45,7 +90,7 @@ namespace MVVMFirma.ViewModels
         public abstract void Save();
         public  void SaveAndClose()
         {
-            Save();
+            ValidateAndSave();
             base.OnRequestClose(); //zamkniecie zakladki
         }
         
