@@ -1,5 +1,7 @@
 ﻿using MVVMFirma.Helper;
 using MVVMFirma.Models.Entities;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace MVVMFirma.ViewModels
 {
@@ -7,14 +9,33 @@ namespace MVVMFirma.ViewModels
     {
         #region Fields
         private readonly Faktury2024Entities fakturyEntities;
+        private ObservableCollection<RodzajForComboBox> _rodzajeList;
+        private ObservableCollection<AdresForComboBox> _adresyList;
         #endregion
 
         #region Constructor
-        public NowyKontrahentViewModel()
-            : base("Kontrahent")
+        public NowyKontrahentViewModel() : base("Kontrahent")
         {
             item = new Kontrahent();
             fakturyEntities = new Faktury2024Entities();
+
+            RodzajeList = new ObservableCollection<RodzajForComboBox>(
+                fakturyEntities.Rodzaj.Select(rodzaj => new RodzajForComboBox
+                {
+                    IdRodzaju = rodzaj.IdRodzaju,
+                    Nazwa = rodzaj.Nazwa
+                }).ToList()
+            );
+
+            AdresyList = new ObservableCollection<AdresForComboBox>(
+                fakturyEntities.Adres.Select(adres => new AdresForComboBox
+                {
+                    IdAdresu = adres.IdAdresu,
+                    PelnyAdres = adres.Miejscowość + ", " + adres.Ulica + " " +
+                                adres.NrDomu + (adres.NrLokalu != null ? "/" + adres.NrLokalu : "") +
+                                ", " + adres.KodPocztowy
+                }).ToList()
+            );
         }
         #endregion
 
@@ -114,6 +135,25 @@ namespace MVVMFirma.ViewModels
                 }
             }
         }
+        public ObservableCollection<RodzajForComboBox> RodzajeList
+        {
+            get { return _rodzajeList; }
+            set
+            {
+                _rodzajeList = value;
+                OnPropertyChanged(() => RodzajeList);
+            }
+        }
+
+        public ObservableCollection<AdresForComboBox> AdresyList
+        {
+            get { return _adresyList; }
+            set
+            {
+                _adresyList = value;
+                OnPropertyChanged(() => AdresyList);
+            }
+        }
         #endregion
 
         #region Helpers
@@ -121,6 +161,17 @@ namespace MVVMFirma.ViewModels
         {
             fakturyEntities.Kontrahent.Add(item);
             fakturyEntities.SaveChanges();
+        }
+        public class RodzajForComboBox
+        {
+            public int IdRodzaju { get; set; }
+            public string Nazwa { get; set; }
+        }
+
+        public class AdresForComboBox
+        {
+            public int IdAdresu { get; set; }
+            public string PelnyAdres { get; set; }
         }
         #endregion
     }

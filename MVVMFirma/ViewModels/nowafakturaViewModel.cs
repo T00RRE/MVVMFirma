@@ -2,6 +2,7 @@
 using MVVMFirma.Models.Entities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
@@ -9,10 +10,33 @@ namespace MVVMFirma.ViewModels
 {
     public class NowaFakturaViewModel : jedenViewModel<Faktura>
     {
+         #region Fields
+    private readonly Faktury2024Entities fakturyEntities;
+    private ObservableCollection<KontrahentForComboBox> _kontrahenciList;
+    private ObservableCollection<SposobPlatnosciForComboBox> _sposobyPlatnosciList;
+        #endregion
         #region Konstruktor
         public NowaFakturaViewModel() : base("Faktura")
         {
             item = new Faktura();
+            fakturyEntities = new Faktury2024Entities();
+
+            
+            KontrahenciList = new ObservableCollection<KontrahentForComboBox>(
+                fakturyEntities.Kontrahent.Select(kontrahent => new KontrahentForComboBox
+                {
+                    IdKontrahenta = kontrahent.IdKontrahenta,
+                    NazwaKontrahenta = kontrahent.Nazwa + " (NIP: " + kontrahent.NIP + ")"
+                }).ToList()
+            );
+
+            SposobyPlatnosciList = new ObservableCollection<SposobPlatnosciForComboBox>(
+                fakturyEntities.SposóbPłatności.Select(sp => new SposobPlatnosciForComboBox
+                {
+                    IdSposobuPłatności = sp.IdSposobuPłatności,
+                    Nazwa = sp.Nazwa
+                }).ToList()
+            );
         }
         #endregion
         #region Properties
@@ -103,12 +127,42 @@ namespace MVVMFirma.ViewModels
                 }
             }
         }
+        public ObservableCollection<KontrahentForComboBox> KontrahenciList
+        {
+            get { return _kontrahenciList; }
+            set
+            {
+                _kontrahenciList = value;
+                OnPropertyChanged(() => KontrahenciList);
+            }
+        }
+
+        public ObservableCollection<SposobPlatnosciForComboBox> SposobyPlatnosciList
+        {
+            get { return _sposobyPlatnosciList; }
+            set
+            {
+                _sposobyPlatnosciList = value;
+                OnPropertyChanged(() => SposobyPlatnosciList);
+            }
+        }
         #endregion
         #region Helpers
         public override void Save()
         {
             FakturyEntities.Faktura.Add(item); // dodaje towar do lokalnej kolekcji 
             FakturyEntities.SaveChanges(); // zapisuje zmiany do bazy danych
+        }
+        public class KontrahentForComboBox
+        {
+            public int IdKontrahenta { get; set; }
+            public string NazwaKontrahenta { get; set; }
+        }
+
+        public class SposobPlatnosciForComboBox
+        {
+            public int IdSposobuPłatności { get; set; }
+            public string Nazwa { get; set; }
         }
         #endregion
     }

@@ -7,7 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}" CanUserAddRows="False">
+            
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding IdFaktury}"/>
                 <DataGridTextColumn Header="Numer" Binding="{Binding Numer}"/>

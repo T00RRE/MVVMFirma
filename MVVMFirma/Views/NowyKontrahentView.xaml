@@ -32,13 +32,19 @@
         <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" 
                 Text="{Binding Path=Nazwa, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="ID Rodzaju"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" 
-                Text="{Binding Path=IdRodzaju, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Rodzaj"/>
+        <ComboBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8"
+          ItemsSource="{Binding RodzajeList}"
+          DisplayMemberPath="Nazwa"
+          SelectedValuePath="IdRodzaju"
+          SelectedValue="{Binding Path=IdRodzaju}"/>
 
-        <Label Grid.Column="0" Grid.Row="4" Margin="0,8,0,8" Content="ID Adresu"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" 
-                Text="{Binding Path=IdAdresu, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="4" Margin="0,8,0,8" Content="Adres"/>
+        <ComboBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8"
+          ItemsSource="{Binding AdresyList}"
+          DisplayMemberPath="PelnyAdres"
+          SelectedValuePath="IdAdresu"
+          SelectedValue="{Binding Path=IdAdresu}"/>
 
         <Label Grid.Column="0" Grid.Row="5" Margin="0,8,0,8" Content="ID Statusu"/>
         <TextBox Grid.Column="1" Grid.Row="5" Margin="0,8,0,8" 

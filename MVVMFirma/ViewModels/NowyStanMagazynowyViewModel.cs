@@ -10,14 +10,31 @@ namespace MVVMFirma.ViewModels
     {
         #region Fields
         private readonly Faktury2024Entities fakturyEntities;
+        private ObservableCollection<TowarForComboBox> _towaryList;
+        private ObservableCollection<MagazynForComboBox> _magazynyList;
         #endregion
 
         #region Constructor
-        public NowyStanMagazynowyViewModel()
-            : base("Stan Magazynowy")
+        public NowyStanMagazynowyViewModel() : base("Stan Magazynowy")
         {
             item = new StanMagazynowy();
             fakturyEntities = new Faktury2024Entities();
+
+            TowaryList = new ObservableCollection<TowarForComboBox>(
+                fakturyEntities.Towar.Select(towar => new TowarForComboBox
+                {
+                    IdTowaru = towar.IdTowaru,
+                    NazwaTowaru = towar.Nazwa
+                }).ToList()
+            );
+
+            MagazynyList = new ObservableCollection<MagazynForComboBox>(
+                fakturyEntities.Magazyn.Select(magazyn => new MagazynForComboBox
+                {
+                    IdMagazynu = magazyn.IdMagazynu,
+                    NazwaMagazynu = magazyn.Nazwa
+                }).ToList()
+            );
         }
         #endregion
 
@@ -117,6 +134,25 @@ namespace MVVMFirma.ViewModels
                 }
             }
         }
+        public ObservableCollection<TowarForComboBox> TowaryList
+        {
+            get { return _towaryList; }
+            set
+            {
+                _towaryList = value;
+                OnPropertyChanged(() => TowaryList);
+            }
+        }
+
+        public ObservableCollection<MagazynForComboBox> MagazynyList
+        {
+            get { return _magazynyList; }
+            set
+            {
+                _magazynyList = value;
+                OnPropertyChanged(() => MagazynyList);
+            }
+        }
         #endregion
 
         #region Helpers
@@ -124,6 +160,17 @@ namespace MVVMFirma.ViewModels
         {
             fakturyEntities.StanMagazynowy.Add(item);
             fakturyEntities.SaveChanges();
+        }
+        public class TowarForComboBox
+        {
+            public int IdTowaru { get; set; }
+            public string NazwaTowaru { get; set; }
+        }
+
+        public class MagazynForComboBox
+        {
+            public int IdMagazynu { get; set; }
+            public string NazwaMagazynu { get; set; }
         }
         #endregion
     }

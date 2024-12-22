@@ -32,16 +32,22 @@
         <DatePicker Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" 
                   SelectedDate="{Binding Path=DataWystawienia, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="ID Kontrahenta"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" 
-                Text="{Binding Path=IdKontrahenta, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Kontrahent"/>
+        <ComboBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8"
+          ItemsSource="{Binding KontrahenciList}"
+          DisplayMemberPath="NazwaKontrahenta"
+          SelectedValuePath="IdKontrahenta"
+          SelectedValue="{Binding Path=IdKontrahenta}"/>
 
         <Label Grid.Column="0" Grid.Row="4" Margin="0,8,0,8" Content="Termin Płatności"/>
         <DatePicker Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" 
                   SelectedDate="{Binding Path=TerminPłatności, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="5" Margin="0,8,0,8" Content="ID Sposobu Płatności"/>
-        <TextBox Grid.Column="1" Grid.Row="5" Margin="0,8,0,8" 
-                Text="{Binding Path=IdSposobuPłatności, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="5" Margin="0,8,0,8" Content="Sposób płatności"/>
+        <ComboBox Grid.Column="1" Grid.Row="5" Margin="0,8,0,8"
+          ItemsSource="{Binding SposobyPlatnosciList}"
+          DisplayMemberPath="Nazwa"
+          SelectedValuePath="IdSposobuPłatności"
+          SelectedValue="{Binding Path=IdSposobuPłatności}"/>
     </Grid>
 </local:jedenViewBase>

@@ -12,7 +12,7 @@
                   CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding IdAdresu}"/>
-                <DataGridTextColumn Header="Miejscowość" Binding="{Binding Miejscowosc}"/>
+                <DataGridTextColumn Header="Miejscowość" Binding="{Binding Miejscowość}"/>
                 <DataGridTextColumn Header="Ulica" Binding="{Binding Ulica}"/>
                 <DataGridTextColumn Header="Nr domu" Binding="{Binding NrDomu}"/>
                 <DataGridTextColumn Header="Nr lokalu" Binding="{Binding NrLokalu}"/>

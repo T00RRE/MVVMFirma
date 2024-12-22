@@ -1,6 +1,8 @@
 ﻿using MVVMFirma.Helper;
 using MVVMFirma.Models.Entities;
 using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace MVVMFirma.ViewModels
 {
@@ -8,14 +10,30 @@ namespace MVVMFirma.ViewModels
     {
         #region Fields
         private readonly Faktury2024Entities fakturyEntities;
+        private ObservableCollection<PracownikForComboBox> _pracownicyList;
+        public ObservableCollection<PracownikForComboBox> PracownicyList
+        {
+            get { return _pracownicyList; }
+            set
+            {
+                _pracownicyList = value;
+                OnPropertyChanged(() => PracownicyList);
+            }
+        }
         #endregion
 
         #region Constructor
-        public NowaReklamacjaViewModel()
-            : base("Reklamacja")
+        public NowaReklamacjaViewModel() : base("Reklamacja")
         {
             item = new Reklamacja();
             fakturyEntities = new Faktury2024Entities();
+            PracownicyList = new ObservableCollection<PracownikForComboBox>(
+                fakturyEntities.Pracownik.Select(pracownik => new PracownikForComboBox
+                {
+                    IdPracownika = pracownik.IdPracownika,
+                    FullName = pracownik.Imie + " " + pracownik.Nazwisko
+                }).ToList()
+            );
         }
         #endregion
 
@@ -108,6 +126,11 @@ namespace MVVMFirma.ViewModels
         {
             fakturyEntities.Reklamacja.Add(item);
             fakturyEntities.SaveChanges();
+        }
+        public class PracownikForComboBox
+        {
+            public int IdPracownika { get; set; }
+            public string FullName { get; set; }
         }
         #endregion
     }

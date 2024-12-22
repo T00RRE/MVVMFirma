@@ -13,11 +13,9 @@ namespace MVVMFirma.Models.EntitiesForView
         public string Numer { get; set; }
         public bool? CzyZatwierdzona { get; set; }
         public DateTime? DataWystawienia { get; set; }
-        //nip i nazwa będzie zamiast klucza obcego idKontrahenta
         public string KontrahentNIP { get; set; }
         public string KontrahentNazwa {  get; set; }
         public DateTime? TerminPlatosci {  get; set; }
-        // to jest pole zamiast klucza obcego idSposobuPlatnosci
         public string SposobuPlatnosciNazwa { get; set; }
     }
 }

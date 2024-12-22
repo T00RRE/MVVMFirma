@@ -28,6 +28,30 @@ namespace MVVMFirma.ViewModels
         }
 
         #endregion
+        #region DodajCommand
+        private BaseCommand _DodajCommand;
+        public ICommand DodajCommand
+        {
+            get
+            {
+                if (_DodajCommand == null)
+                    _DodajCommand = new BaseCommand(() => Dodaj());
+                return _DodajCommand;
+            }
+        }
+        #endregion
+        #region OdswiezCommand
+        private BaseCommand _OdswiezCommand;
+        public ICommand OdswiezCommand
+        {
+            get
+            {
+                if (_OdswiezCommand == null)
+                    _OdswiezCommand = new BaseCommand(() => Load());
+                return _OdswiezCommand;
+            }
+        }
+        #endregion
         #region List
         private ObservableCollection<T> _List; //tu będą przechowywane towary z bazy danych
         public ObservableCollection<T> List

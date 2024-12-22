@@ -20,13 +20,19 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="ID Towaru"/>
-        <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" 
-                Text="{Binding Path=IdTowar, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Towar"/>
+        <ComboBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8"
+          ItemsSource="{Binding TowaryList}"
+          DisplayMemberPath="NazwaTowaru"
+          SelectedValuePath="IdTowaru"
+          SelectedValue="{Binding Path=IdTowaru}"/>
 
-        <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="ID Magazynu"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" 
-                Text="{Binding Path=IdMagazynu, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Magazyn"/>
+        <ComboBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8"
+          ItemsSource="{Binding MagazynyList}"
+          DisplayMemberPath="NazwaMagazynu"
+          SelectedValuePath="IdMagazynu"
+          SelectedValue="{Binding Path=IdMagazynu}"/>
 
         <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="ID Stanu"/>
         <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" 

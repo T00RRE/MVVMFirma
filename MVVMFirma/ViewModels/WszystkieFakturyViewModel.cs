@@ -34,21 +34,18 @@ namespace MVVMFirma.ViewModels
         {
             List = new ObservableCollection<FakturaForAllView>(
                 from faktura in fakturyEntities.Faktura
+                join sposobPlatnosci in fakturyEntities.SposóbPłatności
+                on faktura.IdSposobuPłatności equals sposobPlatnosci.IdSposobuPłatności
                 select new FakturaForAllView
                 {
                     IdFaktury = faktura.IdFaktury,
                     Numer = faktura.Numer,
                     CzyZatwierdzona = faktura.CzyZatwierdzona ?? false,
-                    DataWystawienia = faktura.DataWystawienia ?? DateTime.Now,
-                    
+                    DataWystawienia = faktura.DataWystawienia,
                     KontrahentNIP = faktura.Kontrahent.NIP,
                     KontrahentNazwa = faktura.Kontrahent.Nazwa,
-                    TerminPlatosci = faktura.TerminPłatności ?? DateTime.Now,
-                    
-                    SposobuPlatnosciNazwa = fakturyEntities.SposóbPłatności
-                        .Where(sp => sp.IdSposobuPłatności == faktura.IdSposobuPłatności)
-                        .Select(sp => sp.Nazwa)
-                        .FirstOrDefault()
+                    TerminPlatosci = faktura.TerminPłatności,
+                    SposobuPlatnosciNazwa = sposobPlatnosci.Nazwa  // używamy joinowanej tabeli
                 }
             );
         }
