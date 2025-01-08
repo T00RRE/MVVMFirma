@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="MVVMFirma.Views.RaportSprzedażyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MVVMFirma.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" MaxWidth="600" >
+    <Grid Background="White">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="33"/>
+            <RowDefinition Height="33"/>
+            <RowDefinition Height="33"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="33"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="Utarg w wybranym okresie dla wybranego towaru" 
+               Margin="3" HorizontalContentAlignment="Center"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="OD" Margin="3"/>
+            <DatePicker Grid.Column="1" Margin="3" SelectedDate="{Binding DataOd}"/>
+            <Label Grid.Column="2" Content="DO" Margin="3"/>
+            <DatePicker Grid.Column="3" Margin="3" SelectedDate="{Binding DataDo}"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+                
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Wybierz towar: " Margin="3"/>
+            <ComboBox Grid.Column="1" Margin="3" ItemsSource="{Binding TowaryItems}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Path=IdTowaru, Mode=TwoWay}"/>
+        </Grid>
+        <Button Grid.Row="3" Content="Oblicz" Margin="3" Command="{Binding ObliczCommand}" />
+        <Grid Grid.Row="4" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Utarg wynosi:" Margin="3"/>
+            <Label Grid.Column="1" Content="{Binding Utarg}" Margin="3"/>
+            
+        </Grid>
+    </Grid>
+</UserControl>

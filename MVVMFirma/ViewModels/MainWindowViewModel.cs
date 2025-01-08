@@ -108,7 +108,10 @@ namespace MVVMFirma.ViewModels
             new BaseCommand(() => this.ShowAllStanyMagazynowe())),
         new CommandViewModel(
             "Stan Magazynowy",
-            new BaseCommand(() => this.CreateView(new NowyStanMagazynowyViewModel())))
+            new BaseCommand(() => this.CreateView(new NowyStanMagazynowyViewModel()))),
+        new CommandViewModel(
+            "Raporty Sprzedaży",
+            new BaseCommand(() => this.CreateView(new RaportSprzedażyViewModel())))
             };
         }
         #endregion

@@ -73,7 +73,11 @@
     </Compile>
     <Compile Include="Helper\BaseCommand.cs" />
     <Compile Include="Helper\EventAggregator.cs" />
+    <Compile Include="Models\BusinessLogic\DatabaseClass.cs" />
+    <Compile Include="Models\BusinessLogic\TowarB.cs" />
+    <Compile Include="Models\BusinessLogic\UtargB.cs" />
     <Compile Include="Models\EntitiesForView\FakturaForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\KeyAndValue.cs" />
     <Compile Include="Models\EntitiesForView\KontrahentForAllView.cs" />
     <Compile Include="Models\EntitiesForView\MagazynForAllView.cs" />
     <Compile Include="Models\EntitiesForView\ReklamacjaForAllView.cs" />
@@ -156,6 +160,7 @@
     <Compile Include="ViewModels\NowyStanMagazynowyViewModel.cs" />
     <Compile Include="ViewModels\NowyStatusViewModel.cs" />
     <Compile Include="ViewModels\NowyTowarViewModel.cs" />
+    <Compile Include="ViewModels\RaportSprzedażyViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Compile Include="ViewModels\WszyscyKontrahenciViewModel.cs" />
     <Compile Include="ViewModels\WszyscyPracownicyViewModel.cs" />
@@ -205,6 +210,9 @@
     </Compile>
     <Compile Include="Views\NowyTowarView.xaml.cs">
       <DependentUpon>NowyTowarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaportSprzedażyView.xaml.cs">
+      <DependentUpon>RaportSprzedażyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WszyscyKontrahenciView.xaml.cs">
       <DependentUpon>WszyscyKontrahenciView.xaml</DependentUpon>
@@ -331,6 +339,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\RaportSprzedażyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\WszyscyKontrahenciView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -391,6 +403,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
