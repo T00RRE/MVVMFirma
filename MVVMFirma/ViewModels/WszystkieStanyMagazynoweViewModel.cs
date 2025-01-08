@@ -36,11 +36,11 @@ namespace MVVMFirma.ViewModels
                 }).ToList()
             );
         }
-        public override void ShowAddWindow()
-        {
-            var nowyStanMagazynowy = new NowyStanMagazynowyViewModel();
-            EventAggregator.PublishWorkspaceViewModel(nowyStanMagazynowy);
-        }
+        //public override void ShowAddWindow()
+        //{
+        //    var nowyStanMagazynowy = new NowyStanMagazynowyViewModel();
+        //    EventAggregator.PublishWorkspaceViewModel(nowyStanMagazynowy);
+        //}
         #endregion
     }
 }

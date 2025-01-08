@@ -41,11 +41,11 @@ namespace MVVMFirma.ViewModels
                 }
             );
         }
-        public override void ShowAddWindow()
-        {
-            var nowyKontrahent = new NowyKontrahentViewModel();
-            EventAggregator.PublishWorkspaceViewModel(nowyKontrahent);
-        }
+        //public override void ShowAddWindow()
+        //{
+        //    var nowyKontrahent = new NowyKontrahentViewModel();
+        //    EventAggregator.PublishWorkspaceViewModel(nowyKontrahent);
+        //}
         #endregion
     }
 }

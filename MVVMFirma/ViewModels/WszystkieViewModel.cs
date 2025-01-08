@@ -1,4 +1,5 @@
-﻿using MVVMFirma.Helper;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MVVMFirma.Helper;
 using MVVMFirma.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace MVVMFirma.ViewModels
         #region DB
         protected readonly Faktury2024Entities fakturyEntities; //to jest pole które reprezentuje bazy danych
         #endregion
-        #region LoadCommand
+        #region Command
         private BaseCommand _LoadCommand; //to jest komenda, która będzie wywoływałą funkcje Load pobierającą z bazy danych towary
         public ICommand LoadCommand
         {
@@ -26,22 +27,31 @@ namespace MVVMFirma.ViewModels
                 return _LoadCommand;
             }
         }
-
-        #endregion
-        #region DodajCommand
-        private ICommand _dodajCommand;
-        public ICommand DodajCommand
+        private BaseCommand _AddCommand; //to jest komenda wywołująca funkcje Add wywołującą okno do dodawania i zostanie podpięta pod przycisk Dodaj
+        public ICommand AddCommand
         {
             get
             {
-                if (_dodajCommand == null)
-                    _dodajCommand = new BaseCommand(() => ShowAddWindow());
-                return _dodajCommand;
+                if (_AddCommand == null)
+                    _AddCommand = new BaseCommand(() => add());
+                return _AddCommand;
             }
         }
+        #endregion
+        #region DodajCommand
+        //private ICommand _dodajCommand;
+        //public ICommand DodajCommand
+        //{
+        //    get
+        //    {
+        //        if (_dodajCommand == null)
+        //            _dodajCommand = new BaseCommand(() => ShowAddWindow());
+        //        return _dodajCommand;
+        //    }
+        //}
 
-        
-        public abstract void ShowAddWindow();
+
+        //public abstract void ShowAddWindow();
         #endregion
         #region OdswiezCommand
         private BaseCommand _OdswiezCommand;
@@ -88,6 +98,13 @@ namespace MVVMFirma.ViewModels
         #region Helpers
         // metoda load pobiera wszystkie towary z bazy danych;
         public abstract void Load(); 
+        public void add()
+        {
+            //Messenger jest z biblioteki MVVMlight 
+            //dzięki messengerowi wysyłamy do innych obiektów komunikat DisplayName Add gdzie displayname jest nazwą widoku
+            //ten odbierze MainWindowViewModel które odpowiada za otwieranie zakładek
+            Messenger.Default.Send(DisplayName + "Add");
+        }
         #endregion
     }
 }

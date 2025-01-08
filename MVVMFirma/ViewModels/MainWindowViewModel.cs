@@ -8,6 +8,8 @@ using System.Diagnostics;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Data;
+using GalaSoft.MvvmLight.Messaging;
+using MVVMFirma.Views;
 
 namespace MVVMFirma.ViewModels
 {
@@ -20,7 +22,7 @@ namespace MVVMFirma.ViewModels
         #region Constructor
         public MainWindowViewModel()
         {
-            EventAggregator.WorkspaceViewModelRequested += OnWorkspaceViewModelRequested;
+            //EventAggregator.WorkspaceViewModelRequested += OnWorkspaceViewModelRequested;
         }
         #endregion
 
@@ -39,6 +41,8 @@ namespace MVVMFirma.ViewModels
         }
         private List<CommandViewModel> CreateCommands()
         {
+            //To jest Messenger który oczekuje na stringa i jak go złapie to wywołuje metode open która jest zdefiniowana w regionie prywatnych helpersów
+            Messenger.Default.Register<string>(this, open);
             return new List<CommandViewModel>
             {
                 new CommandViewModel(
@@ -297,12 +301,37 @@ namespace MVVMFirma.ViewModels
             }
             this.SetActiveWorkspace(workspace);
         }
-        
-        private void OnWorkspaceViewModelRequested(WorkspaceViewModel viewModel)
+        private void open(string name) 
         {
-            this.Workspaces.Add(viewModel);
-            this.SetActiveWorkspace(viewModel);
+            if (name == "TowaryAdd") //name to jest wysłany komunikat
+                CreateView(new NowyTowarViewModel()); // jesli odbierzemy komunikat to wywołujemy zakładke do dodawania nowego towaru
+            if (name == "FakturyAdd") 
+                CreateView(new NowaFakturaViewModel());
+            if (name == "PracownicyAdd")
+                CreateView(new NowyPracownikViewModel());
+            if (name == "StatusyAdd")
+                CreateView(new NowyStatusViewModel());
+            if (name == "Sposoby PłatnościAdd")
+                CreateView(new NowySposobPlatnosciViewModel());
+            if (name == "ReklamacjeAdd")
+                CreateView(new NowaReklamacjaViewModel());
+            if (name == "KontrahenciAdd")
+                CreateView(new NowyKontrahentViewModel());
+            if (name == "RodzajeAdd")
+                CreateView(new NowyRodzajViewModel());
+            if (name == "AdresyAdd")
+                CreateView(new NowyAdresViewModel());
+            if (name == "MagazynyAdd")
+                CreateView(new NowyMagazynViewModel());
+            if (name == "Stany MagazynoweAdd")
+                CreateView(new NowyStanMagazynowyViewModel());
+            
         }
+        //private void OnWorkspaceViewModelRequested(WorkspaceViewModel viewModel)
+        //{
+        //    this.Workspaces.Add(viewModel);
+        //    this.SetActiveWorkspace(viewModel);
+        //}
         #endregion
     }
 }

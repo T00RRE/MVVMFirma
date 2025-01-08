@@ -32,11 +32,11 @@ namespace MVVMFirma.ViewModels
         {
             List = new ObservableCollection<Pracownik>(fakturyEntities.Pracownik.ToList());
         }
-        public override void ShowAddWindow()
-        {
-            var nowyPracownik = new NowyRodzajViewModel();
-            EventAggregator.PublishWorkspaceViewModel(nowyPracownik);
-        }
+        //public override void ShowAddWindow()
+        //{
+        //    var nowyPracownik = new NowyRodzajViewModel();
+        //    EventAggregator.PublishWorkspaceViewModel(nowyPracownik);
+        //}
         #endregion
     }
 }

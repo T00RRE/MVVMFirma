@@ -28,11 +28,11 @@ namespace MVVMFirma.ViewModels
         {
             List = new ObservableCollection<SposóbPłatności>(fakturyEntities.SposóbPłatności.ToList());
         }
-        public override void ShowAddWindow()
-        {
-            var nowySposobPlatnosci = new NowySposobPlatnosciViewModel();
-            EventAggregator.PublishWorkspaceViewModel(nowySposobPlatnosci);
-        }
+        //public override void ShowAddWindow()
+        //{
+        //    var nowySposobPlatnosci = new NowySposobPlatnosciViewModel();
+        //    EventAggregator.PublishWorkspaceViewModel(nowySposobPlatnosci);
+        //}
         #endregion
     }
 }
