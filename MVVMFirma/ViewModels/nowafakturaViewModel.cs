@@ -1,4 +1,5 @@
-﻿using MVVMFirma.Helper;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MVVMFirma.Helper;
 using MVVMFirma.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -37,8 +38,24 @@ namespace MVVMFirma.ViewModels
                     Nazwa = sp.Nazwa
                 }).ToList()
             );
+            //to jest messenger który oczekuje na kontrahenta z widoku z wszystkimi kontrahentami
+            // jak go złapiemy to jest wywoływana metoda getWybranyKontrahent
+            Messenger.Default.Register<Kontrahent>(this, getWybranyKontrahent);
         }
         #endregion
+        #region Command
+        private BaseCommand _ShowKontrahenci; //to jest komenda,która bedzie wywoływała funkcje show kontharenci wywolująca okno do wyswietlania kontrahentów
+        public ICommand ShowKontrahenci
+        {
+            get
+            {
+                if(_ShowKontrahenci == null)
+                    _ShowKontrahenci = new BaseCommand(()=> showKontrahenci());
+                return _ShowKontrahenci;
+            }
+        }
+        #endregion
+
         #region Properties
         public string Numer
         {
@@ -88,6 +105,9 @@ namespace MVVMFirma.ViewModels
                 OnPropertyChanged(() => KontrahentNIP);
             }
         }
+        public string KontrahentNazwaPole { get; set; }
+        public string KontrahentNipPole { get; set; }
+
         private string _kontrahentNazwa;
         public string KontrahentNazwa
         {
@@ -164,6 +184,15 @@ namespace MVVMFirma.ViewModels
             public int IdSposobuPłatności { get; set; }
             public string Nazwa { get; set; }
         }
+        private void getWybranyKontrahent(Kontrahent kontrahent)
+        {
+            KontrahentNIP = kontrahent.IdKontrahenta;
+            KontrahentNipPole = kontrahent.NIP;
+            KontrahentNazwaPole = kontrahent.Nazwa;
+        }
         #endregion
+        private void showKontrahenci(){
+            Messenger.Default.Send<string>("KontrahenciAll");
+        }
     }
 }

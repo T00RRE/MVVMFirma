@@ -10,8 +10,10 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="30"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
@@ -32,19 +34,21 @@
         <DatePicker Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" 
                   SelectedDate="{Binding Path=DataWystawienia, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Kontrahent"/>
-        <ComboBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8"
-          ItemsSource="{Binding KontrahenciList}"
-          DisplayMemberPath="NazwaKontrahenta"
-          SelectedValuePath="IdKontrahenta"
-          SelectedValue="{Binding Path=IdKontrahenta}"/>
+        <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Kontrahent Nazwa"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" IsEnabled="False" Text="{Binding Path=KontrahentNazwaPole, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Content="..." Grid.Column="2 " Grid.Row="3" Margin="8,8,0,8" Command="{Binding ShowKontrahenci}"/>
+        
+        
+        <Label Grid.Column="0" Grid.Row="4" Margin="0,8,0,8" Content="Kontrahent NiP"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" IsEnabled="False" Text="{Binding Path=KontrahentNipPole, UpdateSourceTrigger=PropertyChanged}"/>
+        
 
-        <Label Grid.Column="0" Grid.Row="4" Margin="0,8,0,8" Content="Termin Płatności"/>
-        <DatePicker Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" 
+        <Label Grid.Column="0" Grid.Row="5" Margin="0,8,0,8" Content="Termin Płatności"/>
+        <DatePicker Grid.Column="1" Grid.Row="5" Margin="0,8,0,8" 
                   SelectedDate="{Binding Path=TerminPłatności, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="5" Margin="0,8,0,8" Content="Sposób płatności"/>
-        <ComboBox Grid.Column="1" Grid.Row="5" Margin="0,8,0,8"
+        <Label Grid.Column="0" Grid.Row="6" Margin="0,8,0,8" Content="Sposób płatności"/>
+        <ComboBox Grid.Column="1" Grid.Row="6" Margin="0,8,0,8"
           ItemsSource="{Binding SposobyPlatnosciList}"
           DisplayMemberPath="Nazwa"
           SelectedValuePath="IdSposobuPłatności"

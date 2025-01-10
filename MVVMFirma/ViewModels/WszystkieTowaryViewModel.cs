@@ -20,6 +20,36 @@ namespace MVVMFirma.ViewModels
         { 
         }
         #endregion
+        #region Sort And Find
+        //tu decydujemy po czym sortować
+        public override List<string> GetCombobocSortList()
+        {
+            return new List<string> { "kod", "nazwa", "cena" };
+        }
+        //a tu decydujemy po czym wyszukiwać
+        public override void Sort()
+        {
+            if (SortField == "kod")
+                List = new ObservableCollection<Towar>(List.OrderBy(item => item.Kod));
+            if (SortField == "nazwa")
+                List = new ObservableCollection<Towar>(List.OrderBy(item => item.Nazwa));
+            if (SortField == "cena")
+                List = new ObservableCollection<Towar>(List.OrderBy(item => item.Cena));
+        }
+        //tu decydujemy po czym wyszukiwać 
+        public override List<string> GetCombobocFindList()
+        {
+            return new List<string> { "kod", "nazwa" };
+        }
+        //tu decydujemy jak wyszukiwać
+        public override void Find()
+        {
+            if(FindField == "nazwa")
+                List = new ObservableCollection<Towar>(List.Where(item => item.Nazwa != null && item.Nazwa.StartsWith(FindTextBox)));
+            if (FindField == "kod")
+                List = new ObservableCollection<Towar>(List.Where(item => item.Kod != null && item.Kod.StartsWith(FindTextBox)));
+        }
+        #endregion
         #region Helpers
         // metoda load pobiera wszystkie towary z bazy danych;
         public override void Load()

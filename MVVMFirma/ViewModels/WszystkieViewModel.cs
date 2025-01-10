@@ -95,6 +95,56 @@ namespace MVVMFirma.ViewModels
 
         }
         #endregion
+        #region Sort And Filtr
+        //sort
+        //wynik wyboru po czym sortować zostanie zapisany w SortField
+        public string SortField { get; set; }
+
+        public  List<string> SortComboboxItems
+        {
+            get
+            {
+                return GetCombobocSortList();
+            }
+        }
+        public abstract List<string> GetCombobocSortList();
+        private BaseCommand _SortCommand; //to jest komenda, która będzie wywoływałą po nacisnieniu na przycisk sortuj
+        public ICommand SortCommand
+        {
+            get
+            {
+                if (_SortCommand == null)
+                    _SortCommand = new BaseCommand(() => Sort());
+                return _SortCommand;
+            }
+        }
+        public abstract void Sort();
+        //filtr////////////////////////////
+        public string FindField { get; set; }
+
+        public List<string> FindComboboxItems
+        {
+            get
+            {
+                return GetCombobocFindList();
+            }
+        }
+        public abstract List<string> GetCombobocFindList();
+        public string FindTextBox { get; set; }
+        private BaseCommand _FindCommand; //to jest komenda, która będzie wywoływałą po nacisnieniu na przycisk szukaj
+        public ICommand FindCommand
+        {
+            get
+            {
+                if (_FindCommand == null)
+                    _FindCommand = new BaseCommand(() => Find());
+                return _FindCommand;
+            }
+        }
+        public abstract void Find();
+
+
+        #endregion
         #region Helpers
         // metoda load pobiera wszystkie towary z bazy danych;
         public abstract void Load(); 

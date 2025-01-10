@@ -325,7 +325,8 @@ namespace MVVMFirma.ViewModels
                 CreateView(new NowyMagazynViewModel());
             if (name == "Stany MagazynoweAdd")
                 CreateView(new NowyStanMagazynowyViewModel());
-            
+            if (name == "KontrahenciAll")
+                ShowAllKontrahenci();
         }
         //private void OnWorkspaceViewModelRequested(WorkspaceViewModel viewModel)
         //{
