@@ -64,11 +64,19 @@ namespace MVVMFirma.ViewModels
         //tu decydujemy po czym wyszukiwać 
         public override List<string> GetCombobocFindList()
         {
-            return null;
+            return new List<string> { "Kod","NIP","Nazwa","Miejscowość"};
         }
         //tu decydujemy jak wyszukiwać
         public override void Find()
         {
+            if (FindField == "Kod")
+                List = new ObservableCollection<KontrahentForAllView>(List.Where(item => item.Kod != null && item.Kod.StartsWith(FindTextBox)));
+            if (FindField == "NIP")
+                List = new ObservableCollection<KontrahentForAllView>(List.Where(item => item.NIP != null && item.NIP.StartsWith(FindTextBox)));
+            if (FindField == "Nazwa")
+                List = new ObservableCollection<KontrahentForAllView>(List.Where(item => item.Nazwa != null && item.Nazwa.StartsWith(FindTextBox)));
+            if (FindField == "Miejscowość")
+                List = new ObservableCollection<KontrahentForAllView>(List.Where(item => item.AdresMiejscowosc != null && item.AdresMiejscowosc.StartsWith(FindTextBox)));
 
         }
         #endregion

@@ -30,22 +30,32 @@ namespace MVVMFirma.ViewModels
         //tu decydujemy po czym sortować
         public override List<string> GetCombobocSortList()
         {
-            return null;
+            return new List<string> {  "Stanowisko" , "Pensja rosnąco","Pensja malejąco" };
         }
         //a tu decydujemy po czym wyszukiwać
         public override void Sort()
         {
-
+            if (SortField == "Stanowisko")
+                List = new ObservableCollection<Pracownik>(List.OrderBy(item => item.Stanowisko));
+            if (SortField == "Pensja rosnąco")
+                List = new ObservableCollection<Pracownik>(List.OrderBy(item => item.Pensja));
+            if (SortField == "Pensja malejąco")
+                List = new ObservableCollection<Pracownik>(List.OrderByDescending(item => item.Pensja));
         }
         //tu decydujemy po czym wyszukiwać 
         public override List<string> GetCombobocFindList()
         {
-            return null;
+            return new List<string> { "Nazwisko", "Pesel","Stanowisko" };
         }
         //tu decydujemy jak wyszukiwać
         public override void Find()
         {
-
+            if (FindField == "Nazwisko")
+                List = new ObservableCollection<Pracownik>(List.Where(item => item.Nazwisko != null && item.Nazwisko.StartsWith(FindTextBox)));
+            if (FindField == "Pesel")
+                List = new ObservableCollection<Pracownik>(List.Where(item => item.PESEL != null && item.PESEL.StartsWith(FindTextBox)));
+            if (FindField == "Stanowisko")
+                List = new ObservableCollection<Pracownik>(List.Where(item => item.Stanowisko != null && item.Stanowisko.StartsWith(FindTextBox)));
         }
         #endregion
         #region Helpers

@@ -33,12 +33,13 @@ namespace MVVMFirma.ViewModels
         //tu decydujemy po czym wyszukiwać 
         public override List<string> GetCombobocFindList()
         {
-            return null;
+            return new List<string> { "Miejscowość"};
         }
         //tu decydujemy jak wyszukiwać
         public override void Find()
         {
-
+            if (FindField == "Miejscowość")
+                List = new ObservableCollection<Adres>(List.Where(item => item.Miejscowość != null && item.Miejscowość.StartsWith(FindTextBox)));
         }
         #endregion
         #region Helpers

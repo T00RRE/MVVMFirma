@@ -16,6 +16,7 @@
                 <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}"/>
                 <DataGridTextColumn Header="PESEL" Binding="{Binding PESEL}"/>
                 <DataGridTextColumn Header="Stanowisko" Binding="{Binding Stanowisko}"/>
+                <DataGridTextColumn Header="Pensja" Binding="{Binding Pensja}"/>
                 <DataGridTextColumn Header="Telefon" Binding="{Binding NumerTelefonu}"/>
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
             </DataGrid.Columns>

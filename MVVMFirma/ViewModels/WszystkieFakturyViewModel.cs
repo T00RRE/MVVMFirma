@@ -34,22 +34,32 @@ namespace MVVMFirma.ViewModels
         //tu decydujemy po czym sortować
         public override List<string> GetCombobocSortList()
         {
-            return null;
+            return new List<string> { "Data Wystawienia", "Termin Płatności", "Sposób Płatności" };
         }
         //a tu decydujemy po czym wyszukiwać
         public override void Sort()
         {
-
+            if (SortField == "Data Wystawienia")
+                List = new ObservableCollection<FakturaForAllView>(List.OrderBy(item => item.DataWystawienia));
+            if (SortField == "Termin Płatności")
+                List = new ObservableCollection<FakturaForAllView>(List.OrderBy(item => item.TerminPlatosci));
+            if (SortField == "Sposób Płatności")
+                List = new ObservableCollection<FakturaForAllView>(List.OrderBy(item => item.SposobuPlatnosciNazwa));
         }
         //tu decydujemy po czym wyszukiwać 
         public override List<string> GetCombobocFindList()
         {
-            return null;
+            return new List<string> { "Numer", "NIP", "Nazwa Kontrahenta" };
         }
         //tu decydujemy jak wyszukiwać
         public override void Find()
         {
-
+            if (FindField == "Numer")
+                List = new ObservableCollection<FakturaForAllView>(List.Where(item => item.Numer != null && item.Numer.StartsWith(FindTextBox)));
+            if (FindField == "NIP")
+                List = new ObservableCollection<FakturaForAllView>(List.Where(item => item.KontrahentNIP != null && item.KontrahentNIP.StartsWith(FindTextBox)));
+            if (FindField == "Nazwa Kontrahenta")
+                List = new ObservableCollection<FakturaForAllView>(List.Where(item => item.KontrahentNazwa != null && item.KontrahentNazwa.StartsWith(FindTextBox)));
         }
         #endregion
         #region Helpers

@@ -34,12 +34,16 @@ namespace MVVMFirma.ViewModels
         //tu decydujemy po czym wyszukiwać 
         public override List<string> GetCombobocFindList()
         {
-            return null;
+            return new List<string> { "Status", "Pracownik", "Data" };
         }
         //tu decydujemy jak wyszukiwać
         public override void Find()
         {
-
+            if (FindField == "Status")
+                List = new ObservableCollection<ReklamacjaForAllView>(List.Where(item => item.Status != null && item.Status.StartsWith(FindTextBox)));
+            if (FindField == "Pracownik")
+                List = new ObservableCollection<ReklamacjaForAllView>(List.Where(item => item.PracownikImie != null && item.PracownikImie.StartsWith(FindTextBox)));
+            //dodać date z date pickerem
         }
         #endregion
         #region Helpers
