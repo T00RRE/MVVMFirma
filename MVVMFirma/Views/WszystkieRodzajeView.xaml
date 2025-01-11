@@ -4,16 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMFirma.Views"
+             xmlns:viewmodels="clr-namespace:MVVMFirma.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:WszystkieRodzajeViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <DataGrid AutoGenerateColumns="False" 
-                  ItemsSource="{Binding List}"
-                  CanUserAddRows="False">
+             d:DesignHeight="600" 
+             d:DesignWidth="900">
+    <Grid Background="{StaticResource BackgroundColor}">
+        <DataGrid Style="{StaticResource BaseDataGridStyle}"
+                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                  CellStyle="{StaticResource DataGridCellStyle}"
+                  ItemsSource="{Binding List}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding IdRodzaju}"/>
-                <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
-                <DataGridTextColumn Header="Opis" Binding="{Binding Opis}"/>
+                <DataGridTextColumn Header="ID" 
+                                  Binding="{Binding IdRodzaju}"
+                                  Width="70"/>
+                <DataGridTextColumn Header="NAZWA" 
+                                  Binding="{Binding Nazwa}"
+                                  Width="200"/>
+                <DataGridTextColumn Header="OPIS" 
+                                  Binding="{Binding Opis}"
+                                  Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

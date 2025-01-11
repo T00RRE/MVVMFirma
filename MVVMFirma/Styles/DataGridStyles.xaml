@@ -1,0 +1,63 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Podstawowy styl dla DataGrid -->
+    <Style x:Key="BaseDataGridStyle" TargetType="DataGrid">
+        <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource GridHeaderBackground}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="RowHeaderWidth" Value="0"/>
+        <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+        <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource GridLineColor}"/>
+        <Setter Property="AlternatingRowBackground" Value="{StaticResource GridAlternativeBackground}"/>
+        <Setter Property="RowBackground" Value="White"/>
+        <Setter Property="CanUserResizeRows" Value="False"/>
+        <Setter Property="CanUserSortColumns" Value="True"/>
+        <Setter Property="SelectionMode" Value="Single"/>
+        <Setter Property="SelectionUnit" Value="FullRow"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="CanUserAddRows" Value="False"/>
+        <Setter Property="Margin" Value="10"/>
+    </Style>
+
+    <!-- Styl dla nagłówków kolumn -->
+    <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
+        <Setter Property="Background" Value="{StaticResource GridHeaderBackground}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Padding" Value="10,8"/>
+        <Setter Property="BorderThickness" Value="0,0,1,0"/>
+        <Setter Property="BorderBrush" Value="{StaticResource PrimaryDarkColor}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    </Style>
+
+    <!-- Styl dla komórek -->
+    <Style x:Key="DataGridCellStyle" TargetType="DataGridCell">
+        <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                    <Border Padding="{TemplateBinding Padding}" 
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}">
+                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource GridSelectedBackground}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource GridHeaderBackground}"/>
+                <Setter Property="Foreground" Value="{StaticResource TextPrimaryColor}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Styl dla prawego wyrównania w komórkach (dla liczb) -->
+    <Style x:Key="RightAlignedTextBlock" TargetType="TextBlock">
+        <Setter Property="TextAlignment" Value="Right"/>
+    </Style>
+</ResourceDictionary>

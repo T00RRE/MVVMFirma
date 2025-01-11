@@ -4,21 +4,72 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMFirma.Views"
+             xmlns:viewmodels="clr-namespace:MVVMFirma.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:WszystkieFakturyViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}" CanUserAddRows="False">
-            
+             d:DesignHeight="600" 
+             d:DesignWidth="1200">
+    <Grid Background="{StaticResource BackgroundColor}">
+        <DataGrid Style="{StaticResource BaseDataGridStyle}"
+                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                  CellStyle="{StaticResource DataGridCellStyle}"
+                  ItemsSource="{Binding List}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding IdFaktury}"/>
-                <DataGridTextColumn Header="Numer" Binding="{Binding Numer}"/>
-                <DataGridTextColumn Header="Czy zatwierdzona" Binding="{Binding CzyZatwierdzona}"/>
-                <DataGridTextColumn Header="Data wystawienia" Binding="{Binding DataWystawienia}"/>
-                <DataGridTextColumn Header="NIP Kontrahenta" Binding="{Binding KontrahentNIP}"/>
-                <DataGridTextColumn Header="Nazwa Kontrahenta" Binding="{Binding KontrahentNazwa}"/>
-                <DataGridTextColumn Header="Termin płatności" Binding="{Binding TerminPlatosci}"/>
-                <DataGridTextColumn Header="Sposób płatności" Binding="{Binding SposobuPlatnosciNazwa}"/>
+                <DataGridTextColumn Header="ID" 
+                                  Binding="{Binding IdFaktury}"
+                                  Width="70"/>
+                <DataGridTextColumn Header="NUMER" 
+                                  Binding="{Binding Numer}"
+                                  Width="120"/>
+                <DataGridTextColumn Header="STATUS" 
+                                  Binding="{Binding CzyZatwierdzona, StringFormat={}{0}}"
+                                  Width="100">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CzyZatwierdzona}" Value="True">
+                                    <Setter Property="Background" Value="#E8F5E9"/>
+                                    <Setter Property="ToolTip" Value="Faktura zatwierdzona"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding CzyZatwierdzona}" Value="False">
+                                    <Setter Property="Background" Value="#FFEBEE"/>
+                                    <Setter Property="ToolTip" Value="Faktura niezatwierdzona"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="DATA WYSTAWIENIA" 
+                                  Binding="{Binding DataWystawienia, StringFormat={}{0:dd.MM.yyyy}}"
+                                  Width="130"/>
+                <DataGridTextColumn Header="NIP KONTRAHENTA" 
+                                  Width="120">
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="KontrahentNIP" StringFormat="{}{0:###-###-##-##}"/>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="NAZWA KONTRAHENTA" 
+                                  Binding="{Binding KontrahentNazwa}"
+                                  Width="*"/>
+                <DataGridTextColumn Header="TERMIN PŁATNOŚCI" 
+                                  Binding="{Binding TerminPlatosci, StringFormat={}{0:dd.MM.yyyy}}"
+                                  Width="130"/>
+                <DataGridTextColumn Header="SPOSÓB PŁATNOŚCI" 
+                                  Binding="{Binding SposobuPlatnosciNazwa}"
+                                  Width="150"/>
             </DataGrid.Columns>
+
+            <!-- Kolorowanie wierszy w zależności od terminu płatności -->
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsTerminPlatnosciPrzekroczony}" Value="True">
+                            <Setter Property="Background" Value="#FFF3E0"/>
+                            <Setter Property="ToolTip" Value="Przekroczony termin płatności"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
         </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

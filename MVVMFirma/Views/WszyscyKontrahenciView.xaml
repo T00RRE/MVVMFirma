@@ -4,25 +4,85 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMFirma.Views"
+             xmlns:viewmodels="clr-namespace:MVVMFirma.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:WszyscyKontrahenciViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <DataGrid AutoGenerateColumns="False" 
+             d:DesignHeight="600" 
+             d:DesignWidth="1400">
+    <Grid Background="{StaticResource BackgroundColor}">
+        <DataGrid Style="{StaticResource BaseDataGridStyle}"
+                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                  CellStyle="{StaticResource DataGridCellStyle}"
                   ItemsSource="{Binding List}"
-                  CanUserAddRows="False"
                   SelectedItem="{Binding Path=WybranyKontrahent, Mode=TwoWay}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding IdKontrahenta}"/>
-                <DataGridTextColumn Header="Kod" Binding="{Binding Kod}"/>
-                <DataGridTextColumn Header="NIP" Binding="{Binding NIP}"/>
-                <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
-                <DataGridTextColumn Header="Rodzaj" Binding="{Binding RodzajNazwa}"/>
-                <DataGridTextColumn Header="Miejscowość" Binding="{Binding AdresMiejscowosc}"/>
-                <DataGridTextColumn Header="Ulica" Binding="{Binding AdresUlica}"/>
-                <DataGridTextColumn Header="Nr domu" Binding="{Binding AdresNrDomu}"/>
-                <DataGridTextColumn Header="Nr lokalu" Binding="{Binding AdresNrLokalu}"/>
-                <DataGridTextColumn Header="Kod pocztowy" Binding="{Binding AdresKodPocztowy}"/>
+                <DataGridTextColumn Header="ID" 
+                                  Binding="{Binding IdKontrahenta}"
+                                  Width="70"/>
+                <DataGridTextColumn Header="KOD" 
+                                  Binding="{Binding Kod}"
+                                  Width="100"/>
+                <DataGridTextColumn Header="NIP" 
+                                  Width="120">
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="NIP" StringFormat="{}{0:###-###-##-##}"/>
+                    </DataGridTextColumn.Binding>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource RightAlignedTextBlock}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="NAZWA" 
+                                  Binding="{Binding Nazwa}"
+                                  Width="*"/>
+                <DataGridTextColumn Header="RODZAJ" 
+                                  Binding="{Binding RodzajNazwa}"
+                                  Width="120"/>
+
+                <!-- Grupa kolumn adresowych -->
+                <DataGridTextColumn Header="MIEJSCOWOŚĆ" 
+                                  Binding="{Binding AdresMiejscowosc}"
+                                  Width="150"/>
+                <DataGridTextColumn Header="ULICA" 
+                                  Binding="{Binding AdresUlica}"
+                                  Width="150"/>
+                <DataGridTextColumn Header="NR DOMU" 
+                                  Binding="{Binding AdresNrDomu}"
+                                  Width="80">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource RightAlignedTextBlock}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="NR LOKALU" 
+                                  Binding="{Binding AdresNrLokalu}"
+                                  Width="80">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource RightAlignedTextBlock}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="KOD POCZTOWY" 
+                                  Width="120">
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="AdresKodPocztowy" StringFormat="{}{0:##-###}"/>
+                    </DataGridTextColumn.Binding>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource RightAlignedTextBlock}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
+
+            <!-- Kolorowanie wierszy w zależności od rodzaju kontrahenta -->
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RodzajNazwa}" Value="Klient">
+                            <Setter Property="Background" Value="#E3F2FD"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding RodzajNazwa}" Value="Dostawca">
+                            <Setter Property="Background" Value="#E8F5E9"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
         </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

@@ -4,22 +4,70 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMFirma.Views"
+             xmlns:viewmodels="clr-namespace:MVVMFirma.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:WszyscyPracownicyViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <DataGrid AutoGenerateColumns="False" 
-                  ItemsSource="{Binding List}"
-                  CanUserAddRows="False">
+             d:DesignHeight="600" 
+             d:DesignWidth="1200">
+    <Grid Background="{StaticResource BackgroundColor}">
+        <DataGrid Style="{StaticResource BaseDataGridStyle}"
+                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                  CellStyle="{StaticResource DataGridCellStyle}"
+                  ItemsSource="{Binding List}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding IdPracownika}"/>
-                <DataGridTextColumn Header="Imię" Binding="{Binding Imie}"/>
-                <DataGridTextColumn Header="Nazwisko" Binding="{Binding Nazwisko}"/>
-                <DataGridTextColumn Header="PESEL" Binding="{Binding PESEL}"/>
-                <DataGridTextColumn Header="Stanowisko" Binding="{Binding Stanowisko}"/>
-                <DataGridTextColumn Header="Pensja" Binding="{Binding Pensja}"/>
-                <DataGridTextColumn Header="Telefon" Binding="{Binding NumerTelefonu}"/>
-                <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="ID" 
+                                  Binding="{Binding IdPracownika}"
+                                  Width="70"/>
+                <DataGridTextColumn Header="IMIĘ" 
+                                  Binding="{Binding Imie}"
+                                  Width="150"/>
+                <DataGridTextColumn Header="NAZWISKO" 
+                                  Binding="{Binding Nazwisko}"
+                                  Width="180"/>
+                <DataGridTextColumn Header="PESEL" 
+                                  Binding="{Binding PESEL}"
+                                  Width="120">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource RightAlignedTextBlock}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="STANOWISKO" 
+                                  Binding="{Binding Stanowisko}"
+                                  Width="150"/>
+                <DataGridTextColumn Header="PENSJA" 
+                                  Binding="{Binding Pensja, StringFormat={}{0:N2} zł}"
+                                  Width="120">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource RightAlignedTextBlock}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="TELEFON" 
+                                  Width="120">
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="NumerTelefonu" StringFormat="{}{0:###-###-###}"/>
+                    </DataGridTextColumn.Binding>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource RightAlignedTextBlock}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="EMAIL" 
+                                  Binding="{Binding Email}"
+                                  Width="*"/>
             </DataGrid.Columns>
+
+            <!-- Kolorowanie wierszy w zależności od stanowiska -->
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Stanowisko}" Value="Kierownik">
+                            <Setter Property="Background" Value="#E3F2FD"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Stanowisko}" Value="Brygadzista">
+                            <Setter Property="Background" Value="#E8F5E9"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
         </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

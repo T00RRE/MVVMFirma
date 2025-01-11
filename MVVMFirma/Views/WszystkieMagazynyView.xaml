@@ -4,19 +4,57 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMFirma.Views"
+             xmlns:viewmodels="clr-namespace:MVVMFirma.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:WszystkieMagazynyViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <DataGrid AutoGenerateColumns="False" 
-                  ItemsSource="{Binding List}"
-                  CanUserAddRows="False">
+             d:DesignHeight="600" 
+             d:DesignWidth="1000">
+    <Grid Background="{StaticResource BackgroundColor}">
+        <DataGrid Style="{StaticResource BaseDataGridStyle}"
+                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                  CellStyle="{StaticResource DataGridCellStyle}"
+                  ItemsSource="{Binding List}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding IdMagazynu}"/>
-                <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
-                <DataGridTextColumn Header="Lokalizacja" Binding="{Binding Lokalizacja}"/>
-                <DataGridTextColumn Header="Pojemność" Binding="{Binding Pojemnosc}"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
+                <DataGridTextColumn Header="ID" 
+                                  Binding="{Binding IdMagazynu}"
+                                  Width="70"/>
+                <DataGridTextColumn Header="NAZWA" 
+                                  Binding="{Binding Nazwa}"
+                                  Width="200"/>
+                <DataGridTextColumn Header="LOKALIZACJA" 
+                                  Binding="{Binding Lokalizacja}"
+                                  Width="*"/>
+                <DataGridTextColumn Header="POJEMNOŚĆ" 
+                                  Binding="{Binding Pojemnosc, StringFormat={}{0:N0} m³}"
+                                  Width="120">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource RightAlignedTextBlock}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="STATUS" 
+                                  Binding="{Binding Status}"
+                                  Width="120"/>
             </DataGrid.Columns>
+
+            <!-- Kolorowanie wierszy w zależności od statusu -->
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Status}" Value="Aktywny">
+                            <Setter Property="Background" Value="#E8F5E9"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status}" Value="Nieaktywny">
+                            <Setter Property="Background" Value="#FFEBEE"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status}" Value="W remoncie">
+                            <Setter Property="Background" Value="#FFF3E0"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status}" Value="Pełny">
+                            <Setter Property="Background" Value="#E3F2FD"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
         </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

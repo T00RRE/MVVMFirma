@@ -4,23 +4,62 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMFirma.Views"
+             xmlns:viewmodels="clr-namespace:MVVMFirma.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:WszystkieReklamacjeViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <DataGrid AutoGenerateColumns="False" 
-                  ItemsSource="{Binding List}"
-                  CanUserAddRows="False">
+             d:DesignHeight="600" 
+             d:DesignWidth="1200">
+    <Grid Background="{StaticResource BackgroundColor}">
+        <DataGrid Style="{StaticResource BaseDataGridStyle}"
+                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                  CellStyle="{StaticResource DataGridCellStyle}"
+                  ItemsSource="{Binding List}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding IdReklamacji}"/>
-                <DataGridTextColumn Header="Data reklamacji" Binding="{Binding DataReklamacji}"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
-                <DataGridTextColumn Header="Opis reklamacji" Binding="{Binding OpisReklamacji}"/>
-                <DataGridTextColumn Header="Pracownik" 
-                                  Binding="{Binding PracownikImie, StringFormat={}{0} }"/>
-                <DataGridTextColumn Header="Nazwisko" 
-                                  Binding="{Binding PracownikNazwisko}"/>
-                <DataGridTextColumn Header="Decyzja" Binding="{Binding Decyzja}"/>
+                <DataGridTextColumn Header="ID" 
+                                  Binding="{Binding IdReklamacji}"
+                                  Width="70"/>
+                <DataGridTextColumn Header="DATA REKLAMACJI" 
+                                  Binding="{Binding DataReklamacji, StringFormat={}{0:dd.MM.yyyy}}"
+                                  Width="120"/>
+                <DataGridTextColumn Header="STATUS" 
+                                  Binding="{Binding Status}"
+                                  Width="120"/>
+                <DataGridTextColumn Header="OPIS REKLAMACJI" 
+                                  Binding="{Binding OpisReklamacji}"
+                                  Width="*"/>
+                <DataGridTextColumn Header="PRACOWNIK" 
+                                  Width="200">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{}{0} {1}">
+                            <Binding Path="PracownikImie"/>
+                            <Binding Path="PracownikNazwisko"/>
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="DECYZJA" 
+                                  Binding="{Binding Decyzja}"
+                                  Width="150"/>
             </DataGrid.Columns>
+
+            <!-- Kolorowanie wierszy w zależności od statusu -->
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Status}" Value="Nowa">
+                            <Setter Property="Background" Value="#E3F2FD"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status}" Value="W toku">
+                            <Setter Property="Background" Value="#FFF3E0"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status}" Value="Zakończona">
+                            <Setter Property="Background" Value="#E8F5E9"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status}" Value="Odrzucona">
+                            <Setter Property="Background" Value="#FFEBEE"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
         </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

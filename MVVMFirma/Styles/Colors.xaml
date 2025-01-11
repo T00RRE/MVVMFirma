@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Główne kolory aplikacji -->
+    <SolidColorBrush x:Key="PrimaryColor" Color="#1976D2"/>
+    <SolidColorBrush x:Key="PrimaryLightColor" Color="#2196F3"/>
+    <SolidColorBrush x:Key="PrimaryDarkColor" Color="#1565C0"/>
+    <SolidColorBrush x:Key="AccentColor" Color="#FFA000"/>
+
+    <!-- Kolory tła -->
+    <SolidColorBrush x:Key="BackgroundColor" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="BackgroundLightColor" Color="#F5F5F5"/>
+    <SolidColorBrush x:Key="BackgroundGreyColor" Color="#EEEEEE"/>
+
+    <!-- Kolory tekstu -->
+    <SolidColorBrush x:Key="TextPrimaryColor" Color="#212121"/>
+    <SolidColorBrush x:Key="TextSecondaryColor" Color="#757575"/>
+
+    <!-- Kolory dla DataGrid -->
+    <SolidColorBrush x:Key="GridHeaderBackground" Color="#1976D2"/>
+    <SolidColorBrush x:Key="GridSelectedBackground" Color="#E3F2FD"/>
+    <SolidColorBrush x:Key="GridAlternativeBackground" Color="#F5F5F5"/>
+    <SolidColorBrush x:Key="GridLineColor" Color="#E0E0E0"/>
+
+    <!-- Kolory dla przycisków -->
+    <SolidColorBrush x:Key="ButtonDefaultBackground" Color="#1976D2"/>
+    <SolidColorBrush x:Key="ButtonHoverBackground" Color="#1E88E5"/>
+    <SolidColorBrush x:Key="ButtonPressedBackground" Color="#1565C0"/>
+
+    <!-- Kolory dla komunikatów -->
+    <SolidColorBrush x:Key="SuccessColor" Color="#4CAF50"/>
+    <SolidColorBrush x:Key="WarningColor" Color="#FFC107"/>
+    <SolidColorBrush x:Key="ErrorColor" Color="#F44336"/>
+</ResourceDictionary>

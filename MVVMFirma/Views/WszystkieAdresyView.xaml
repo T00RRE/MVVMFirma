@@ -4,19 +4,49 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMFirma.Views"
+             xmlns:viewmodels="clr-namespace:MVVMFirma.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:WszystkieAdresyViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <DataGrid AutoGenerateColumns="False" 
-                  ItemsSource="{Binding List}"
-                  CanUserAddRows="False">
+             d:DesignHeight="600" 
+             d:DesignWidth="1000">
+    <Grid Background="{StaticResource BackgroundColor}">
+        <DataGrid Style="{StaticResource BaseDataGridStyle}"
+                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                  CellStyle="{StaticResource DataGridCellStyle}"
+                  ItemsSource="{Binding List}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding IdAdresu}"/>
-                <DataGridTextColumn Header="Miejscowość" Binding="{Binding Miejscowość}"/>
-                <DataGridTextColumn Header="Ulica" Binding="{Binding Ulica}"/>
-                <DataGridTextColumn Header="Nr domu" Binding="{Binding NrDomu}"/>
-                <DataGridTextColumn Header="Nr lokalu" Binding="{Binding NrLokalu}"/>
-                <DataGridTextColumn Header="Kod pocztowy" Binding="{Binding KodPocztowy}"/>
+                <DataGridTextColumn Header="ID" 
+                                  Binding="{Binding IdAdresu}"
+                                  Width="70"/>
+                <DataGridTextColumn Header="MIEJSCOWOŚĆ" 
+                                  Binding="{Binding Miejscowość}"
+                                  Width="200"/>
+                <DataGridTextColumn Header="ULICA" 
+                                  Binding="{Binding Ulica}"
+                                  Width="*"/>
+                <DataGridTextColumn Header="NR DOMU" 
+                                  Binding="{Binding NrDomu}"
+                                  Width="100">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource RightAlignedTextBlock}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="NR LOKALU" 
+                                  Binding="{Binding NrLokalu}"
+                                  Width="100">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource RightAlignedTextBlock}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="KOD POCZTOWY" 
+                                  Width="120">
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="KodPocztowy" StringFormat="{}{0:##-###}"/>
+                    </DataGridTextColumn.Binding>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource RightAlignedTextBlock}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -7,17 +7,51 @@
              xmlns:viewmodels="clr-namespace:MVVMFirma.ViewModels" 
              d:DataContext="{d:DesignInstance Type=viewmodels:WszystkieTowaryViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Background="White">
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}" CanUserAddRows="False">
+             d:DesignHeight="600" 
+             d:DesignWidth="900">
+    <Grid>
+        <DataGrid Style="{StaticResource BaseDataGridStyle}"
+                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                  CellStyle="{StaticResource DataGridCellStyle}"
+                  ItemsSource="{Binding List}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding IdTowaru}"/>
-                <DataGridTextColumn Header="Kod" Binding="{Binding Kod}"/>
-                <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}"/>
-                <DataGridTextColumn Header="Stawka VAT zakupu" Binding="{Binding StawkaVatZakupu}"/>
-                <DataGridTextColumn Header="Stawka VAT sprzedazy" Binding="{Binding StawkaVatSprzedaży}"/>
-                <DataGridTextColumn Header="Cena" Binding="{Binding Cena}"/>
-                <DataGridTextColumn Header="Marza" Binding="{Binding Marża}"/>
+                <DataGridTextColumn Header="ID" 
+                                  Binding="{Binding IdTowaru}"
+                                  Width="70"/>
+                <DataGridTextColumn Header="KOD" 
+                                  Binding="{Binding Kod}"
+                                  Width="120"/>
+                <DataGridTextColumn Header="NAZWA" 
+                                  Binding="{Binding Nazwa}"
+                                  Width="*"/>
+                <DataGridTextColumn Header="VAT ZAKUPU" 
+                                  Binding="{Binding StawkaVatZakupu, StringFormat={}{0}%}"
+                                  Width="100">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource RightAlignedTextBlock}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="VAT SPRZEDAŻY" 
+                                  Binding="{Binding StawkaVatSprzedaży, StringFormat={}{0}%}"
+                                  Width="120">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource RightAlignedTextBlock}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="CENA" 
+                                  Binding="{Binding Cena, StringFormat={}{0:N2} zł}"
+                                  Width="120">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource RightAlignedTextBlock}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="MARŻA" 
+                                  Binding="{Binding Marża, StringFormat={}{0}%}"
+                                  Width="100">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource RightAlignedTextBlock}"/>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
