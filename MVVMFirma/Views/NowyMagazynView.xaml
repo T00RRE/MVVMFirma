@@ -5,33 +5,74 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMFirma.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
+             d:DesignHeight="450" d:DesignWidth="500">
+
+    <Grid Background="{StaticResource BackgroundColor}" Margin="20">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Nazwa"/>
-        <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" 
+        <!-- Nagłówek -->
+        <TextBlock Grid.ColumnSpan="2" 
+                   Text="Nowy Magazyn"
+                   FontSize="24"
+                   Margin="0,0,0,20"
+                   Foreground="{StaticResource TextPrimaryColor}"/>
+
+        <!-- Pola formularza -->
+        <Label Grid.Column="0" Grid.Row="1" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Nazwa"/>
+        <TextBox Grid.Column="1" Grid.Row="1" 
+                Style="{StaticResource BaseTextBoxStyle}" 
                 Text="{Binding Path=Nazwa, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Lokalizacja"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" 
+        <Label Grid.Column="0" Grid.Row="2" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Lokalizacja"/>
+        <TextBox Grid.Column="1" Grid.Row="2" 
+                Style="{StaticResource BaseTextBoxStyle}"
                 Text="{Binding Path=Lokalizacja, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Pojemność"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" 
+        <Label Grid.Column="0" Grid.Row="3" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Pojemność"/>
+        <TextBox Grid.Column="1" Grid.Row="3" 
+                Style="{StaticResource BaseTextBoxStyle}"
                 Text="{Binding Path=Pojemnosc, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Status"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" 
-                Text="{Binding Path=Status, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="4" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Status"/>
+        <ComboBox Grid.Column="1" Grid.Row="4" 
+                Style="{StaticResource BaseComboBoxStyle}"
+                Text="{Binding Path=Status, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBoxItem Content="Aktywny"/>
+            <ComboBoxItem Content="Nieaktywny"/>
+            <ComboBoxItem Content="W remoncie"/>
+        </ComboBox>
+
+        <!-- Przyciski -->
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,20,0,0">
+            <Button Style="{StaticResource BaseButtonStyle}" 
+                    Content="Zapisz"
+                    Command="{Binding SaveCommand}"/>
+            <Button Style="{StaticResource BaseButtonStyle}" 
+                    Content="Anuluj"
+                    Command="{Binding CancelCommand}"
+                    Background="{StaticResource TextSecondaryColor}"/>
+        </StackPanel>
     </Grid>
 </local:jedenViewBase>

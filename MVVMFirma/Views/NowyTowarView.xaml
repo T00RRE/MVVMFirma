@@ -5,36 +5,86 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMFirma.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Background="White">
+             d:DesignHeight="400" d:DesignWidth="500">
+
+    <Grid Background="{StaticResource BackgroundColor}" Margin="20">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Kod"/>
-        <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=Kod}"/>
-        
-        <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Nazwa"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=Nazwa,ValidatesOnDataErrors=True}" TextChanged="TextBox_TextChanged" />
 
-        <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Stawka Vat Zakupu"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=StawkaVatZakupu}" />
-        
-        <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Stawka Vat Sprzedazy"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" Text="{Binding Path=StawkaVatSprzedaży}"/>
+        <!-- Nagłówek -->
+        <TextBlock Grid.ColumnSpan="2" 
+                   Text="Nowy Towar"
+                   FontSize="24"
+                   Margin="0,0,0,20"
+                   Foreground="{StaticResource TextPrimaryColor}"/>
 
-        <Label Grid.Column="0" Grid.Row="4" Margin="0,8,0,8" Content="Cena"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" Text="{Binding Path=Cena}"/>
+        <!-- Pola formularza -->
+        <Label Grid.Column="0" Grid.Row="1" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Kod"/>
+        <TextBox Grid.Column="1" Grid.Row="1" 
+                Style="{StaticResource BaseTextBoxStyle}" 
+                Text="{Binding Path=Kod}"/>
 
-        <Label Grid.Column="0" Grid.Row="5" Margin="0,8,0,8" Content="Marza"/>
-        <TextBox Grid.Column="1" Grid.Row="5" Margin="0,8,0,8" Text="{Binding Path=Marza}"/>
+        <Label Grid.Column="0" Grid.Row="2" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Nazwa"/>
+        <TextBox Grid.Column="1" Grid.Row="2" 
+                Style="{StaticResource BaseTextBoxStyle}" 
+                Text="{Binding Path=Nazwa, ValidatesOnDataErrors=True}" 
+                TextChanged="TextBox_TextChanged"/>
+
+        <Label Grid.Column="0" Grid.Row="3" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Stawka VAT Zakupu"/>
+        <TextBox Grid.Column="1" Grid.Row="3" 
+                Style="{StaticResource BaseTextBoxStyle}" 
+                Text="{Binding Path=StawkaVatZakupu}"/>
+
+        <Label Grid.Column="0" Grid.Row="4" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Stawka VAT Sprzedaży"/>
+        <TextBox Grid.Column="1" Grid.Row="4" 
+                Style="{StaticResource BaseTextBoxStyle}" 
+                Text="{Binding Path=StawkaVatSprzedaży}"/>
+
+        <Label Grid.Column="0" Grid.Row="5" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Cena"/>
+        <TextBox Grid.Column="1" Grid.Row="5" 
+                Style="{StaticResource BaseTextBoxStyle}" 
+                Text="{Binding Path=Cena}"/>
+
+        <Label Grid.Column="0" Grid.Row="6" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Marża"/>
+        <TextBox Grid.Column="1" Grid.Row="6" 
+                Style="{StaticResource BaseTextBoxStyle}" 
+                Text="{Binding Path=Marza}"/>
+
+        <!-- Przyciski -->
+        <StackPanel Grid.Row="7" Grid.ColumnSpan="2" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,20,0,0">
+            <Button Style="{StaticResource BaseButtonStyle}" 
+                    Content="Zapisz"
+                    Command="{Binding SaveCommand}"/>
+            <Button Style="{StaticResource BaseButtonStyle}" 
+                    Content="Anuluj"
+                    Command="{Binding CancelCommand}"
+                    Background="{StaticResource TextSecondaryColor}"/>
+        </StackPanel>
     </Grid>
 </local:jedenViewBase>

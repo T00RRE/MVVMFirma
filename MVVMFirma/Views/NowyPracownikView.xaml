@@ -5,53 +5,104 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMFirma.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
+             d:DesignHeight="600" d:DesignWidth="500">
+
+    <Grid Background="{StaticResource BackgroundColor}" Margin="20">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Imię"/>
-        <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" 
+        <!-- Nagłówek -->
+        <TextBlock Grid.ColumnSpan="2" 
+                   Text="Nowy Pracownik"
+                   FontSize="24"
+                   Margin="0,0,0,20"
+                   Foreground="{StaticResource TextPrimaryColor}"/>
+
+        <!-- Dane osobowe -->
+        <Label Grid.Column="0" Grid.Row="1" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Imię"/>
+        <TextBox Grid.Column="1" Grid.Row="1" 
+                Style="{StaticResource BaseTextBoxStyle}" 
                 Text="{Binding Path=Imie, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Nazwisko"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" 
+        <Label Grid.Column="0" Grid.Row="2" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Nazwisko"/>
+        <TextBox Grid.Column="1" Grid.Row="2" 
+                Style="{StaticResource BaseTextBoxStyle}" 
                 Text="{Binding Path=Nazwisko, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="PESEL"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" 
+        <Label Grid.Column="0" Grid.Row="3" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="PESEL"/>
+        <TextBox Grid.Column="1" Grid.Row="3" 
+                Style="{StaticResource BaseTextBoxStyle}" 
                 Text="{Binding Path=PESEL, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Data Zatrudnienia"/>
-        <DatePicker Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" 
+        <!-- Dane zawodowe -->
+        <Label Grid.Column="0" Grid.Row="4" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Data Zatrudnienia"/>
+        <DatePicker Grid.Column="1" Grid.Row="4" 
+                    Style="{StaticResource BaseComboBoxStyle}"
                     SelectedDate="{Binding Path=DataZatrudnienia, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="4" Margin="0,8,0,8" Content="Stanowisko"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" 
+        <Label Grid.Column="0" Grid.Row="5" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Stanowisko"/>
+        <TextBox Grid.Column="1" Grid.Row="5" 
+                Style="{StaticResource BaseTextBoxStyle}" 
                 Text="{Binding Path=Stanowisko, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="5" Margin="0,8,0,8" Content="Pensja"/>
-        <TextBox Grid.Column="1" Grid.Row="5" Margin="0,8,0,8" 
+        <Label Grid.Column="0" Grid.Row="6" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Pensja"/>
+        <TextBox Grid.Column="1" Grid.Row="6" 
+                Style="{StaticResource BaseTextBoxStyle}" 
                 Text="{Binding Path=Pensja, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="6" Margin="0,8,0,8" Content="Numer Telefonu"/>
-        <TextBox Grid.Column="1" Grid.Row="6" Margin="0,8,0,8" 
+        <!-- Dane kontaktowe -->
+        <Label Grid.Column="0" Grid.Row="7" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Numer Telefonu"/>
+        <TextBox Grid.Column="1" Grid.Row="7" 
+                Style="{StaticResource BaseTextBoxStyle}" 
                 Text="{Binding Path=NumerTelefonu, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="7" Margin="0,8,0,8" Content="Email"/>
-        <TextBox Grid.Column="1" Grid.Row="7" Margin="0,8,0,8" 
+        <Label Grid.Column="0" Grid.Row="8" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Email"/>
+        <TextBox Grid.Column="1" Grid.Row="8" 
+                Style="{StaticResource BaseTextBoxStyle}" 
                 Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <!-- Przyciski -->
+        <StackPanel Grid.Row="9" Grid.ColumnSpan="2" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,20,0,0">
+            <Button Style="{StaticResource BaseButtonStyle}" 
+                    Content="Zapisz"
+                    Command="{Binding SaveCommand}"/>
+            <Button Style="{StaticResource BaseButtonStyle}" 
+                    Content="Anuluj"
+                    Command="{Binding CancelCommand}"
+                    Background="{StaticResource TextSecondaryColor}"/>
+        </StackPanel>
     </Grid>
 </local:jedenViewBase>

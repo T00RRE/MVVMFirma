@@ -5,49 +5,92 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMFirma.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
+             d:DesignHeight="500" d:DesignWidth="500">
+
+    <Grid Background="{StaticResource BackgroundColor}" Margin="20">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Towar"/>
-        <ComboBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8"
-          ItemsSource="{Binding TowaryList}"
-          DisplayMemberPath="NazwaTowaru"
-          SelectedValuePath="IdTowaru"
-          SelectedValue="{Binding Path=IdTowaru}"/>
+        <!-- Nagłówek -->
+        <TextBlock Grid.ColumnSpan="2" 
+                   Text="Nowy Stan Magazynowy"
+                   FontSize="24"
+                   Margin="0,0,0,20"
+                   Foreground="{StaticResource TextPrimaryColor}"/>
 
-        <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Magazyn"/>
-        <ComboBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8"
-          ItemsSource="{Binding MagazynyList}"
-          DisplayMemberPath="NazwaMagazynu"
-          SelectedValuePath="IdMagazynu"
-          SelectedValue="{Binding Path=IdMagazynu}"/>
+        <!-- Pola formularza -->
+        <Label Grid.Column="0" Grid.Row="1" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Towar"/>
+        <ComboBox Grid.Column="1" Grid.Row="1" 
+                Style="{StaticResource BaseComboBoxStyle}"
+                ItemsSource="{Binding TowaryList}"
+                DisplayMemberPath="NazwaTowaru"
+                SelectedValuePath="IdTowaru"
+                SelectedValue="{Binding Path=IdTowaru}"/>
 
-        <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="ID Stanu"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" 
+        <Label Grid.Column="0" Grid.Row="2" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Magazyn"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" 
+                Style="{StaticResource BaseComboBoxStyle}"
+                ItemsSource="{Binding MagazynyList}"
+                DisplayMemberPath="NazwaMagazynu"
+                SelectedValuePath="IdMagazynu"
+                SelectedValue="{Binding Path=IdMagazynu}"/>
+
+        <Label Grid.Column="0" Grid.Row="3" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="ID Stanu"/>
+        <TextBox Grid.Column="1" Grid.Row="3" 
+                Style="{StaticResource BaseTextBoxStyle}"
                 Text="{Binding Path=IdStanu, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Ilość"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" 
+        <Label Grid.Column="0" Grid.Row="4" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Ilość"/>
+        <TextBox Grid.Column="1" Grid.Row="4" 
+                Style="{StaticResource BaseTextBoxStyle}"
                 Text="{Binding Path=Ilosc, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="4" Margin="0,8,0,8" Content="Minimalny Poziom"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" 
+        <Label Grid.Column="0" Grid.Row="5" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Minimalny Poziom"/>
+        <TextBox Grid.Column="1" Grid.Row="5" 
+                Style="{StaticResource BaseTextBoxStyle}"
                 Text="{Binding Path=MinimalnyPoziom, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="5" Margin="0,8,0,8" Content="Maksymalny Poziom"/>
-        <TextBox Grid.Column="1" Grid.Row="5" Margin="0,8,0,8" 
+        <Label Grid.Column="0" Grid.Row="6" 
+               Style="{StaticResource BaseLabelStyle}" 
+               Content="Maksymalny Poziom"/>
+        <TextBox Grid.Column="1" Grid.Row="6" 
+                Style="{StaticResource BaseTextBoxStyle}"
                 Text="{Binding Path=MaksymalnyPoziom, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <!-- Przyciski -->
+        <StackPanel Grid.Row="7" Grid.ColumnSpan="2" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,20,0,0">
+            <Button Style="{StaticResource BaseButtonStyle}" 
+                    Content="Zapisz"
+                    Command="{Binding SaveCommand}"/>
+            <Button Style="{StaticResource BaseButtonStyle}" 
+                    Content="Anuluj"
+                    Command="{Binding CancelCommand}"
+                    Background="{StaticResource TextSecondaryColor}"/>
+        </StackPanel>
     </Grid>
 </local:jedenViewBase>
