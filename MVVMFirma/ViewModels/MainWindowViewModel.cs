@@ -115,7 +115,13 @@ namespace MVVMFirma.ViewModels
             new BaseCommand(() => this.CreateView(new NowyStanMagazynowyViewModel()))),
         new CommandViewModel(
             "Raporty Sprzedaży",
-            new BaseCommand(() => this.CreateView(new RaportSprzedażyViewModel())))
+            new BaseCommand(() => this.CreateView(new RaportSprzedażyViewModel()))),
+        new CommandViewModel(
+            "Raporty Stanu Magazynowego",
+            new BaseCommand(() => this.CreateView(new RaportStanuMagazynuViewModel()))),
+        new CommandViewModel(
+            "Raporty Zamówień Klienta",
+            new BaseCommand(() => this.CreateView(new RaportZamowienKlientaViewModel())))
             };
         }
         #endregion

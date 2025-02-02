@@ -8,11 +8,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/Colors.xaml"/>
-                <ResourceDictionary Source="/Styles/DataGridStyles.xaml"/>
-                <ResourceDictionary Source="/Styles/ControlStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MVVMFirma;component/Styles/Colors.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MVVMFirma;component/Styles/DataGridStyles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MVVMFirma;component/Styles/ControlStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
             <!-- ViewModelLocator -->
             <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
         </ResourceDictionary>

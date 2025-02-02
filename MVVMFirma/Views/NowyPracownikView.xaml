@@ -59,7 +59,8 @@
                Style="{StaticResource BaseLabelStyle}" 
                Content="Data Zatrudnienia"/>
         <DatePicker Grid.Column="1" Grid.Row="4" 
-                    Style="{StaticResource BaseComboBoxStyle}"
+                    Height="30"
+                    Margin="5"
                     SelectedDate="{Binding Path=DataZatrudnienia, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Column="0" Grid.Row="5" 

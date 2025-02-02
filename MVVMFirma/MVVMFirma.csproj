@@ -89,8 +89,10 @@
     <Compile Include="Helper\BaseCommand.cs" />
     <Compile Include="Helper\EventAggregator.cs" />
     <Compile Include="Models\BusinessLogic\DatabaseClass.cs" />
+    <Compile Include="Models\BusinessLogic\StanMagazynuB.cs" />
     <Compile Include="Models\BusinessLogic\TowarB.cs" />
     <Compile Include="Models\BusinessLogic\UtargB.cs" />
+    <Compile Include="Models\BusinessLogic\ZamowieniaKlientaB.cs" />
     <Compile Include="Models\EntitiesForView\FakturaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\KeyAndValue.cs" />
     <Compile Include="Models\EntitiesForView\KontrahentForAllView.cs" />
@@ -176,6 +178,8 @@
     <Compile Include="ViewModels\NowyStatusViewModel.cs" />
     <Compile Include="ViewModels\NowyTowarViewModel.cs" />
     <Compile Include="ViewModels\RaportSprzedażyViewModel.cs" />
+    <Compile Include="ViewModels\RaportStanuMagazynuViewModel.cs" />
+    <Compile Include="ViewModels\RaportZamowienKlientaViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Compile Include="ViewModels\WszyscyKontrahenciViewModel.cs" />
     <Compile Include="ViewModels\WszyscyPracownicyViewModel.cs" />
@@ -230,6 +234,12 @@
     </Compile>
     <Compile Include="Views\RaportSprzedażyView.xaml.cs">
       <DependentUpon>RaportSprzedażyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaportStanuMagazynuView.xaml.cs">
+      <DependentUpon>RaportStanuMagazynuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaportZamowienKlientaView.xaml.cs">
+      <DependentUpon>RaportZamowienKlientaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WszyscyKontrahenciView.xaml.cs">
       <DependentUpon>WszyscyKontrahenciView.xaml</DependentUpon>
@@ -369,6 +379,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RaportSprzedażyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RaportStanuMagazynuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RaportZamowienKlientaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

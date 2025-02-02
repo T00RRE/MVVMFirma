@@ -74,6 +74,12 @@
     <DataTemplate DataType="{x:Type vm:RaportSprzedażyViewModel}">
         <v:RaportSprzedażyView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:RaportStanuMagazynuViewModel}">
+        <v:RaportStanuMagazynuView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:RaportZamowienKlientaViewModel}">
+        <v:RaportZamowienKlientaView/>
+    </DataTemplate>
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">
@@ -138,20 +144,82 @@
   This template explains how to render the list of commands on the left
   side in the main window (the 'Control Panel' area).
   -->
-    <DataTemplate x:Key="CommandsTemplate">
-        <ItemsControl IsTabStop="False" ItemsSource="{Binding}" Margin="6,2">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Margin="2,6">
-            <Hyperlink Command="{Binding Path=Command}">
-              <TextBlock Text="{Binding Path=DisplayName}" />
-            </Hyperlink>
-          </TextBlock>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </DataTemplate>
+   
 
+        <!-- Style dla przycisków w menu operacji -->
+        <Style x:Key="OperationButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="MinWidth" Value="150"/>
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <!-- Miejsce na ikonę -->
+                                <Image x:Name="ButtonIcon" 
+                                   Width="16" 
+                                   Height="16" 
+                                   Margin="0,0,8,0"
+                                   VerticalAlignment="Center"/>
+                                <ContentPresenter Grid.Column="1"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1976D2"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#0D47A1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Nowy template dla listy komend -->
+        <DataTemplate x:Key="CommandsTemplate">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl IsTabStop="False" ItemsSource="{Binding}" Margin="6,2">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource OperationButtonStyle}"
+                                Command="{Binding Path=Command}">
+                                <StackPanel Orientation="Horizontal">
+                                    <!-- Tu możesz dodać odpowiednią ikonę dla każdej operacji -->
+                                    <TextBlock Text="{Binding Path=DisplayName}"
+                                         FontSize="13"/>
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </DataTemplate>
+
+        <!-- Styl dla panelu operacji -->
+        <Style x:Key="OperationsPanelStyle" TargetType="Border">
+            <Setter Property="Background" Value="#F5F5F5"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+
+    
     <!-- 
   This template explains how to render 
   a tab item with a close button.
