@@ -132,6 +132,29 @@ namespace MVVMFirma.ViewModels
             public int IdPracownika { get; set; }
             public string FullName { get; set; }
         }
+        protected override string ValidateProperty(string propertyname)
+        {
+            switch (propertyname)
+            {
+                case nameof(DataReklamacji):
+                    return !DataReklamacji.HasValue ? "Data reklamacji jest wymagana" : string.Empty;
+
+                case nameof(Status):
+                    return string.IsNullOrEmpty(Status) ? "Status jest wymagany" : string.Empty;
+
+                case nameof(OpisReklamacji):
+                    return string.IsNullOrEmpty(OpisReklamacji) ? "Opis reklamacji jest wymagany" : string.Empty;
+
+                case nameof(IdPracownika):
+                    return !IdPracownika.HasValue ? "Pracownik jest wymagany" : string.Empty;
+
+                case nameof(Decyzja):
+                    return string.IsNullOrEmpty(Decyzja) ? "Decyzja jest wymagana" : string.Empty;
+
+                default:
+                    return string.Empty;
+            }
+        }
         #endregion
     }
 }

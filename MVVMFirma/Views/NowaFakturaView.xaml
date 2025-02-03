@@ -39,7 +39,7 @@
         <TextBox Grid.Column="1" Grid.Row="1" 
                 Grid.ColumnSpan="2"
                 Style="{StaticResource BaseTextBoxStyle}" 
-                Text="{Binding Path=Numer, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=Numer, ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Column="0" Grid.Row="2" 
                Style="{StaticResource BaseLabelStyle}" 
@@ -47,7 +47,7 @@
         <CheckBox Grid.Column="1" Grid.Row="2"
                  VerticalAlignment="Center"
                  Margin="10,0,0,0"
-                 IsChecked="{Binding Path=CzyZatwierdzona, UpdateSourceTrigger=PropertyChanged}"/>
+                 IsChecked="{Binding Path=CzyZatwierdzona, ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Column="0" Grid.Row="3" 
                Style="{StaticResource BaseLabelStyle}" 
@@ -56,7 +56,7 @@
                     Grid.ColumnSpan="2"
                     Height="30"
                     Margin="5"
-                    SelectedDate="{Binding Path=DataWystawienia, UpdateSourceTrigger=PropertyChanged}"/>
+                    SelectedDate="{Binding Path=DataWystawienia,  ValidatesOnDataErrors=True}"/>
 
         <!-- Dane kontrahenta -->
         <Label Grid.Column="0" Grid.Row="4" 
@@ -65,7 +65,7 @@
         <TextBox Grid.Column="1" Grid.Row="4" 
                 Style="{StaticResource BaseTextBoxStyle}"
                 IsEnabled="False" 
-                Text="{Binding Path=KontrahentNazwaPole, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=KontrahentNazwaPole, ValidatesOnDataErrors=True}"/>
         <Button Grid.Column="2" Grid.Row="4"
                 Style="{StaticResource BaseButtonStyle}"
                 Content="..."
@@ -80,7 +80,7 @@
                 Grid.ColumnSpan="2"
                 Style="{StaticResource BaseTextBoxStyle}"
                 IsEnabled="False" 
-                Text="{Binding Path=KontrahentNipPole, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=KontrahentNipPole, ValidatesOnDataErrors=True}"/>
 
         <!-- Płatności -->
         <Label Grid.Column="0" Grid.Row="6" 

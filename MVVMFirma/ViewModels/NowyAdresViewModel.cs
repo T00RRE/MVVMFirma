@@ -106,6 +106,26 @@ namespace MVVMFirma.ViewModels
             fakturyEntities.Adres.Add(item);
             fakturyEntities.SaveChanges();
         }
+        protected override string ValidateProperty(string propertyname)
+        {
+            switch (propertyname)
+            {
+                case nameof(Miejscowość):
+                    return string.IsNullOrEmpty(Miejscowość) ? "Miejscowość jest wymagana" : string.Empty;
+
+                case nameof(Ulica):
+                    return string.IsNullOrEmpty(Ulica) ? "Ulica jest wymagana" : string.Empty;
+
+                case nameof(NrDomu):
+                    return string.IsNullOrEmpty(NrDomu) ? "Numer domu jest wymagany" : string.Empty;
+
+                case nameof(KodPocztowy):
+                    return string.IsNullOrEmpty(KodPocztowy) ? "Kod pocztowy jest wymagany" : string.Empty;
+
+                default:
+                    return string.Empty;
+            }
+        }
         #endregion
     }
 }

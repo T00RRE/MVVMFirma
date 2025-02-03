@@ -58,6 +58,20 @@ namespace MVVMFirma.ViewModels
             fakturyEntities.Rodzaj.Add(item);
             fakturyEntities.SaveChanges();
         }
+        protected override string ValidateProperty(string propertyname)
+        {
+            switch (propertyname)
+            {
+                case nameof(Nazwa):
+                    return string.IsNullOrEmpty(Nazwa) ? "Nazwa jest wymagana" : string.Empty;
+
+                case nameof(Opis):
+                    return string.IsNullOrEmpty(Opis) ? "Opis jest wymagany" : string.Empty;
+
+                default:
+                    return string.Empty;
+            }
+        }
         #endregion
     }
 }

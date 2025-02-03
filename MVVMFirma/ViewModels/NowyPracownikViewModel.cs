@@ -130,6 +130,38 @@ namespace MVVMFirma.ViewModels
             FakturyEntities.Pracownik.Add(item);
             FakturyEntities.SaveChanges();
         }
+        protected override string ValidateProperty(string propertyname)
+        {
+            switch (propertyname)
+            {
+                case nameof(Imie):
+                    return string.IsNullOrEmpty(Imie) ? "Imię jest wymagane" : string.Empty;
+
+                case nameof(Nazwisko):
+                    return string.IsNullOrEmpty(Nazwisko) ? "Nazwisko jest wymagane" : string.Empty;
+
+                case nameof(PESEL):
+                    return string.IsNullOrEmpty(PESEL) ? "PESEL jest wymagany" : string.Empty;
+
+                case nameof(DataZatrudnienia):
+                    return !DataZatrudnienia.HasValue ? "Data zatrudnienia jest wymagana" : string.Empty;
+
+                case nameof(Stanowisko):
+                    return string.IsNullOrEmpty(Stanowisko) ? "Stanowisko jest wymagane" : string.Empty;
+
+                case nameof(Pensja):
+                    return !Pensja.HasValue ? "Pensja jest wymagana" : string.Empty;
+
+                case nameof(NumerTelefonu):
+                    return string.IsNullOrEmpty(NumerTelefonu) ? "Numer telefonu jest wymagany" : string.Empty;
+
+                case nameof(Email):
+                    return string.IsNullOrEmpty(Email) ? "Email jest wymagany" : string.Empty;
+
+                default:
+                    return string.Empty;
+            }
+        }
         #endregion
     }
 }

@@ -56,28 +56,28 @@
                Content="ID Stanu"/>
         <TextBox Grid.Column="1" Grid.Row="3" 
                 Style="{StaticResource BaseTextBoxStyle}"
-                Text="{Binding Path=IdStanu, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=IdStanu, ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Column="0" Grid.Row="4" 
                Style="{StaticResource BaseLabelStyle}" 
                Content="Ilość"/>
         <TextBox Grid.Column="1" Grid.Row="4" 
                 Style="{StaticResource BaseTextBoxStyle}"
-                Text="{Binding Path=Ilosc, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=Ilosc, ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Column="0" Grid.Row="5" 
                Style="{StaticResource BaseLabelStyle}" 
                Content="Minimalny Poziom"/>
         <TextBox Grid.Column="1" Grid.Row="5" 
                 Style="{StaticResource BaseTextBoxStyle}"
-                Text="{Binding Path=MinimalnyPoziom, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=MinimalnyPoziom, ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Column="0" Grid.Row="6" 
                Style="{StaticResource BaseLabelStyle}" 
                Content="Maksymalny Poziom"/>
         <TextBox Grid.Column="1" Grid.Row="6" 
                 Style="{StaticResource BaseTextBoxStyle}"
-                Text="{Binding Path=MaksymalnyPoziom, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=MaksymalnyPoziom, ValidatesOnDataErrors=True}"/>
 
         <!-- Przyciski -->
         <StackPanel Grid.Row="7" Grid.ColumnSpan="2" 

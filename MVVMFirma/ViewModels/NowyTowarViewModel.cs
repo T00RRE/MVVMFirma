@@ -105,6 +105,18 @@ namespace MVVMFirma.ViewModels
             {
                 case nameof(Nazwa):
                     return string.IsNullOrEmpty(Nazwa) ? "Nazwa Wymagana" : string.Empty;
+                case nameof(Kod):
+                    return string.IsNullOrEmpty(Kod) ? "Kod Wymagany" : string.Empty;
+                case nameof(Cena):
+                    return !Cena.HasValue || Cena < 0 ? "Cena musi być większa lub równa 0" : string.Empty;
+                case nameof(Marza):
+                    return !Marza.HasValue ? "Marża jest wymagana" : string.Empty;
+                case nameof(StawkaVatZakupu):
+                    return !StawkaVatZakupu.HasValue || StawkaVatZakupu < 0 || StawkaVatZakupu > 100 ?
+                           "Stawka VAT musi być z zakresu 0-100" : string.Empty;
+                case nameof(StawkaVatSprzedaży):
+                    return !StawkaVatSprzedaży.HasValue || StawkaVatSprzedaży < 0 || StawkaVatSprzedaży > 100 ?
+                           "Stawka VAT musi być z zakresu 0-100" : string.Empty;
                 default:
                     return string.Empty;
             }

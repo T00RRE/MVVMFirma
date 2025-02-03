@@ -171,6 +171,34 @@ namespace MVVMFirma.ViewModels
         {
             public int IdMagazynu { get; set; }
             public string NazwaMagazynu { get; set; }
+
+
+        }
+        protected override string ValidateProperty(string propertyname)
+        {
+            switch (propertyname)
+            {
+                case nameof(IdTowaru):
+                    return !IdTowaru.HasValue ? "Wybierz towar" : string.Empty;
+
+                case nameof(IdMagazynu):
+                    return !IdMagazynu.HasValue ? "Wybierz magazyn" : string.Empty;
+
+                case nameof(IdStanu):
+                    return IdStanu == 0 ? "ID Stanu jest wymagane" : string.Empty;
+
+                case nameof(Ilosc):
+                    return Ilosc == 0 ? "Ilość jest wymagana" : string.Empty;
+
+                case nameof(MinimalnyPoziom):
+                    return !MinimalnyPoziom.HasValue ? "Minimalny poziom jest wymagany" : string.Empty;
+
+                case nameof(MaxymalnyPoziom):
+                    return !MaxymalnyPoziom.HasValue ? "Maksymalny poziom jest wymagany" : string.Empty;
+
+                default:
+                    return string.Empty;
+            }
         }
         #endregion
     }

@@ -35,14 +35,14 @@
                Content="Data Reklamacji"/>
         <DatePicker Grid.Column="1" Grid.Row="1" 
                     Style="{StaticResource BaseDatePickerStyle}"
-                    SelectedDate="{Binding Path=DataReklamacji, UpdateSourceTrigger=PropertyChanged}"/>
+                    SelectedDate="{Binding Path=DataReklamacji, ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Column="0" Grid.Row="2" 
                Style="{StaticResource BaseLabelStyle}" 
                Content="Status"/>
         <ComboBox Grid.Column="1" Grid.Row="2" 
                 Style="{StaticResource BaseComboBoxStyle}"
-                Text="{Binding Path=Status, UpdateSourceTrigger=PropertyChanged}">
+                Text="{Binding Path=Status, ValidatesOnDataErrors=True}">
             <ComboBoxItem Content="Zgłoszona"/>
             <ComboBoxItem Content="W trakcie rozpatrywania"/>
             <ComboBoxItem Content="Zaakceptowana"/>
@@ -59,7 +59,7 @@
                 TextWrapping="Wrap"
                 AcceptsReturn="True"
                 VerticalContentAlignment="Top"
-                Text="{Binding Path=OpisReklamacji, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=OpisReklamacji, ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Column="0" Grid.Row="4" 
                Style="{StaticResource BaseLabelStyle}" 
@@ -80,7 +80,7 @@
                 TextWrapping="Wrap"
                 AcceptsReturn="True"
                 VerticalContentAlignment="Top"
-                Text="{Binding Path=Decyzja, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=Decyzja, ValidatesOnDataErrors=True}"/>
 
         <!-- Przyciski -->
         <StackPanel Grid.Row="6" Grid.ColumnSpan="2" 

@@ -190,6 +190,21 @@ namespace MVVMFirma.ViewModels
             KontrahentNipPole = kontrahent.NIP;
             KontrahentNazwaPole = kontrahent.Nazwa;
         }
+        protected override string ValidateProperty(string propertyname)
+        {
+            switch (propertyname)
+            {
+                case nameof(Numer):
+                    return string.IsNullOrEmpty(Numer) ? "Numer faktury jest wymagany" : string.Empty;
+
+                case nameof(DataWystawienia):
+                    return !DataWystawienia.HasValue ? "Data wystawienia jest wymagana" : string.Empty;
+
+                
+                default:
+                    return string.Empty;
+            }
+        }
         #endregion
         private void showKontrahenci(){
             Messenger.Default.Send<string>("KontrahenciAll");

@@ -86,5 +86,25 @@ public class NowyMagazynViewModel : jedenViewModel<Magazyn>
         fakturyEntities.Magazyn.Add(item);
         fakturyEntities.SaveChanges();
     }
+    protected override string ValidateProperty(string propertyname)
+    {
+        switch (propertyname)
+        {
+            case nameof(Nazwa):
+                return string.IsNullOrEmpty(Nazwa) ? "Nazwa jest wymagana" : string.Empty;
+
+            case nameof(Lokalizacja):
+                return string.IsNullOrEmpty(Lokalizacja) ? "Lokalizacja jest wymagana" : string.Empty;
+
+            case nameof(Pojemnosc):
+                return !Pojemnosc.HasValue ? "Pojemność jest wymagana" : string.Empty;
+
+            case nameof(Status):
+                return string.IsNullOrEmpty(Status) ? "Status jest wymagany" : string.Empty;
+
+            default:
+                return string.Empty;
+        }
+    }
     #endregion
 }

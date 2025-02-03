@@ -35,35 +35,35 @@
                Content="Miejscowość"/>
         <TextBox Grid.Column="1" Grid.Row="1" 
                 Style="{StaticResource BaseTextBoxStyle}" 
-                Text="{Binding Path=Miejscowosc, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=Miejscowosc,ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Column="0" Grid.Row="2" 
                Style="{StaticResource BaseLabelStyle}" 
                Content="Ulica"/>
         <TextBox Grid.Column="1" Grid.Row="2" 
                 Style="{StaticResource BaseTextBoxStyle}" 
-                Text="{Binding Path=Ulica, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=Ulica, ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Column="0" Grid.Row="3" 
                Style="{StaticResource BaseLabelStyle}" 
                Content="Numer domu"/>
         <TextBox Grid.Column="1" Grid.Row="3" 
                 Style="{StaticResource BaseTextBoxStyle}" 
-                Text="{Binding Path=NrDomu, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=NrDomu,ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Column="0" Grid.Row="4" 
                Style="{StaticResource BaseLabelStyle}" 
                Content="Numer lokalu"/>
         <TextBox Grid.Column="1" Grid.Row="4" 
                 Style="{StaticResource BaseTextBoxStyle}" 
-                Text="{Binding Path=NrLokalu, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=NrLokalu,ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Column="0" Grid.Row="5" 
                Style="{StaticResource BaseLabelStyle}" 
                Content="Kod pocztowy"/>
         <TextBox Grid.Column="1" Grid.Row="5" 
                 Style="{StaticResource BaseTextBoxStyle}" 
-                Text="{Binding Path=KodPocztowy, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=KodPocztowy,ValidatesOnDataErrors=True}"/>
 
         <!-- Przyciski -->
         <StackPanel Grid.Row="6" Grid.ColumnSpan="2" 

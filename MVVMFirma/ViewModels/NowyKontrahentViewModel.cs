@@ -173,6 +173,32 @@ namespace MVVMFirma.ViewModels
             public int IdAdresu { get; set; }
             public string PelnyAdres { get; set; }
         }
+        protected override string ValidateProperty(string propertyname)
+        {
+            switch (propertyname)
+            {
+                case nameof(Kod):
+                    return string.IsNullOrEmpty(Kod) ? "Kod jest wymagany" : string.Empty;
+
+                case nameof(NIP):
+                    return string.IsNullOrEmpty(NIP) ? "NIP jest wymagany" : string.Empty;
+
+                case nameof(Nazwa):
+                    return string.IsNullOrEmpty(Nazwa) ? "Nazwa jest wymagana" : string.Empty;
+
+                case nameof(IdRodzaju):
+                    return !IdRodzaju.HasValue ? "Rodzaj jest wymagany" : string.Empty;
+
+                case nameof(IdAdresu):
+                    return !IdAdresu.HasValue ? "Adres jest wymagany" : string.Empty;
+
+                case nameof(IdStatusu):
+                    return !IdStatusu.HasValue ? "Status jest wymagany" : string.Empty;
+
+                default:
+                    return string.Empty;
+            }
+        }
         #endregion
     }
 }

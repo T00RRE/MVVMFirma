@@ -34,28 +34,28 @@
                Content="Nazwa"/>
         <TextBox Grid.Column="1" Grid.Row="1" 
                 Style="{StaticResource BaseTextBoxStyle}" 
-                Text="{Binding Path=Nazwa, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=Nazwa, ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Column="0" Grid.Row="2" 
                Style="{StaticResource BaseLabelStyle}" 
                Content="Lokalizacja"/>
         <TextBox Grid.Column="1" Grid.Row="2" 
                 Style="{StaticResource BaseTextBoxStyle}"
-                Text="{Binding Path=Lokalizacja, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=Lokalizacja, ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Column="0" Grid.Row="3" 
                Style="{StaticResource BaseLabelStyle}" 
                Content="Pojemność"/>
         <TextBox Grid.Column="1" Grid.Row="3" 
                 Style="{StaticResource BaseTextBoxStyle}"
-                Text="{Binding Path=Pojemnosc, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=Pojemnosc, ValidatesOnDataErrors=True}"/>
 
         <Label Grid.Column="0" Grid.Row="4" 
                Style="{StaticResource BaseLabelStyle}" 
                Content="Status"/>
         <ComboBox Grid.Column="1" Grid.Row="4" 
                 Style="{StaticResource BaseComboBoxStyle}"
-                Text="{Binding Path=Status, UpdateSourceTrigger=PropertyChanged}">
+                Text="{Binding Path=Status, ValidatesOnDataErrors=True}">
             <ComboBoxItem Content="Aktywny"/>
             <ComboBoxItem Content="Nieaktywny"/>
             <ComboBoxItem Content="W remoncie"/>
