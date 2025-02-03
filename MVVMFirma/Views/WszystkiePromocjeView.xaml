@@ -1,0 +1,69 @@
+﻿<local:WszystkieViewBase x:Class="MVVMFirma.Views.WszystkiePromocjeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MVVMFirma.Views"
+             xmlns:viewmodels="clr-namespace:MVVMFirma.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:WszystkiePromocjeViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" 
+             d:DesignWidth="1000">
+    <Grid Background="{StaticResource BackgroundColor}">
+        <DataGrid Style="{StaticResource BaseDataGridStyle}"
+                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                  CellStyle="{StaticResource DataGridCellStyle}"
+                  ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" 
+                                  Binding="{Binding IdPromocji}"
+                                  Width="70"/>
+                <DataGridTextColumn Header="NAZWA" 
+                                  Binding="{Binding NazwaPromocji}"
+                                  Width="*"/>
+                <DataGridTextColumn Header="DATA ROZPOCZĘCIA" 
+                                  Binding="{Binding DataRozpoczecia, StringFormat={}{0:dd.MM.yyyy}}"
+                                  Width="130"/>
+                <DataGridTextColumn Header="DATA ZAKOŃCZENIA" 
+                                  Binding="{Binding DataZakonczenia, StringFormat={}{0:dd.MM.yyyy}}"
+                                  Width="130"/>
+                <DataGridTextColumn Header="WYSOKOŚĆ RABATU" 
+                                  Binding="{Binding WysokoscRabatu, StringFormat={}{0}%}"
+                                  Width="120"/>
+                <DataGridTextColumn Header="STATUS" 
+                                  Binding="{Binding CzyAktywna, StringFormat={}{0}}"
+                                  Width="100">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CzyAktywna}" Value="True">
+                                    <Setter Property="Background" Value="#E8F5E9"/>
+                                    <Setter Property="ToolTip" Value="Promocja aktywna"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding CzyAktywna}" Value="False">
+                                    <Setter Property="Background" Value="#FFEBEE"/>
+                                    <Setter Property="ToolTip" Value="Promocja nieaktywna"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="OPIS" 
+                                  Binding="{Binding OpisPromocji}"
+                                  Width="250"/>
+            </DataGrid.Columns>
+
+            <!-- Kolorowanie wierszy w zależności od daty zakończenia -->
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding CzyAktywna}" Value="False">
+                            <Setter Property="Background" Value="#FFF3E0"/>
+                            <Setter Property="ToolTip" Value="Promocja zakończona"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+        </DataGrid>
+    </Grid>
+</local:WszystkieViewBase>

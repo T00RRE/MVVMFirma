@@ -1,0 +1,58 @@
+﻿<local:WszystkieViewBase x:Class="MVVMFirma.Views.WszystkieZamowieniaHurtoweView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MVVMFirma.Views"
+             xmlns:viewmodels="clr-namespace:MVVMFirma.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:WszystkieZamowieniaHurtoweViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" 
+             d:DesignWidth="1000">
+    <Grid Background="{StaticResource BackgroundColor}">
+        <DataGrid Style="{StaticResource BaseDataGridStyle}"
+                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                  CellStyle="{StaticResource DataGridCellStyle}"
+                  ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" 
+                                  Binding="{Binding IdZamowienia}"
+                                  Width="70"/>
+                <DataGridTextColumn Header="DATA ZAMÓWIENIA" 
+                                  Binding="{Binding DataZamowienia, StringFormat={}{0:dd.MM.yyyy}}"
+                                  Width="130"/>
+                <DataGridTextColumn Header="TERMIN REALIZACJI" 
+                                  Binding="{Binding TerminRealizacji, StringFormat={}{0:dd.MM.yyyy}}"
+                                  Width="130"/>
+                <DataGridTextColumn Header="STATUS" 
+                                  Binding="{Binding Status}"
+                                  Width="120">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Status}" Value="Zrealizowane">
+                                    <Setter Property="Background" Value="#E8F5E9"/>
+                                    <Setter Property="ToolTip" Value="Zamówienie zrealizowane"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}" Value="W realizacji">
+                                    <Setter Property="Background" Value="#FFF3E0"/>
+                                    <Setter Property="ToolTip" Value="Zamówienie w trakcie realizacji"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}" Value="Anulowane">
+                                    <Setter Property="Background" Value="#FFEBEE"/>
+                                    <Setter Property="ToolTip" Value="Zamówienie anulowane"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="KONTRAHENT" 
+                                  Binding="{Binding Kontrahent.Nazwa}"
+                                  Width="200"/>
+                <DataGridTextColumn Header="WARTOŚĆ" 
+                                  Binding="{Binding WartoscZamowienia, StringFormat={}{0:C2}}"
+                                  Width="120"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</local:WszystkieViewBase>

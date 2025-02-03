@@ -166,8 +166,11 @@
     <Compile Include="ViewModels\CommandViewModel.cs" />
     <Compile Include="ViewModels\jedenViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\NowaDostawaViewModel.cs" />
     <Compile Include="ViewModels\NowaFakturaViewModel.cs" />
+    <Compile Include="ViewModels\NowaPromocjaViewModel.cs" />
     <Compile Include="ViewModels\NowaReklamacjaViewModel.cs" />
+    <Compile Include="ViewModels\NoweZamowienieHurtoweViewModel.cs" />
     <Compile Include="ViewModels\NowyAdresViewModel.cs" />
     <Compile Include="ViewModels\NowyKontrahentViewModel.cs" />
     <Compile Include="ViewModels\NowyMagazynViewModel.cs" />
@@ -184,8 +187,10 @@
     <Compile Include="ViewModels\WszyscyKontrahenciViewModel.cs" />
     <Compile Include="ViewModels\WszyscyPracownicyViewModel.cs" />
     <Compile Include="ViewModels\WszystkieAdresyViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieDostawyViewModel.cs" />
     <Compile Include="ViewModels\WszystkieFakturyViewModel.cs" />
     <Compile Include="ViewModels\WszystkieMagazynyViewModel.cs" />
+    <Compile Include="ViewModels\WszystkiePromocjeViewModel.cs" />
     <Compile Include="ViewModels\WszystkieReklamacjeViewModel.cs" />
     <Compile Include="ViewModels\WszystkieRodzajeViewModel.cs" />
     <Compile Include="ViewModels\WszystkieSposobyPlatnosciViewModel.cs" />
@@ -193,17 +198,27 @@
     <Compile Include="ViewModels\WszystkieStatusyViewModel.cs" />
     <Compile Include="ViewModels\WszystkieTowaryViewModel.cs" />
     <Compile Include="ViewModels\WszystkieViewModel.cs" />
+    <Compile Include="ViewModels\WszystkieZamowieniaHurtoweViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\jedenViewBase.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NowaDostawaView.xaml.cs">
+      <DependentUpon>NowaDostawaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NowaFakturaView.xaml.cs">
       <DependentUpon>NowaFakturaView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NowaPromocjaView.xaml.cs">
+      <DependentUpon>NowaPromocjaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NowaReklamacjaView.xaml.cs">
       <DependentUpon>NowaReklamacjaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NoweZamowienieHurtoweView.xaml.cs">
+      <DependentUpon>NoweZamowienieHurtoweView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NowyAdresView.xaml.cs">
       <DependentUpon>NowyAdresView.xaml</DependentUpon>
@@ -250,11 +265,17 @@
     <Compile Include="Views\WszystkieAdresyView.xaml.cs">
       <DependentUpon>WszystkieAdresyView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\WszystkieDostawyView.xaml.cs">
+      <DependentUpon>WszystkieDostawyView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WszystkieFakturyView.xaml.cs">
       <DependentUpon>WszystkieFakturyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WszystkieMagazynyView.xaml.cs">
       <DependentUpon>WszystkieMagazynyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WszystkiePromocjeView.xaml.cs">
+      <DependentUpon>WszystkiePromocjeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WszystkieReklamacjeView.xaml.cs">
       <DependentUpon>WszystkieReklamacjeView.xaml</DependentUpon>
@@ -275,6 +296,9 @@
       <DependentUpon>WszystkieTowaryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WszystkieViewBase.cs" />
+    <Compile Include="Views\WszystkieZamowieniaHurtoweView.xaml.cs">
+      <DependentUpon>WszystkieZamowieniaHurtoweView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -334,11 +358,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\NowaDostawaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\NowaFakturaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\NowaPromocjaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\NowaReklamacjaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NoweZamowienieHurtoweView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -402,11 +438,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\WszystkieDostawyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\WszystkieFakturyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\WszystkieMagazynyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkiePromocjeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -431,6 +475,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\WszystkieTowaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WszystkieZamowieniaHurtoweView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

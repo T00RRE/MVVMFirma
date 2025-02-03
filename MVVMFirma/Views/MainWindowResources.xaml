@@ -71,6 +71,24 @@
     <DataTemplate DataType="{x:Type vm:WszystkieStanyMagazynoweViewModel}">
         <v:WszystkieStanyMagazynoweView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkiePromocjeViewModel}">
+        <v:WszystkiePromocjeView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowaPromocjaViewModel}">
+        <v:NowaPromocjaView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieDostawyViewModel}">
+        <v:WszystkieDostawyView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NowaDostawaViewModel}">
+        <v:NowaDostawaView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:WszystkieZamowieniaHurtoweViewModel}">
+        <v:WszystkieZamowieniaHurtoweView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:NoweZamowienieHurtoweViewModel}">
+        <v:NoweZamowienieHurtoweView/>
+    </DataTemplate>
     <DataTemplate DataType="{x:Type vm:RaportSprzedażyViewModel}">
         <v:RaportSprzedażyView/>
     </DataTemplate>

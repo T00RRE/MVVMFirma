@@ -114,6 +114,24 @@ namespace MVVMFirma.ViewModels
             "Stan Magazynowy",
             new BaseCommand(() => this.CreateView(new NowyStanMagazynowyViewModel()))),
         new CommandViewModel(
+            "Promocje",
+            new BaseCommand(() => this.CreateView(new WszystkiePromocjeViewModel()))),
+        new CommandViewModel(
+            "Nowa Promocja",
+            new BaseCommand(() => this.CreateView(new NowaPromocjaViewModel()))),
+         new CommandViewModel(
+            "Dostawy",
+            new BaseCommand(() => this.CreateView(new WszystkieDostawyViewModel()))),
+         new CommandViewModel(
+            "Nowa Dostawa",
+            new BaseCommand(() => this.CreateView(new NowaDostawaViewModel()))),
+         new CommandViewModel(
+            "Zamowienia Hurtowe",
+            new BaseCommand(() => this.CreateView(new WszystkieZamowieniaHurtoweViewModel()))),
+         new CommandViewModel(
+            "Nowe Zamowienie Hurtowe",
+            new BaseCommand(() => this.CreateView(new NoweZamowienieHurtoweViewModel()))),
+        new CommandViewModel(
             "Raporty Sprzedaży",
             new BaseCommand(() => this.CreateView(new RaportSprzedażyViewModel()))),
         new CommandViewModel(
@@ -307,6 +325,18 @@ namespace MVVMFirma.ViewModels
             }
             this.SetActiveWorkspace(workspace);
         }
+        private void ShowAllZamowieniaHurtowe()
+        {
+            WszystkieZamowieniaHurtoweViewModel workspace =
+                this.Workspaces.FirstOrDefault(vm => vm is WszystkieZamowieniaHurtoweViewModel)
+                as WszystkieZamowieniaHurtoweViewModel;
+            if (workspace == null)
+            {
+                workspace = new WszystkieZamowieniaHurtoweViewModel();
+                this.Workspaces.Add(workspace);
+            }
+            this.SetActiveWorkspace(workspace);
+        }
         private void open(string name) 
         {
             if (name == "TowaryAdd") //name to jest wysłany komunikat
@@ -333,6 +363,10 @@ namespace MVVMFirma.ViewModels
                 CreateView(new NowyStanMagazynowyViewModel());
             if (name == "KontrahenciAll")
                 ShowAllKontrahenci();
+            if (name == "ZamowieniaHurtoweAdd")
+                CreateView(new NoweZamowienieHurtoweViewModel());
+            if (name == "ZamowienieHurtoweAll")
+                ShowAllZamowieniaHurtowe();
         }
         //private void OnWorkspaceViewModelRequested(WorkspaceViewModel viewModel)
         //{
