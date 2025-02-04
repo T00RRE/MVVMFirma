@@ -14,6 +14,8 @@
                   ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
                   CellStyle="{StaticResource DataGridCellStyle}"
                   ItemsSource="{Binding List}"
+                  SelectedValue="{Binding WybraneId}"
+                    SelectedValuePath="IdKontrahenta"
                   SelectedItem="{Binding Path=WybranyKontrahent, Mode=TwoWay}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" 

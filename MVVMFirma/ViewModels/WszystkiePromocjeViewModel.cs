@@ -72,6 +72,15 @@ namespace MVVMFirma.ViewModels
                 }
             }
         }
+        protected override void Delete()
+        {
+            var rekordDoUsuniecia = fakturyEntities.Promocja.FirstOrDefault(x => x.IdPromocji == WybraneId);
+            if (rekordDoUsuniecia != null)
+            {
+                fakturyEntities.Promocja.Remove(rekordDoUsuniecia);
+                fakturyEntities.SaveChanges();
+            }
+        }
         #endregion
     }
 }

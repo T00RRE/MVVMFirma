@@ -2,27 +2,27 @@
 using MVVMFirma.Helper;
 using MVVMFirma.Models.Entities;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Windows.Input;
+
 namespace MVVMFirma.ViewModels
 {
     public class NowaFakturaViewModel : jedenViewModel<Faktura>
     {
-         #region Fields
-    private readonly Faktury2024Entities fakturyEntities;
-    private ObservableCollection<KontrahentForComboBox> _kontrahenciList;
-    private ObservableCollection<SposobPlatnosciForComboBox> _sposobyPlatnosciList;
+        #region Fields
+        private readonly Faktury2024Entities fakturyEntities;
+        private ObservableCollection<KontrahentForComboBox> _kontrahenciList;
+        private ObservableCollection<SposobPlatnosciForComboBox> _sposobyPlatnosciList;
+        private string _kontrahentNazwa;
         #endregion
-        #region Konstruktor
+
+        #region Constructor
         public NowaFakturaViewModel() : base("Faktura")
         {
             item = new Faktura();
             fakturyEntities = new Faktury2024Entities();
 
-            
             KontrahenciList = new ObservableCollection<KontrahentForComboBox>(
                 fakturyEntities.Kontrahent.Select(kontrahent => new KontrahentForComboBox
                 {
@@ -38,115 +38,76 @@ namespace MVVMFirma.ViewModels
                     Nazwa = sp.Nazwa
                 }).ToList()
             );
-            //to jest messenger który oczekuje na kontrahenta z widoku z wszystkimi kontrahentami
-            // jak go złapiemy to jest wywoływana metoda getWybranyKontrahent
+
+            item.DataWystawienia = DateTime.Now;
             Messenger.Default.Register<Kontrahent>(this, getWybranyKontrahent);
-        }
-        #endregion
-        #region Command
-        private BaseCommand _ShowKontrahenci; //to jest komenda,która bedzie wywoływała funkcje show kontharenci wywolująca okno do wyswietlania kontrahentów
-        public ICommand ShowKontrahenci
-        {
-            get
-            {
-                if(_ShowKontrahenci == null)
-                    _ShowKontrahenci = new BaseCommand(()=> showKontrahenci());
-                return _ShowKontrahenci;
-            }
         }
         #endregion
 
         #region Properties
         public string Numer
         {
-            get
-            {
-                return item.Numer;
-            }
+            get { return item.Numer; }
             set
             {
                 item.Numer = value;
                 OnPropertyChanged(() => Numer);
             }
         }
+
         public bool? CzyZatwierdzona
         {
-            get
-            {
-                return item.CzyZatwierdzona;
-            }
+            get { return item.CzyZatwierdzona; }
             set
             {
                 item.CzyZatwierdzona = value;
                 OnPropertyChanged(() => CzyZatwierdzona);
             }
         }
+
         public DateTime? DataWystawienia
         {
-            get
-            {
-                return item.DataWystawienia;
-            }
+            get { return item.DataWystawienia; }
             set
             {
                 item.DataWystawienia = value;
                 OnPropertyChanged(() => DataWystawienia);
             }
         }
-        public int? KontrahentNIP
+
+        public DateTime? TerminPłatności
         {
-            get
+            get { return item.TerminPłatności; }
+            set
             {
-                return item.IdKontrahenta;
+                item.TerminPłatności = value;
+                OnPropertyChanged(() => TerminPłatności);
             }
+        }
+
+        public int? IdKontrahenta
+        {
+            get { return item.IdKontrahenta; }
             set
             {
                 item.IdKontrahenta = value;
-                OnPropertyChanged(() => KontrahentNIP);
+                OnPropertyChanged(() => IdKontrahenta);
             }
         }
+
+        public int? IdSposobuPłatności
+        {
+            get { return item.IdSposobuPłatności; }
+            set
+            {
+                item.IdSposobuPłatności = value;
+                OnPropertyChanged(() => IdSposobuPłatności);
+            }
+        }
+
         public string KontrahentNazwaPole { get; set; }
         public string KontrahentNipPole { get; set; }
 
-        private string _kontrahentNazwa;
-        public string KontrahentNazwa
-        {
-            get
-            {
-                return _kontrahentNazwa;
-            }
-            set
-            {
-                _kontrahentNazwa = value;
-                OnPropertyChanged(() => KontrahentNazwa);
-            }
-        }
-        public DateTime? TerminPlatosci
-        {
-            get
-            {
-                return TerminPlatosci;
-            }
-            set
-            {
-                TerminPlatosci = value;
-                OnPropertyChanged(() => TerminPlatosci);
-            }
-        }
-        public string SposobuPlatnosciNazwa
-        {
-            get
-            {
-                return SposobuPlatnosciNazwa;
-            }
-            set
-            {
-                {
-                    SposobuPlatnosciNazwa = value;
-                    OnPropertyChanged(() => SposobuPlatnosciNazwa);
-                }
-            }
-        }
         public ObservableCollection<KontrahentForComboBox> KontrahenciList
         {
             get { return _kontrahenciList; }
@@ -167,12 +128,21 @@ namespace MVVMFirma.ViewModels
             }
         }
         #endregion
-        #region Helpers
-        public override void Save()
+
+        #region Commands
+        private BaseCommand _ShowKontrahenci;
+        public ICommand ShowKontrahenci
         {
-            FakturyEntities.Faktura.Add(item); // dodaje towar do lokalnej kolekcji 
-            FakturyEntities.SaveChanges(); // zapisuje zmiany do bazy danych
+            get
+            {
+                if (_ShowKontrahenci == null)
+                    _ShowKontrahenci = new BaseCommand(() => showKontrahenci());
+                return _ShowKontrahenci;
+            }
         }
+        #endregion
+
+        #region Classes
         public class KontrahentForComboBox
         {
             public int IdKontrahenta { get; set; }
@@ -184,30 +154,49 @@ namespace MVVMFirma.ViewModels
             public int IdSposobuPłatności { get; set; }
             public string Nazwa { get; set; }
         }
+        #endregion
+
+        #region Helpers
+        public override void Save()
+        {
+            fakturyEntities.Faktura.Add(item);
+            fakturyEntities.SaveChanges();
+        }
+
+        private void showKontrahenci()
+        {
+            Messenger.Default.Send("KontrahenciAll");
+        }
+
         private void getWybranyKontrahent(Kontrahent kontrahent)
         {
-            KontrahentNIP = kontrahent.IdKontrahenta;
+            IdKontrahenta = kontrahent.IdKontrahenta;
             KontrahentNipPole = kontrahent.NIP;
             KontrahentNazwaPole = kontrahent.Nazwa;
         }
+
         protected override string ValidateProperty(string propertyname)
         {
             switch (propertyname)
             {
                 case nameof(Numer):
                     return string.IsNullOrEmpty(Numer) ? "Numer faktury jest wymagany" : string.Empty;
-
                 case nameof(DataWystawienia):
                     return !DataWystawienia.HasValue ? "Data wystawienia jest wymagana" : string.Empty;
-
-                
+                case nameof(TerminPłatności):
+                    if (!TerminPłatności.HasValue)
+                        return "Termin płatności jest wymagany";
+                    if (DataWystawienia.HasValue && TerminPłatności.Value < DataWystawienia.Value)
+                        return "Termin płatności nie może być wcześniejszy niż data wystawienia";
+                    return string.Empty;
+                case nameof(IdKontrahenta):
+                    return !IdKontrahenta.HasValue ? "Kontrahent jest wymagany" : string.Empty;
+                case nameof(IdSposobuPłatności):
+                    return !IdSposobuPłatności.HasValue ? "Sposób płatności jest wymagany" : string.Empty;
                 default:
                     return string.Empty;
             }
         }
         #endregion
-        private void showKontrahenci(){
-            Messenger.Default.Send<string>("KontrahenciAll");
-        }
     }
 }

@@ -50,7 +50,16 @@ namespace MVVMFirma.ViewModels
         //{
         //    var nowyRodzaj = new NowyRodzajViewModel();
         //    EventAggregator.PublishWorkspaceViewModel(nowyRodzaj);
-        //}
+        //}\
+        protected override void Delete()
+        {
+            var rekordDoUsuniecia = fakturyEntities.Rodzaj.FirstOrDefault(x => x.IdRodzaju == WybraneId);
+            if (rekordDoUsuniecia != null)
+            {
+                fakturyEntities.Rodzaj.Remove(rekordDoUsuniecia);
+                fakturyEntities.SaveChanges();
+            }
+        }
         #endregion
     }
 }

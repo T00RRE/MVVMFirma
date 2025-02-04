@@ -54,6 +54,15 @@ namespace MVVMFirma.ViewModels
         //    var nowySposobPlatnosci = new NowySposobPlatnosciViewModel();
         //    EventAggregator.PublishWorkspaceViewModel(nowySposobPlatnosci);
         //}
+        protected override void Delete()
+        {
+            var rekordDoUsuniecia = fakturyEntities.SposóbPłatności.FirstOrDefault(x => x.IdSposobuPłatności == WybraneId);
+            if (rekordDoUsuniecia != null)
+            {
+                fakturyEntities.SposóbPłatności.Remove(rekordDoUsuniecia);
+                fakturyEntities.SaveChanges();
+            }
+        }
         #endregion
     }
 }

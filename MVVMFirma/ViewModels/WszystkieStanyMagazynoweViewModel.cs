@@ -63,6 +63,15 @@ namespace MVVMFirma.ViewModels
         //    var nowyStanMagazynowy = new NowyStanMagazynowyViewModel();
         //    EventAggregator.PublishWorkspaceViewModel(nowyStanMagazynowy);
         //}
+        protected override void Delete()
+        {
+            var rekordDoUsuniecia = fakturyEntities.StanMagazynowy.FirstOrDefault(x => x.IdStanu == WybraneId);
+            if (rekordDoUsuniecia != null)
+            {
+                fakturyEntities.StanMagazynowy.Remove(rekordDoUsuniecia);
+                fakturyEntities.SaveChanges();
+            }
+        }
         #endregion
     }
 }

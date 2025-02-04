@@ -10,9 +10,17 @@
              d:DesignHeight="600" 
              d:DesignWidth="900">
     <Grid>
-        <DataGrid Style="{StaticResource BaseDataGridStyle}"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Grid.Row="1"
+                  Style="{StaticResource BaseDataGridStyle}"
                   ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
                   CellStyle="{StaticResource DataGridCellStyle}"
+                  SelectedValue="{Binding WybraneId}"
+                  SelectedValuePath="IdTowaru"
                   ItemsSource="{Binding List}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" 

@@ -13,6 +13,8 @@
         <DataGrid Style="{StaticResource BaseDataGridStyle}"
                   ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
                   CellStyle="{StaticResource DataGridCellStyle}"
+                  SelectedValue="{Binding WybraneId}"
+                  SelectedValuePath="IdMagazynu"
                   ItemsSource="{Binding List}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" 

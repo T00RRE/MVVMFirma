@@ -62,6 +62,15 @@ namespace MVVMFirma.ViewModels
         //    var nowyTowar = new NowyTowarViewModel();
         //    EventAggregator.PublishWorkspaceViewModel(nowyTowar);
         //}
+        protected override void Delete()
+        {
+            var rekordDoUsuniecia = fakturyEntities.Towar.FirstOrDefault(x => x.IdTowaru == WybraneId);
+            if (rekordDoUsuniecia != null)
+            {
+                fakturyEntities.Towar.Remove(rekordDoUsuniecia);
+                fakturyEntities.SaveChanges();
+            }
+        }
         #endregion
     }
 }

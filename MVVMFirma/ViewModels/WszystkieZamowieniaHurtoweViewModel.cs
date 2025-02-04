@@ -94,6 +94,15 @@ namespace MVVMFirma.ViewModels
                 }
             }
         }
+        protected override void Delete()
+        {
+            var rekordDoUsuniecia = fakturyEntities.ZamowienieHurtowe.FirstOrDefault(x => x.IdZamowienia == WybraneId);
+            if (rekordDoUsuniecia != null)
+            {
+                fakturyEntities.ZamowienieHurtowe.Remove(rekordDoUsuniecia);
+                fakturyEntities.SaveChanges();
+            }
+        }
         #endregion
     }
 }

@@ -52,6 +52,15 @@ namespace MVVMFirma.ViewModels
         //    var nowyAdres = new NowyAdresViewModel();
         //    EventAggregator.PublishWorkspaceViewModel(nowyAdres);
         //}
+        protected override void Delete()
+        {
+            var rekordDoUsuniecia = fakturyEntities.Adres.FirstOrDefault(x => x.IdAdresu == WybraneId);
+            if (rekordDoUsuniecia != null)
+            {
+                fakturyEntities.Adres.Remove(rekordDoUsuniecia);
+                fakturyEntities.SaveChanges();
+            }
+        }
         #endregion
     }
 }

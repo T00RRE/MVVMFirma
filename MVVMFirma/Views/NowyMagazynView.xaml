@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMFirma.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="500">
+             d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid Background="{StaticResource BackgroundColor}" Margin="20">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -28,37 +28,41 @@
                    Margin="0,0,0,20"
                    Foreground="{StaticResource TextPrimaryColor}"/>
 
-        <!-- Pola formularza -->
-        <Label Grid.Column="0" Grid.Row="1" 
-               Style="{StaticResource BaseLabelStyle}" 
+        <!-- Nazwa -->
+        <Label Grid.Row="1" Grid.Column="0" 
+               Style="{StaticResource BaseLabelStyle}"
                Content="Nazwa"/>
-        <TextBox Grid.Column="1" Grid.Row="1" 
-                Style="{StaticResource BaseTextBoxStyle}" 
-                Text="{Binding Path=Nazwa, ValidatesOnDataErrors=True}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" 
+                 Style="{StaticResource BaseTextBoxStyle}"
+                 Text="{Binding Path=Nazwa, ValidatesOnDataErrors=True}"/>
 
-        <Label Grid.Column="0" Grid.Row="2" 
-               Style="{StaticResource BaseLabelStyle}" 
+        <!-- Lokalizacja -->
+        <Label Grid.Row="2" Grid.Column="0" 
+               Style="{StaticResource BaseLabelStyle}"
                Content="Lokalizacja"/>
-        <TextBox Grid.Column="1" Grid.Row="2" 
-                Style="{StaticResource BaseTextBoxStyle}"
-                Text="{Binding Path=Lokalizacja, ValidatesOnDataErrors=True}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" 
+                 Style="{StaticResource BaseTextBoxStyle}"
+                 Text="{Binding Path=Lokalizacja, ValidatesOnDataErrors=True}"/>
 
-        <Label Grid.Column="0" Grid.Row="3" 
-               Style="{StaticResource BaseLabelStyle}" 
+        <!-- Pojemność -->
+        <Label Grid.Row="3" Grid.Column="0" 
+               Style="{StaticResource BaseLabelStyle}"
                Content="Pojemność"/>
-        <TextBox Grid.Column="1" Grid.Row="3" 
-                Style="{StaticResource BaseTextBoxStyle}"
-                Text="{Binding Path=Pojemnosc, ValidatesOnDataErrors=True}"/>
+        <TextBox Grid.Row="3" Grid.Column="1" 
+                 Style="{StaticResource BaseTextBoxStyle}"
+                 Text="{Binding Path=Pojemnosc, ValidatesOnDataErrors=True}"/>
 
-        <Label Grid.Column="0" Grid.Row="4" 
-               Style="{StaticResource BaseLabelStyle}" 
+        <!-- Status -->
+        <Label Grid.Row="4" Grid.Column="0" 
+               Style="{StaticResource BaseLabelStyle}"
                Content="Status"/>
-        <ComboBox Grid.Column="1" Grid.Row="4" 
-                Style="{StaticResource BaseComboBoxStyle}"
-                Text="{Binding Path=Status, ValidatesOnDataErrors=True}">
+        <ComboBox Grid.Row="4" Grid.Column="1" 
+                  Style="{StaticResource BaseComboBoxStyle}"
+                  SelectedValue="{Binding Path=Status, ValidatesOnDataErrors=True}">
             <ComboBoxItem Content="Aktywny"/>
             <ComboBoxItem Content="Nieaktywny"/>
             <ComboBoxItem Content="W remoncie"/>
+            <ComboBoxItem Content="Pełny"/>
         </ComboBox>
 
         <!-- Przyciski -->

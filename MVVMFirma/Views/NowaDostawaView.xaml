@@ -91,5 +91,6 @@
                     Command="{Binding CancelCommand}"
                     Background="{StaticResource TextSecondaryColor}"/>
         </StackPanel>
+        
     </Grid>
 </local:jedenViewBase>

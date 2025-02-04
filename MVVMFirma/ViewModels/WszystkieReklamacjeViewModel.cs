@@ -68,6 +68,15 @@ namespace MVVMFirma.ViewModels
         //    var nowaReklamacja = new NowaReklamacjaViewModel();
         //    EventAggregator.PublishWorkspaceViewModel(nowaReklamacja);
         //}
+        protected override void Delete()
+        {
+            var rekordDoUsuniecia = fakturyEntities.Reklamacja.FirstOrDefault(x => x.IdReklamacji == WybraneId);
+            if (rekordDoUsuniecia != null)
+            {
+                fakturyEntities.Reklamacja.Remove(rekordDoUsuniecia);
+                fakturyEntities.SaveChanges();
+            }
+        }
         #endregion
     }
 }

@@ -18,6 +18,18 @@ namespace MVVMFirma.ViewModels
         #endregion
 
         #region Properties
+        public int IdSposobuPlatnosci
+        {
+            get
+            {
+                return item.IdSposobuPłatności;
+            }
+            set
+            {
+                item.IdSposobuPłatności = value;
+                OnPropertyChanged(() => IdSposobuPlatnosci);
+            }
+        }
         public string Nazwa
         {
             get

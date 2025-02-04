@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MVVMFirma.ViewModels
@@ -62,6 +63,18 @@ namespace MVVMFirma.ViewModels
                 if (_OdswiezCommand == null)
                     _OdswiezCommand = new BaseCommand(() => Load());
                 return _OdswiezCommand;
+            }
+        }
+        #endregion
+        #region DeleteCommand
+        private BaseCommand _UsunCommand;
+        public ICommand UsunCommand
+        {
+            get
+            {
+                if (_UsunCommand == null)
+                    _UsunCommand = new BaseCommand(() => UsunRecord());
+                return _UsunCommand;
             }
         }
         #endregion
@@ -145,6 +158,21 @@ namespace MVVMFirma.ViewModels
 
 
         #endregion
+        #region Properties
+        private int _WybraneId;
+        public int WybraneId
+        {
+            get
+            {
+                return _WybraneId;
+            }
+            set
+            {
+                _WybraneId = value;
+                OnPropertyChanged(() => WybraneId);
+            }
+        }
+        #endregion
         #region Helpers
         // metoda load pobiera wszystkie towary z bazy danych;
         public abstract void Load(); 
@@ -155,6 +183,41 @@ namespace MVVMFirma.ViewModels
             //ten odbierze MainWindowViewModel które odpowiada za otwieranie zakładek
             Messenger.Default.Send(DisplayName + "Add");
         }
+        public void UsunRecord()
+        {
+            if (WybraneId == 0) return;
+
+            var result = MessageBox.Show(
+                $"Czy na pewno chcesz usunąć wybrany rekord? Ta operacja jest nieodwracalna.",
+                "Potwierdzenie usunięcia",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Delete();
+                    Load();
+
+                    MessageBox.Show(
+                        "Rekord został usunięty pomyślnie.",
+                        "Sukces",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        $"Wystąpił błąd podczas usuwania: {ex.Message}",
+                        "Błąd",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                }
+            }
+        }
+
+        protected abstract void Delete();
         #endregion
     }
 }

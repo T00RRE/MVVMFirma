@@ -105,6 +105,15 @@ namespace MVVMFirma.ViewModels
         //    var nowyKontrahent = new NowyKontrahentViewModel();
         //    EventAggregator.PublishWorkspaceViewModel(nowyKontrahent);
         //}
+        protected override void Delete()
+        {
+            var rekordDoUsuniecia = fakturyEntities.Kontrahent.FirstOrDefault(x => x.IdKontrahenta == WybraneId);
+            if (rekordDoUsuniecia != null)
+            {
+                fakturyEntities.Kontrahent.Remove(rekordDoUsuniecia);
+                fakturyEntities.SaveChanges();
+            }
+        }
         #endregion
     }
 }

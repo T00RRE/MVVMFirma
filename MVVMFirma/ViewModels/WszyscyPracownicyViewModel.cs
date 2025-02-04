@@ -68,6 +68,15 @@ namespace MVVMFirma.ViewModels
         //    var nowyPracownik = new NowyRodzajViewModel();
         //    EventAggregator.PublishWorkspaceViewModel(nowyPracownik);
         //}
+        protected override void Delete()
+        {
+            var rekordDoUsuniecia = fakturyEntities.Pracownik.FirstOrDefault(x => x.IdPracownika == WybraneId);
+            if (rekordDoUsuniecia != null)
+            {
+                fakturyEntities.Pracownik.Remove(rekordDoUsuniecia);
+                fakturyEntities.SaveChanges();
+            }
+        }
         #endregion
     }
 }

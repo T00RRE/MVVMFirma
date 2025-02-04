@@ -59,9 +59,7 @@
     <DataTemplate DataType="{x:Type vm:WszystkieAdresyViewModel}">
         <v:WszystkieAdresyView/>
     </DataTemplate>
-    <!--<DataTemplate DataType="{x:Type vm:NowyMagazynViewModel}">
-        <v:NowyMagazynView/>
-    </DataTemplate>-->
+    
     <DataTemplate DataType="{x:Type vm:WszystkieMagazynyViewModel}">
         <v:WszystkieMagazynyView/>
     </DataTemplate>
@@ -289,7 +287,7 @@
                         <ToolBar Grid.Row="0">
                             <ToggleButton Content="Dodaj" Margin="0,2,0,2"/>
                             <ToggleButton Content="Edytuj" Margin="0,2,0,2"/>
-                            <ToggleButton Content="Kasuj" Margin="0,2,0,2"/>
+                            <ToggleButton Content="Kasuj" Command="{Binding UsunCommand}" Margin="0,2,0,2"/>
                             <ToggleButton Content="Odśwież" Command="{Binding OdswiezCommand}" Margin="0,2,0,2"/>
                         </ToolBar>
                         <StackPanel Grid.Row="1" Background="Azure">
