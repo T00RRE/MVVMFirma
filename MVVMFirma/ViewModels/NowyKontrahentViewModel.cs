@@ -11,6 +11,7 @@ namespace MVVMFirma.ViewModels
         private readonly Faktury2024Entities fakturyEntities;
         private ObservableCollection<RodzajForComboBox> _rodzajeList;
         private ObservableCollection<AdresForComboBox> _adresyList;
+        private ObservableCollection<StatusForComboBox> _statusyList;
         #endregion
 
         #region Constructor
@@ -34,6 +35,14 @@ namespace MVVMFirma.ViewModels
                     PelnyAdres = adres.Miejscowość + ", " + adres.Ulica + " " +
                                 adres.NrDomu + (adres.NrLokalu != null ? "/" + adres.NrLokalu : "") +
                                 ", " + adres.KodPocztowy
+                }).ToList()
+            );
+
+            StatusyList = new ObservableCollection<StatusForComboBox>(
+                fakturyEntities.Status.Select(status => new StatusForComboBox
+                {
+                    IdStatusu = status.IdStatus,
+                    Nazwa = status.Nazwa
                 }).ToList()
             );
         }
@@ -135,6 +144,7 @@ namespace MVVMFirma.ViewModels
                 }
             }
         }
+
         public ObservableCollection<RodzajForComboBox> RodzajeList
         {
             get { return _rodzajeList; }
@@ -154,6 +164,16 @@ namespace MVVMFirma.ViewModels
                 OnPropertyChanged(() => AdresyList);
             }
         }
+
+        public ObservableCollection<StatusForComboBox> StatusyList
+        {
+            get { return _statusyList; }
+            set
+            {
+                _statusyList = value;
+                OnPropertyChanged(() => StatusyList);
+            }
+        }
         #endregion
 
         #region Helpers
@@ -162,6 +182,7 @@ namespace MVVMFirma.ViewModels
             fakturyEntities.Kontrahent.Add(item);
             fakturyEntities.SaveChanges();
         }
+
         public class RodzajForComboBox
         {
             public int IdRodzaju { get; set; }
@@ -173,6 +194,13 @@ namespace MVVMFirma.ViewModels
             public int IdAdresu { get; set; }
             public string PelnyAdres { get; set; }
         }
+
+        public class StatusForComboBox
+        {
+            public int IdStatusu { get; set; }
+            public string Nazwa { get; set; }
+        }
+
         protected override string ValidateProperty(string propertyname)
         {
             switch (propertyname)

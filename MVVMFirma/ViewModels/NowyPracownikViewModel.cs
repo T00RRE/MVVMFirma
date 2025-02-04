@@ -14,6 +14,7 @@ namespace MVVMFirma.ViewModels
         public NowyPracownikViewModel() : base("Pracownik")
         {
             item = new Pracownik();
+            item.DataZatrudnienia = DateTime.Now;
             
         }
         #endregion

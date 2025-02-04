@@ -26,6 +26,7 @@ namespace MVVMFirma.ViewModels
         public NowaReklamacjaViewModel() : base("Reklamacja")
         {
             item = new Reklamacja();
+            item.DataReklamacji = DateTime.Now;
             fakturyEntities = new Faktury2024Entities();
             PracownicyList = new ObservableCollection<PracownikForComboBox>(
                 fakturyEntities.Pracownik.Select(pracownik => new PracownikForComboBox
